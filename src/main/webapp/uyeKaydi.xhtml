@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Hasta Kaydı</title>
+    </h:head>
+    <h:body>
+        <h:outputStylesheet library="css" name="cssfile.css"/>
+        <h:form>
+            <center>
+                <h:panelGrid columns="3" style="margin-top: 50px; background-color: greenyellow">
+                    <h3>Yeni Üye Kaydı</h3>
+                    <h:outputText/>
+                    <h:outputText/>
+                    
+                    <h:outputText value="T.C. Kimlik No"/>
+                    <h:outputText value="*"/>
+                    <p:inputMask mask="99999999999"/>
+                    
+                    <h:outputText value="Adı"/>
+                    <h:outputText value="*"/>
+                    <p:inputText/>
+                    
+                    <h:outputText value="Soyadı"/>
+                    <h:outputText value="*"/>
+                    <p:inputText/>
+                    
+                    <h:outputText value="Cinsiyeti"/>
+                    <h:outputText value="*"/>
+                    <p:selectOneMenu >
+                        <f:selectItem itemLabel="-" itemValue="-"/>
+                        <f:selectItem itemLabel="Erkek" itemValue="Erkek"/>
+                        <f:selectItem itemLabel="Kadın" itemValue="Kadın"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputText value="Doğum Yeri" />
+                    <h:outputText value="*"/>
+                    <p:inputText/>
+                    
+                    <h:outputText value="Doğum Tarihi"/>
+                    <h:outputText value="*"/>
+                    <p:calendar value="#{geciciTarihSinifi.tarih}"/>
+                    
+                    <h:outputText value="Baba Adı"/>
+                    <h:outputText/>
+                    <p:inputText />
+                    
+                    <h:outputText value="Anne Adı"/>
+                    <h:outputText/>
+                    <p:inputText/>
+                    
+                    <h:outputText value="Cep Telefonu"/>
+                    <h:outputText value="**"/>
+                    <p:inputMask mask="0599 999 99 99"/>
+                    
+                    <h:outputText value="Ev Telefonu"/>
+                    <h:outputText value="**"/>
+                    <p:inputMask mask="0999 999 99 99"/>
+                    
+                    <h:outputText value="E-posta Adresi"/>
+                    <h:outputText/>
+                    <p:inputText/>
+                    
+                    <h:outputText value="E-posta Adresi Tekrar"/>
+                    <h:outputText />
+                    <p:inputText />
+                    
+                    <h:outputText value="Parola"/>
+                    <h:outputText value="*"/>
+                    <p:inputText />
+                    
+                    <h:outputText value="Parola Tekrar"/>
+                    <h:outputText value="*"/>
+                    <p:inputText />
+                </h:panelGrid>
+                
+                <h:panelGrid columns="1">
+                    <h:outputText value="* İşaretli Alanların Doldurulması Zorunludur"/>
+                    <h:outputText value="** İşaretli Alanların En Az Birisnin Doldurulması Zorunludur"/>
+                    <h:commandButton value="Kaydet" style="float: right"/>
+                </h:panelGrid>
+                
+            </center>
+        </h:form>
+    </h:body>
+</html>
+
