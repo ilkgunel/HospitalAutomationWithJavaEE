@@ -8,6 +8,9 @@ package com.ilkgunel.hastaneotomasyonu;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+
 /**
  *
  * @author ilkaygunel
@@ -23,6 +26,15 @@ Date tarih;
 
     public Date getTarih() {
         tarih=new Date();
+        DateFormat df=new SimpleDateFormat("yyyy/MM/dd");
+        try{
+        tarih=df.parse("1980/01/01");
+        }
+        catch(Exception ex)
+        {
+            System.err.println(ex);
+        }
+        System.out.println(tarih);
         return tarih;
     }
 
