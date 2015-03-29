@@ -19,3 +19,8 @@ margin-top: 20px;
 position: absolute;
 margin-left: 375px;
 }
+
+#divClass2
+{
+    background-image: url(..//resources/images/g.png);
+}
