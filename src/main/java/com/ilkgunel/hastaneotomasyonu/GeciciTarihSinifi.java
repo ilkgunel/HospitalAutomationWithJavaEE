@@ -11,10 +11,6 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 
-/**
- *
- * @author ilkaygunel
- */
 @Named(value = "geciciTarihSinifi")
 @Dependent
 public class GeciciTarihSinifi {

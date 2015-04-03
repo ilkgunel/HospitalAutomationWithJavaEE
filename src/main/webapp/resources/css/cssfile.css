@@ -24,3 +24,10 @@ margin-left: 375px;
 {
     background-image: url(..//resources/images/g.png);
 }
+
+#randevuAdim
+{
+font-size: 26px;
+color: #F00;
+font-weight: normal;
+}
