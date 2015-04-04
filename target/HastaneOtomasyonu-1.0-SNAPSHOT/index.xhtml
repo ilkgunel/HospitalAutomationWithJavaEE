@@ -17,13 +17,13 @@
             <h:panelGrid columns="2" style="margin-top:60px;">
                 
                 <center><h:outputText value="Vatandaş Giriş Ekranı" /></center>
-                <h:outputText value=""/>
+                <h:outputText value=""/>...
                 
                 <h:outputText value="T.C. Kimlik No" style="margin-left: 15px;"/>
-                <h:inputText value="#{girisKontrolSnifi.kimlikNo}"/>
+                <h:inputText value="#{girisKontrolSnifi.user.identityNumber}"/>
                 
                 <h:outputText value="Parola" style="margin-left: 15px;"/>
-                <h:inputText  value="#{girisKontrolSnifi.parola}"/>
+                <h:inputSecret  value="#{girisKontrolSnifi.user.password}"/>
                 
                 <h:outputText value="Doğrulama Kodu" style="margin-left: 15px;"/>
                 <p:captcha label="Captcha" />
@@ -32,7 +32,8 @@
                       <h:button value="Yeni Üye" outcome="uyeKaydi.xhtml"/>
                       <h:button value="Şifremi Unuttum" outcome="remindingPassword.xhtml"/>
                   </h:panelGrid>
-                  <h:commandButton value="Giriş" action="#{girisKontrolSnifi.login()}" style="margin-left: 265px;"/>
+                  <h:commandButton value="Giriş" 
+                                   action="#{girisKontrolSnifi.login()}" style="margin-left: 265px;"/>
             </h:panelGrid>
                 <h:outputText value="Soru ve sorunlarınız için mhrs@saglik.gov.tr adresimizi kullanarak bize ulaşabilirsiniz."/>
             </div>

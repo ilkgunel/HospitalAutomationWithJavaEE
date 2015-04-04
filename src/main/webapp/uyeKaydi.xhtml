@@ -18,19 +18,19 @@
                     
                     <h:outputText value="T.C. Kimlik No"/>
                     <h:outputText value="*"/>
-                    <p:inputMask mask="99999999999"/>
+                    <p:inputMask value="#{girisKontrolSnifi.user.identityNumber}" mask="99999999999"/>
                     
                     <h:outputText value="Adı"/>
                     <h:outputText value="*"/>
-                    <p:inputText/>
+                    <p:inputText value="#{girisKontrolSnifi.user.firstName}"/>
                     
                     <h:outputText value="Soyadı"/>
                     <h:outputText value="*"/>
-                    <p:inputText/>
+                    <p:inputText value="#{girisKontrolSnifi.user.lastName}"/>
                     
                     <h:outputText value="Cinsiyeti"/>
                     <h:outputText value="*"/>
-                    <p:selectOneMenu >
+                    <p:selectOneMenu value="#{girisKontrolSnifi.user.maleFemale}">
                         <f:selectItem itemLabel="-" itemValue="-"/>
                         <f:selectItem itemLabel="Erkek" itemValue="Erkek"/>
                         <f:selectItem itemLabel="Kadın" itemValue="Kadın"/>
@@ -38,49 +38,49 @@
                     
                     <h:outputText value="Doğum Yeri" />
                     <h:outputText value="*"/>
-                    <p:inputText/>
+                    <p:inputText value="#{girisKontrolSnifi.user.birthPlace}"/>
                     
                     <h:outputText value="Doğum Tarihi"/>
                     <h:outputText value="*"/>
-                    <p:calendar value="#{geciciTarihSinifi.tarih}"/>
+                    <p:calendar value="#{girisKontrolSnifi.user.birthDate}"/>
                     
                     <h:outputText value="Baba Adı"/>
                     <h:outputText/>
-                    <p:inputText />
+                    <p:inputText value="#{girisKontrolSnifi.user.fatherName}"/>
                     
                     <h:outputText value="Anne Adı"/>
                     <h:outputText/>
-                    <p:inputText/>
+                    <p:inputText value="#{girisKontrolSnifi.user.motherName}" />
                     
                     <h:outputText value="Cep Telefonu"/>
                     <h:outputText value="**"/>
-                    <p:inputMask mask="0599 999 99 99"/>
+                    <p:inputMask  value="#{girisKontrolSnifi.user.phoneNumber}" mask="0599 999 99 99"/>
                     
                     <h:outputText value="Ev Telefonu"/>
                     <h:outputText value="**"/>
-                    <p:inputMask mask="0999 999 99 99"/>
+                    <p:inputMask  value="#{girisKontrolSnifi.user.homeNumber}" mask="0999 999 99 99"/>
                     
                     <h:outputText value="E-posta Adresi"/>
                     <h:outputText/>
-                    <p:inputText/>
+                    <p:inputText value="#{girisKontrolSnifi.user.emailAdreess}"/>
                     
                     <h:outputText value="E-posta Adresi Tekrar"/>
                     <h:outputText />
-                    <p:inputText />
+                    <p:inputText value="#{girisKontrolSnifi.user.emailAdreessRepeat}" />
                     
                     <h:outputText value="Parola"/>
                     <h:outputText value="*"/>
-                    <p:inputText />
+                    <p:inputText value="#{girisKontrolSnifi.user.password}"/>
                     
                     <h:outputText value="Parola Tekrar"/>
                     <h:outputText value="*"/>
-                    <p:inputText />
+                    <p:inputText value="#{girisKontrolSnifi.user.passwordRepeat}"/>
                 </h:panelGrid>
                 
                 <h:panelGrid columns="1">
                     <h:outputText value="* İşaretli Alanların Doldurulması Zorunludur"/>
                     <h:outputText value="** İşaretli Alanların En Az Birisnin Doldurulması Zorunludur"/>
-                    <h:commandButton value="Kaydet" style="float: right"/>
+                    <h:commandButton value="Kaydet"  action="#{girisKontrolSnifi.login()}" style="float: right"/>
                 </h:panelGrid>
                 
             </center>

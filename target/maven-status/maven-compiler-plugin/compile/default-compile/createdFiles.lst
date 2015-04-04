@@ -1,2 +1,2 @@
-com\ilkgunel\hastaneotomasyonu\GirisKontrolSinifi.class
-com\ilkgunel\hastaneotomasyonu\GeciciTarihSinifi.class
+com\ilkgunel\hastaneotomasyonu\entity\User.class
+com\ilkgunel\hastaneotomasyonu\controller\GirisKontrolSinifi.class
