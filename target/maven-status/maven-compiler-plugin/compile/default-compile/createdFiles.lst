@@ -1,2 +1,5 @@
-com\ilkgunel\hastaneotomasyonu\entity\User.class
-com\ilkgunel\hastaneotomasyonu\controller\GirisKontrolSinifi.class
+com/ilkgunel/hastaneotomasyonu/entity/Iller.class
+com/ilkgunel/hastaneotomasyonu/entity/User.class
+com/ilkgunel/hastaneotomasyonu/entity/Ilceler.class
+com/ilkgunel/hastaneotomasyonu/controller/GetCities.class
+com/ilkgunel/hastaneotomasyonu/controller/GirisKontrolSinifi.class
