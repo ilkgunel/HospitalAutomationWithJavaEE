@@ -32,22 +32,23 @@
                 <h:panelGrid columns="2" style="float: left; background-color: #CDEDE4">
                     <h:outputText value="İl"/>
                     <p:selectOneMenu value="#{getDistricts.currentCity}" style="width: 160px;">
-                        <p:ajax update="districts" listener="#{getDistricts.fillList}"/>
+                        <p:ajax event="change" update="districts" listener="#{getDistricts.fillList}"/>
                         <f:selectItem itemValue="İl Seçin" itemLabel="İl Seçin"/>
                         <f:selectItems value="#{getCities.cities}"/>
                     </p:selectOneMenu>
                     
                     <h:outputText value="İlçe"/>
-                    <p:selectOneMenu id="districts" style="width: 160px;">
+                    <p:selectOneMenu id="districts" value="#{saveAppointments.district}" style="width: 160px;">
+                        <p:ajax update="hospitals" listener="#{getHospitals.fillList()}"/>
                         <f:selectItem itemLabel="-farketmez-" itemValue="-farketmez-"/>
                         <f:selectItems value="#{getDistricts.districts}"/>
                     </p:selectOneMenu>
                     
                     <h:outputText value="Hastahane"/>
-                    <h:selectOneMenu style="width: 160px;">
-                        <f:selectItem itemValue="İstanbul" itemLabel="İstanbul"/>
-                        <f:selectItem itemValue="Ankara" itemLabel="Ankara"/>
-                    </h:selectOneMenu>
+                    <p:selectOneMenu id="hospitals" value="#{saveAppointments.hospital}" style="width: 160px;">
+                        <f:selectItem itemLabel="-farketmez-" itemValue="-farketmez-"/>
+                        <f:selectItems value="#{getHospitals.hospitals}"/>
+                    </p:selectOneMenu>
                     
                     <h:outputText value="Semt Polikliniği"/>
                     <h:selectOneMenu style="width: 160px;">

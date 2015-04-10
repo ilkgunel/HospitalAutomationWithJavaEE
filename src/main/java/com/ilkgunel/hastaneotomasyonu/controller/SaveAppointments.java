@@ -12,21 +12,38 @@ import java.io.Serializable;
  *
  * @author ilkaygunel
  */
-@ManagedBean
+@ManagedBean(name="saveAppointments")
 @ViewScoped
 public class SaveAppointments implements Serializable{
 
     private String city;
+    String district;
+    private String hospital;
 
     public String getCity() {
-        System.out.println("GetCity Metodunun İçindenDöndürülen Değer:"+city);
         return city;
     }
 
     public void setCity(String city) {
-        System.out.println("Set metoduna gelen değer:"+city);
         this.city = city;
-        System.out.println("Set edildikden sonraki değer:"+this.city);
+    }
+
+    public String getDistrict() {
+        System.out.println("Giden İlçe"+district);
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        System.out.println("Gelen İlçe"+district);
+        this.district = district;
+    }
+
+    public String getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
     }
     
 }

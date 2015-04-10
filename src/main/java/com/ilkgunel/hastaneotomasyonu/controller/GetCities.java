@@ -25,17 +25,16 @@ import com.ilkgunel.hastaneotomasyonu.entity.Iller;
 public class GetCities implements Serializable {
 
     List<String> cities;
-    List<Iller> allResults;
-
-    public List<Iller> getAllResults() {
-        return allResults;
-    }
-
-    public void setAllResults(List<Iller> allResults) {
-        this.allResults = allResults;
-    }
-    
+    List<Iller> cityResults;
     int cityId;
+    
+    public List<Iller> getAllResults() {
+        return cityResults;
+    }
+
+    public void setAllResults(List<Iller> cityResults) {
+        this.cityResults = cityResults;
+    }
 
     public int getCityId() {
         return cityId;
@@ -58,13 +57,13 @@ public class GetCities implements Serializable {
     public void fillList()
     {
         cities=new ArrayList<>();
-        allResults=new ArrayList<>();
+        cityResults=new ArrayList<>();
         EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
         EntityManager em=emf.createEntityManager();
         TypedQuery<Iller> query=em.createQuery("SELECT i FROM Iller i",Iller.class);
-        allResults=query.getResultList();
+        cityResults=query.getResultList();
         
-        for (Iller i:allResults)
+        for (Iller i:cityResults)
         {
            
             cities.add(i.getSehir());

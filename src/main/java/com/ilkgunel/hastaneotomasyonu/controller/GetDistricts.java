@@ -8,9 +8,8 @@ package com.ilkgunel.hastaneotomasyonu.controller;
 import com.ilkgunel.hastaneotomasyonu.entity.Ilceler;
 import com.ilkgunel.hastaneotomasyonu.entity.Iller;
 import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.event.ValueChangeEvent;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
-import javax.annotation.PostConstruct;
 /**
  *
  * @author ilkaygunel
@@ -28,11 +26,17 @@ import javax.annotation.PostConstruct;
 @ViewScoped
 public class GetDistricts implements Serializable {
 
+    @ManagedProperty(value="#{saveAppointments}")
+    private SaveAppointments saveAppointments;
+    
+    @ManagedProperty(value="#{getCities}")
+    private GetCities getCities;
     
     List<String> districts;
-    int id=0;
+    List<Ilceler> districtResults;
+    int cityId=0;
     String currentCity;
-
+    
     public String getCurrentCity() {
         return currentCity;
     }
@@ -42,19 +46,13 @@ public class GetDistricts implements Serializable {
     }
     
     public int getId() {
-        return id;
+        return cityId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int cityId) {
+        this.cityId = cityId;
     }
     
-    
-    @ManagedProperty(value="#{saveAppointments}")
-    private SaveAppointments saveAppointments;
-    
-    @ManagedProperty(value="#{getCities}")
-    private GetCities getCities;
 
     public GetCities getGetCities() {
         return getCities;
@@ -71,8 +69,6 @@ public class GetDistricts implements Serializable {
     public void setSaveAppointments(SaveAppointments saveAppointments) {
         this.saveAppointments = saveAppointments;
     }
-    
-    
 
     public List<String> getDistricts() {
         return districts;
@@ -81,36 +77,37 @@ public class GetDistricts implements Serializable {
     public void setDistricts(List<String> districts) {
         this.districts = districts;
     }
+
+    public List<Ilceler> getDistrictResults() {
+        return districtResults;
+    }
+
+    public void setDistrictResults(List<Ilceler> districtResults) {
+        this.districtResults = districtResults;
+    }
     
     public void fillList()
     {
-        System.out.println("\nGüncel Şehir:"+getCurrentCity());
-        for(Iller i:getCities.allResults)
+        for(Iller i:getCities.cityResults)
         {
-            System.out.println("\n"+i.getSehir());
             if(i.getSehir().equals(currentCity))
             {
-                id=i.getId();
+                cityId=i.getId();
                 break;
             }
         }
-        System.out.println("\n");
-        System.out.println("Seçilen İlin ID'si"+id);
         
         EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
         EntityManager em=emf.createEntityManager();
         TypedQuery<Ilceler> query=em.createQuery("SELECT i FROM Ilceler i WHERE i.sehir=:value",Ilceler.class);
-        query.setParameter("value", id);
+        query.setParameter("value", cityId);
         districts=new ArrayList<>();
+        districtResults=new ArrayList<>();
+        districtResults=query.getResultList();
         
-        
-        for(Ilceler i:query.getResultList())
+        for(Ilceler i:districtResults)
         {
             districts.add(i.getIlce());
-        }
-        for(String s:districts)
-        {
-            System.out.println(s);
         }
     }
 }
