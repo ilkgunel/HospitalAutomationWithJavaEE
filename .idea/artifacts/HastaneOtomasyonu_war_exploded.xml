@@ -7,8 +7,15 @@
           <element id="module-output" name="HastaneOtomasyonu" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: javax:javaee-api:7.0" />
+          <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.5.0" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.6" />
           <element id="library" level="project" name="Maven: com.sun.faces:jsf-impl:2.2.10" />
           <element id="library" level="project" name="Maven: com.sun.faces:jsf-api:2.2.10" />
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:eclipselink:2.5.2" />
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:javax.persistence:2.1.0" />
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:commonj.sdo:2.1.1" />
           <element id="library" level="project" name="Maven: org.primefaces:primefaces:5.1" />
         </element>
       </element>

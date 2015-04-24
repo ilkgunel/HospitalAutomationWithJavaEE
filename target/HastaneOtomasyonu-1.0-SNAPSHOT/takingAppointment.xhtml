@@ -2,8 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Randevu Alma Sayfası</title>
     </h:head>
@@ -46,33 +46,29 @@
                     
                     <h:outputText value="Hastahane"/>
                     <p:selectOneMenu id="hospitals" value="#{saveAppointments.hospital}" style="width: 160px;">
+                        <p:ajax update="clinic" listener="#{getClinics.fillList}"/>
                         <f:selectItem itemLabel="-farketmez-" itemValue="-farketmez-"/>
                         <f:selectItems value="#{getHospitals.hospitals}"/>
                     </p:selectOneMenu>
-                    
-                    <h:outputText value="Semt Polikliniği"/>
-                    <h:selectOneMenu style="width: 160px;">
-                        <f:selectItem itemValue="İstanbul" itemLabel="İstanbul"/>
-                        <f:selectItem itemValue="Ankara" itemLabel="Ankara"/>
-                    </h:selectOneMenu>
-                    
+
                     <h:outputText value="Klinik"/>
-                    <h:selectOneMenu style="width: 160px;">
-                        <f:selectItem itemValue="İstanbul" itemLabel="İstanbul"/>
-                        <f:selectItem itemValue="Ankara" itemLabel="Ankara"/>
-                    </h:selectOneMenu>
+                    <p:selectOneMenu id="clinic" value="#{saveAppointments.clinic}" style="width: 160px;">
+                        <p:ajax event="change" update="clinicplace" listener="#{getClinicPlaces.fillList}"></p:ajax>
+                        <f:selectItem itemLabel="-farketmez-" itemValue="-farketmez-"/>
+                        <f:selectItems value="#{getClinics.clinics}"/>
+                    </p:selectOneMenu>
                     
                     <h:outputText value="Klinik Yeri"/>
-                    <h:selectOneMenu style="width: 160px;">
-                        <f:selectItem itemValue="İstanbul" itemLabel="İstanbul"/>
-                        <f:selectItem itemValue="Ankara" itemLabel="Ankara"/>
-                    </h:selectOneMenu>
+                    <p:selectOneMenu id="clinicplace" style="width: 160px;">
+                        <f:selectItem itemLabel="-farketmez-" itemValue="-farketmez-"/>
+                        <f:selectItems value="#{getClinicPlaces.clinicPlaces}"/>
+                    </p:selectOneMenu>
                     
                     <h:outputText value="Hekim"/>
-                    <h:selectOneMenu style="width: 160px;">
+                    <p:selectOneMenu style="width: 160px;">
                         <f:selectItem itemValue="İstanbul" itemLabel="İstanbul"/>
                         <f:selectItem itemValue="Ankara" itemLabel="Ankara"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                     
                     <h:commandButton value="Temizle" type="reset"/>
                     <h:commandButton value="Randevu Ara" style="float: right"/>

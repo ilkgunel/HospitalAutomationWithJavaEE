@@ -61,7 +61,6 @@ public class GetHospitals implements  Serializable{
         
         for(Hastaneler h:hospitalResults)
         {
-            System.out.println(h.getHastaneadi());
             hospitals.add(h.getHastaneadi());
         }
         

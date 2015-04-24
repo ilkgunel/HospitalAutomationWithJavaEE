@@ -16,7 +16,7 @@ public class GirisKontrolSinifi implements Serializable{
     {
         if(user.getIdentityNumber().equals("1111")&&user.getPassword().equals("12345"))
         {
-           return "takingAppointment.xhtml";      
+           return "takingAppointment.xhtml?faces-redirect=true";
         }
         else
         {
