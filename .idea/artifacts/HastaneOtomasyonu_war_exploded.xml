@@ -7,6 +7,21 @@
           <element id="module-output" name="HastaneOtomasyonu" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.0.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.0.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:4.0.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.0.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:3.2.1.RELEASE" />
+          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:3.2.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:3.2.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:3.2.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:3.2.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:3.2.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:3.2.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-taglibs:3.2.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-acl:3.2.1.RELEASE" />
+          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.1.1" />
           <element id="library" level="project" name="Maven: javax:javaee-api:7.0" />
           <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.5.0" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />

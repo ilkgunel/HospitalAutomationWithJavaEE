@@ -65,7 +65,7 @@ public class GetCities implements Serializable {
         
         for (Iller i:cityResults)
         {
-           
+           System.out.println(i.getSehir());
             cities.add(i.getSehir());
         }
          

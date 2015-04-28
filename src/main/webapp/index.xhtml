@@ -6,11 +6,16 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Hastane Otomasyonu Batuhan APAYDIN Ve İlkay GÜNEL ve GİTHUB</title>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{girisKontrolSnifi.authorizedUserControl}"/>
+        </f:metadata>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"></meta>
     </h:head>
     <h:body>
         <h:outputStylesheet library="css" name="cssfile.css"/>
         <center style="margin-top: 100px;">
-        <h:form>
+        <h:form prependId="false">
+            <h:messages showDetail="true" />
             <center>T.C. SAĞLIK BAKANLIĞI</center>
             <center><h3>MERKEZİ HEKİM RANDEVU SİSTEMİ</h3></center>
             <div id="divClass1">
@@ -20,12 +25,15 @@
                 <h:outputText value=""/>
                 
                 <h:outputText value="T.C. Kimlik No" style="margin-left: 15px;"/>
-                <h:inputText value="#{girisKontrolSnifi.user.identityNumber}"/>
-                
+                <h:inputText id="j_username" required="true" maxlength="100" size="30" value="#{girisKontrolSnifi.identityNumber}"
+                             requiredMessage="Kullanıcı adı alanı boş bırakılamaz..."/>
+
+
                 <h:outputText value="Parola" style="margin-left: 15px;"/>
-                <h:inputSecret  value="#{girisKontrolSnifi.user.password}"/>
-                
-                <h:outputText value="Doğrulama Kodu" style="margin-left: 15px;"/>
+                <h:inputSecret id="j_password" required="true" maxlength="50" size="30" value="#{girisKontrolSnifi.password}"
+                               requiredMessage="Parola alanı boş bırakılamaz..." />
+
+                <h:outputText value="Doğrulama Kodu"/>
                 <p:captcha label="Captcha" />
                 
                   <h:panelGrid columns="2">
@@ -35,7 +43,12 @@
                   <h:commandButton value="Giriş" 
                                    action="#{girisKontrolSnifi.login()}" style="margin-left: 265px;"/>
             </h:panelGrid>
-                <h:outputText value="Soru ve sorunlarınız için mhrs@saglik.gov.tr adresimizi kullanarak bize ulaşabilirsiniz."/>
+                <h:panelGrid columns="1">
+                  <h:outputText value="Soru ve sorunlarınız için mhrs@saglik.gov.tr adresimiz ile bize ulaşabilirsiniz." style="margin-left: 5px;"/>
+                  <h:outputLabel value="#{sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}" rendered="#{!empty sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+                                 style="margin-left: 5px;color: red"/>
+                  <p:messages showDetail="true"/>
+                </h:panelGrid>
             </div>
         </h:form>
         </center>
