@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Hastane Otomasyonu Batuhan APAYDIN Ve İlkay GÜNEL ve GİTHUB</title>
+        <title>Hastane Otomasyonu</title>
         <f:metadata>
             <f:event type="preRenderView" listener="#{girisKontrolSnifi.authorizedUserControl}"/>
         </f:metadata>
@@ -30,11 +30,11 @@
 
 
                 <h:outputText value="Parola" style="margin-left: 15px;"/>
-                <h:inputSecret id="j_password" required="true" maxlength="50" size="30" value="#{girisKontrolSnifi.password}"
+                <h:inputText id="j_password" required="true" maxlength="50" size="30" value="#{girisKontrolSnifi.password}"
                                requiredMessage="Parola alanı boş bırakılamaz..." />
 
-                <h:outputText value="Doğrulama Kodu"/>
-                <p:captcha label="Captcha" />
+                <!--<h:outputText value="Doğrulama Kodu"/>
+                <p:captcha label="Captcha" />-->
                 
                   <h:panelGrid columns="2">
                       <h:button value="Yeni Üye" outcome="uyeKaydi.xhtml"/>

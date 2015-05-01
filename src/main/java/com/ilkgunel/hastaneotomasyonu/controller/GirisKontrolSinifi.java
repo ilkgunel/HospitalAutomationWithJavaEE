@@ -21,8 +21,8 @@ import java.util.logging.Level;
 @ViewScoped
 public class GirisKontrolSinifi implements Serializable{
 
-    String identityNumber;
-    String password;
+    String identityNumber="guest";
+    String password="12345";
 
     public String getIdentityNumber() {
         System.out.println("Döndürülen İsim:"+identityNumber);

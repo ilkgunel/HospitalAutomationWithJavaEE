@@ -5,6 +5,8 @@
  */
 package com.ilkgunel.hastaneotomasyonu.controller;
 
+import com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
@@ -20,24 +22,31 @@ public class SaveAppointments implements Serializable{
     String district;
     private String hospital;
     private String clinic;
+    private String clinicPlace;
 
-    public String getClinic() {
-        return clinic;
+    Uygunrandevular selectedAppointment;
+
+    public Uygunrandevular getSelectedAppointment() {
+        return selectedAppointment;
     }
+
+    public void setSelectedAppointment(Uygunrandevular selectedAppointment) {
+        this.selectedAppointment = selectedAppointment;
+    }
+
+    public String getClinicPlace() { return clinicPlace; }
+
+    public void setClinicPlace(String clinicPlace) { this.clinicPlace = clinicPlace; }
+
+    public String getClinic() {return clinic;}
 
     public void setClinic(String clinic) {
         this.clinic = clinic;
     }
 
-    public String getCity() {
+    public String getCity() { return city; }
 
-        return city;
-    }
-
-    public void setCity(String city) {
-
-        this.city = city;
-    }
+    public void setCity(String city) { this.city = city; }
 
     public String getDistrict() {
         return district;

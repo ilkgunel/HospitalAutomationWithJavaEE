@@ -11,86 +11,161 @@
         <h:outputStylesheet library="css" name="cssfile.css"/>
         <h:form>
           <center>
-              <div style="height: 450px;width: 750px;background-color:aquamarine ">
-            <h:panelGrid columns="3">
-                <h:graphicImage library="images" name="saglikBakanligiLogo.png"/>
-                <h:panelGrid columns="1">
-                <h:outputText value="T.C. SAĞLIK BAKANLIĞI"
-                              style='padding-left: 119px;padding-right: 119px;'/>
-                <h:outputText value="Merkezi Hekim Randevu Sistemi"
-                              style='padding-left: 119px;padding-right: 119px;'/>
-                </h:panelGrid>
-                <h:graphicImage library="images" name="logo.png"/>
-                
-                
-                <p:clock pattern="HH:mm:ss" />
-                <h:outputText value=""/>
-                <h:outputText value="Sayın İlkay Günel"/>
-            </h:panelGrid>
-            
-            <h:panelGrid columns="2">
-                <h:panelGrid columns="2" style="float: left; background-color: #CDEDE4">
-                    <h:outputText value="İl"/>
-                    <p:selectOneMenu value="#{getDistricts.currentCity}" style="width: 160px;">
-                        <p:ajax event="change" update="districts" listener="#{getDistricts.fillList}"/>
-                        <f:selectItem itemValue="İl Seçin" itemLabel="İl Seçin"/>
-                        <f:selectItems value="#{getCities.cities}"/>
-                    </p:selectOneMenu>
-                    
-                    <h:outputText value="İlçe"/>
-                    <p:selectOneMenu id="districts" value="#{saveAppointments.district}" style="width: 160px;">
-                        <p:ajax update="hospitals" listener="#{getHospitals.fillList()}"/>
-                        <f:selectItem itemLabel="-farketmez-" itemValue="-farketmez-"/>
-                        <f:selectItems value="#{getDistricts.districts}"/>
-                    </p:selectOneMenu>
-                    
-                    <h:outputText value="Hastahane"/>
-                    <p:selectOneMenu id="hospitals" value="#{saveAppointments.hospital}" style="width: 160px;">
-                        <p:ajax update="clinic" listener="#{getClinics.fillList}"/>
-                        <f:selectItem itemLabel="-farketmez-" itemValue="-farketmez-"/>
-                        <f:selectItems value="#{getHospitals.hospitals}"/>
-                    </p:selectOneMenu>
+              <div style="height: 450px;width: 800px;">
+                <p:panelGrid columns="3">
+                    <h:graphicImage library="images" name="saglikBakanligiLogo.png"/>
+                    <h:panelGrid columns="1">
+                        <h:outputText value="T.C. SAĞLIK BAKANLIĞI"
+                                      style='padding-left: 119px;padding-right: 119px;'/>
+                        <h:outputText value="Merkezi Hekim Randevu Sistemi"
+                                      style='padding-left: 119px;padding-right: 119px;'/>
+                    </h:panelGrid>
+                    <h:graphicImage library="images" name="logo.png"/>
 
-                    <h:outputText value="Klinik"/>
-                    <p:selectOneMenu id="clinic" value="#{saveAppointments.clinic}" style="width: 160px;">
-                        <p:ajax event="change" update="clinicplace" listener="#{getClinicPlaces.fillList}"></p:ajax>
-                        <f:selectItem itemLabel="-farketmez-" itemValue="-farketmez-"/>
-                        <f:selectItems value="#{getClinics.clinics}"/>
-                    </p:selectOneMenu>
-                    
-                    <h:outputText value="Klinik Yeri"/>
-                    <p:selectOneMenu id="clinicplace" style="width: 160px;">
-                        <f:selectItem itemLabel="-farketmez-" itemValue="-farketmez-"/>
-                        <f:selectItems value="#{getClinicPlaces.clinicPlaces}"/>
-                    </p:selectOneMenu>
-                    
-                    <h:outputText value="Hekim"/>
-                    <p:selectOneMenu style="width: 160px;">
-                        <f:selectItem itemValue="İstanbul" itemLabel="İstanbul"/>
-                        <f:selectItem itemValue="Ankara" itemLabel="Ankara"/>
-                    </p:selectOneMenu>
-                    
-                    <h:commandButton value="Temizle" type="reset"/>
-                    <h:commandButton value="Randevu Ara" style="float: right"/>
-                    
-                    <h:outputText/>
-                    <h:commandButton value="Aile Hekiminden Randevu Al"/>
-                </h:panelGrid>
-                
-                <h:panelGrid columns="1" style="background-color: white">
-                    <h3>Hoş Geldiniz</h3>
-                    <hr></hr>
-                    <b>Randevunuzu <span id="randevuAdim"> 3 </span> adımda alabilirsiniz.</b>
-                    <blockquote style="width: 383px;height: 146px;">
-                    <b><span id="randevuAdim">1.</span> adımda sol taraftaki arama araçlarını kullanarak uygun hekimlerin listesini getirebilirsiniz.</b>
-                    <br/>
-                    <b><span id="randevuAdim">2.</span>adımda hekim listesinden istediğiniz hekimi seçerek hekim çalışma cetvelini görüntüleyebilirsiniz.</b>
-                    <br/>
-                    <b><span id="randevuAdim">3.</span>adımda hekim çalışma cetvelinden uygun bir slot seçip randevunuzu kaydedebilirsiniz.</b>
-                    </blockquote>
-                </h:panelGrid>
-                
-            </h:panelGrid>
+
+                    <p:clock pattern="HH:mm:ss" />
+                    <h:outputText value=""/>
+                    <h:outputText value="Sayın İlkay Günel"/>
+                </p:panelGrid>
+
+                <p:panelGrid id="infoOrClocksAndOptions" columns="2">
+                    <p:panelGrid columns="2" style="float: left; background-color: #CDEDE4;">
+                        <h:outputText value="İl"/>
+                        <p:selectOneMenu value="#{getDistricts.currentCity}" style="width: 160px;">
+                            <p:ajax event="change" update="districts" listener="#{getDistricts.fillList}"/>
+                            <f:selectItem itemValue="İl Seçin" itemLabel="İl Seçin"/>
+                            <f:selectItems value="#{getCities.cities}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputText value="İlçe"/>
+                        <p:selectOneMenu id="districts" value="#{saveAppointments.district}" style="width: 160px;">
+                            <p:ajax update="hospitals" listener="#{getHospitals.fillList()}"/>
+                            <f:selectItem itemLabel="-farketmez-" itemValue="-farketmez-"/>
+                            <f:selectItems value="#{getDistricts.districts}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputText value="Hastahane"/>
+                        <p:selectOneMenu id="hospitals" value="#{saveAppointments.hospital}" style="width: 160px;">
+                            <p:ajax update="clinic" listener="#{getClinics.fillList}"/>
+                            <f:selectItem itemLabel="-farketmez-" itemValue="-farketmez-"/>
+                            <f:selectItems value="#{getHospitals.hospitals}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputText value="Klinik"/>
+                        <p:selectOneMenu id="clinic" value="#{saveAppointments.clinic}" style="width: 160px;">
+                            <p:ajax event="change" update="clinicplace" listener="#{getClinicPlaces.fillList}"></p:ajax>
+                            <f:selectItem itemLabel="-farketmez-" itemValue="-farketmez-"/>
+                            <f:selectItems value="#{getClinics.clinics}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputText value="Klinik Yeri"/>
+                        <p:selectOneMenu id="clinicplace" style="width: 160px;" value="#{saveAppointments.clinicPlace}">
+                            <f:selectItem itemLabel="-farketmez-" itemValue="-farketmez-"/>
+                            <f:selectItems value="#{getClinicPlaces.clinicPlaces}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputText value="Hekim"/>
+                        <p:selectOneMenu style="width: 160px;" disabled="true">
+                            <f:selectItem itemValue="İstanbul" itemLabel="İstanbul"/>
+                            <f:selectItem itemValue="Ankara" itemLabel="Ankara"/>
+                        </p:selectOneMenu>
+
+                        <h:commandButton value="Temizle" type="reset"/>
+                        <p:commandButton value="Randevu Ara" style="float: right" update="panelGrid" actionListener="#{getAvaliableAppointments.fillList}"/>
+
+                        <h:outputText/>
+                        <h:commandButton value="Aile Hekiminden Randevu Al"/>
+                    </p:panelGrid>
+
+                    <p:panelGrid id="takingAppointmentInfoGrid" columns="1"
+                                 rendered="#{getAvaliableAppointments.renderingTakingAppointmentInfo}">
+                        <h3>Hoş Geldiniz</h3>
+                        <hr></hr>
+                        <b>Randevunuzu <span id="randevuAdim"> 3 </span> adımda alabilirsiniz.</b>
+                        <blockquote style="width: 305px;height: 300px;">
+                            <b><span id="randevuAdim">1.</span> adımda sol taraftaki arama araçlarını kullanarak uygun hekimlerin listesini getirebilirsiniz.</b>
+                            <br/>
+                            <b><span id="randevuAdim">2.</span>adımda hekim listesinden istediğiniz hekimi seçerek hekim çalışma cetvelini görüntüleyebilirsiniz.</b>
+                            <br/>
+                            <b><span id="randevuAdim">3.</span>adımda hekim çalışma cetvelinden uygun bir slot seçip randevunuzu kaydedebilirsiniz.</b>
+                        </blockquote>
+                    </p:panelGrid>
+
+                    <h:panelGrid columns="1" id="appointmentsClocks" rendered="#{getAvaliableAppointments.renderingClocks}">
+                        <p:accordionPanel style="width: 370px;">
+                            <p:tab title="Godfather Part I" >
+                                <h:panelGrid columns="4" cellpadding="10">
+                                    <h:commandButton value="09:00"/>
+                                    <h:commandButton value="09:20"/>
+                                    <h:commandButton value="09:40"/>
+                                    <h:commandButton value="10:00"/>
+
+                                    <h:commandButton value="10:20"/>
+                                    <h:commandButton value="10:40"/>
+                                    <h:commandButton value="11:00"/>
+                                    <h:commandButton value="11:20"/>
+
+                                    <h:commandButton value="11:40"/>
+                                    <h:commandButton value="12:00"/>
+                                    <h:commandButton value="12:20"/>
+                                    <h:commandButton value="12:40"/>
+                                </h:panelGrid>
+                            </p:tab>
+                            <p:tab title="Godfather Part II">
+                                <h:panelGrid columns="4" cellpadding="10">
+                                    <h:commandButton value="09:00"/>
+                                    <h:commandButton value="09:20"/>
+                                    <h:commandButton value="09:40"/>
+                                    <h:commandButton value="10:00"/>
+
+                                    <h:commandButton value="10:20"/>
+                                    <h:commandButton value="10:40"/>
+                                    <h:commandButton value="11:00"/>
+                                    <h:commandButton value="11:20"/>
+
+                                    <h:commandButton value="11:40"/>
+                                    <h:commandButton value="12:00"/>
+                                    <h:commandButton value="12:20"/>
+                                    <h:commandButton value="12:40"/>
+                                </h:panelGrid>
+                            </p:tab>
+                            <p:tab title="Godfather Part III">
+                                <h:panelGrid columns="4" cellpadding="10">
+                                    <h:commandButton value="09:00"/>
+                                    <h:commandButton value="09:20"/>
+                                    <h:commandButton value="09:40"/>
+                                    <h:commandButton value="10:00"/>
+
+                                    <h:commandButton value="10:20"/>
+                                    <h:commandButton value="10:40"/>
+                                    <h:commandButton value="11:00"/>
+                                    <h:commandButton value="11:20"/>
+
+                                    <h:commandButton value="11:40"/>
+                                    <h:commandButton value="12:00"/>
+                                    <h:commandButton value="12:20"/>
+                                    <h:commandButton value="12:40"/>
+                                </h:panelGrid>
+                            </p:tab>
+                        </p:accordionPanel>
+                    </h:panelGrid>
+
+                </p:panelGrid>
+
+                <p:panelGrid id="panelGrid" columns="1">
+                    <p:dataTable id="availableTableId" rendered="#{getAvaliableAppointments.renderingDataTable}" value="#{getAvaliableAppointments.availableAppointments}" var="gap"
+                                 selectionMode="single" selection="#{saveAppointments.selectedAppointment}" rowKey="#{gap.uygunrandevuid}">
+                        <p:ajax event="rowSelect" update=":#{p:component('infoOrClocksAndOptions')}" listener="#{getAvaliableAppointments.changeRenderingStates}"/>
+                        <p:column sortBy="#{gap.doktorid}">
+                            <f:facet name="header">Hekim Adı</f:facet>
+                            <h:outputText value="#{gap.doktorid}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Randevu Tarihi</f:facet>
+                            <h:outputText value="#{gap.tarih}"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:panelGrid>
               </div>
           </center>
         </h:form>

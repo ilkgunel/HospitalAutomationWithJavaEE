@@ -1,7 +1,7 @@
 package com.ilkgunel.hastaneotomasyonu.controller;
 
 import com.ilkgunel.hastaneotomasyonu.entity.Hastaneler;
-import com.ilkgunel.hastaneotomasyonu.entity.KlinikyerleriEntity;
+import com.ilkgunel.hastaneotomasyonu.entity.Klinikyerleri;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -22,7 +22,7 @@ public class GetClinicPlaces implements Serializable {
     private SaveAppointments appointmentObject;
 
     int hospitalId;
-    List<KlinikyerleriEntity> clinicPlaceResults;
+    List<Klinikyerleri> clinicPlaceResults;
     List<String> clinicPlaces;
 
     public List<String> getClinicPlaces() {
@@ -33,11 +33,11 @@ public class GetClinicPlaces implements Serializable {
         this.clinicPlaces = clinicPlaces;
     }
 
-    public List<KlinikyerleriEntity> getClinicPlaceResults() {
+    public List<Klinikyerleri> getClinicPlaceResults() {
         return clinicPlaceResults;
     }
 
-    public void setClinicPlaceResults(List<KlinikyerleriEntity> clinicPlaceResults) {
+    public void setClinicPlaceResults(List<Klinikyerleri> clinicPlaceResults) {
         this.clinicPlaceResults = clinicPlaceResults;
     }
 
@@ -90,12 +90,12 @@ public class GetClinicPlaces implements Serializable {
         EntityManagerFactory emf= Persistence.createEntityManagerFactory("HospitalAutomation");
         EntityManager em=emf.createEntityManager();
 
-        TypedQuery<KlinikyerleriEntity> query=em.createQuery("select  c from KlinikyerleriEntity c where c.hastaneid=:value",KlinikyerleriEntity.class);
+        TypedQuery<Klinikyerleri> query=em.createQuery("select  c from Klinikyerleri c where c.hastaneid=:value",Klinikyerleri.class);
         query.setParameter("value",hospitalId);
 
 
         System.out.println("Döngü Öncesi");
-        for(KlinikyerleriEntity k:query.getResultList())
+        for(Klinikyerleri k:query.getResultList())
         {
             System.out.println(k.getKlinikyeri());
         }
@@ -104,7 +104,7 @@ public class GetClinicPlaces implements Serializable {
 
         clinicPlaceResults=query.getResultList();
 
-        for(KlinikyerleriEntity c:clinicPlaceResults)
+        for(Klinikyerleri c:clinicPlaceResults)
         {
             System.out.println(c.getKlinikyeri());
             clinicPlaces.add(c.getKlinikyeri());

@@ -1,6 +1,6 @@
 package com.ilkgunel.hastaneotomasyonu.controller;
 
-import com.ilkgunel.hastaneotomasyonu.entity.KliniklerEntity;
+import com.ilkgunel.hastaneotomasyonu.entity.Klinikler;
 
 
 import javax.faces.bean.ManagedBean;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 @ViewScoped
 public class GetClinics implements Serializable{
 
-     List<KliniklerEntity> clinicResults;
+     List<Klinikler> clinicResults;
      List<String> clinics;
 
     @ManagedProperty(value = "#{saveAppointments}")
@@ -32,11 +32,11 @@ public class GetClinics implements Serializable{
         this.sao = sao;
     }
 
-    public List<KliniklerEntity> getClinicResults() {
+    public List<Klinikler> getClinicResults() {
         return clinicResults;
     }
 
-    public void setClinicResults(List<KliniklerEntity> clinicResults) {
+    public void setClinicResults(List<Klinikler> clinicResults) {
         this.clinicResults = clinicResults;
     }
 
@@ -52,11 +52,11 @@ public class GetClinics implements Serializable{
     {
         EntityManagerFactory emf= Persistence.createEntityManagerFactory("HospitalAutomation");
         EntityManager em=emf.createEntityManager();
-        TypedQuery<KliniklerEntity> query=em.createQuery("select k from KliniklerEntity k",KliniklerEntity.class);
+        TypedQuery<Klinikler> query=em.createQuery("select k from Klinikler k",Klinikler.class);
         clinicResults=new ArrayList<>();
         clinics=new ArrayList<>();
         clinicResults=query.getResultList();
-        for (KliniklerEntity k:clinicResults)
+        for (Klinikler k:clinicResults)
         {
             clinics.add(k.getKlinikadi());
         }
