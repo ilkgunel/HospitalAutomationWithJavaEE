@@ -3,14 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-        xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Randevu Alma Sayfası</title>
     </h:head>
     <h:body>
         <h:outputStylesheet library="css" name="cssfile.css"/>
         <h:form>
-          <center>
+            <center>
               <div style="height: 450px;width: 800px;">
                 <p:panelGrid columns="3">
                     <h:graphicImage library="images" name="saglikBakanligiLogo.png"/>
@@ -24,13 +24,13 @@
 
 
                     <p:clock pattern="HH:mm:ss" />
-                    <h:outputText value=""/>
-                    <h:outputText value="Sayın İlkay Günel"/>
+                    <p:outputLabel/>
+                    <p:outputLabel value="Sayın İlkay Günel"/>
                 </p:panelGrid>
 
                 <p:panelGrid id="infoOrClocksAndOptions" columns="2">
                     <p:panelGrid columns="2" style="float: left; background-color: #CDEDE4;">
-                        <h:outputText value="İl"/>
+                        <p:outputLabel value="İl"/>
                         <p:selectOneMenu value="#{getDistricts.currentCity}" style="width: 160px;">
                             <p:ajax event="change" update="districts" listener="#{getDistricts.fillList}"/>
                             <f:selectItem itemValue="İl Seçin" itemLabel="İl Seçin"/>
@@ -155,7 +155,7 @@
                 <p:panelGrid id="panelGrid" columns="1">
                     <p:dataTable id="availableTableId" rendered="#{getAvaliableAppointments.renderingDataTable}" value="#{getAvaliableAppointments.availableAppointments}" var="gap"
                                  selectionMode="single" selection="#{saveAppointments.selectedAppointment}" rowKey="#{gap.uygunrandevuid}">
-                        <p:ajax event="rowSelect" update=":#{p:component('infoOrClocksAndOptions')}" listener="#{getAvaliableAppointments.changeRenderingStates}"/>
+                        <p:ajax event="rowSelect" update=":#{p:component('infoOrClocksAndOptions')}" listener="#{getAvaliableAppointments.changeRenderingStates()}"/>
                         <p:column sortBy="#{gap.doktorid}">
                             <f:facet name="header">Hekim Adı</f:facet>
                             <h:outputText value="#{gap.doktorid}"/>

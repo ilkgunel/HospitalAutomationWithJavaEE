@@ -14,44 +14,46 @@
     <h:body>
         <h:outputStylesheet library="css" name="cssfile.css"/>
         <center style="margin-top: 100px;">
-        <h:form prependId="false">
-            <h:messages showDetail="true" />
-            <center>T.C. SAĞLIK BAKANLIĞI</center>
-            <center><h3>MERKEZİ HEKİM RANDEVU SİSTEMİ</h3></center>
-            <div id="divClass1">
-            <h:panelGrid columns="2" style="margin-top:60px;">
-                
-                <center><h:outputText value="Vatandaş Giriş Ekranı" /></center>
-                <h:outputText value=""/>
-                
-                <h:outputText value="T.C. Kimlik No" style="margin-left: 15px;"/>
-                <h:inputText id="j_username" required="true" maxlength="100" size="30" value="#{girisKontrolSnifi.identityNumber}"
-                             requiredMessage="Kullanıcı adı alanı boş bırakılamaz..."/>
+            <h:form prependId="false">
+                <h:messages showDetail="true" />
+                <center>T.C. SAĞLIK BAKANLIĞI</center>
+                <center><h3>MERKEZİ HEKİM RANDEVU SİSTEMİ</h3></center>
+                <div id="divClass1">
+                    <h:panelGrid columns="2" style="margin-top:60px;">
+
+                        <center><h:outputText value="Vatandaş Giriş Ekranı" /></center>
+                        <h:outputText value=""/>
+
+                        <h:outputText value="T.C. Kimlik No" style="margin-left: 15px;"/>
+                        <h:inputText id="j_username" required="true" maxlength="100" size="30" value="#{girisKontrolSnifi.identityNumber}"
+                                     requiredMessage="Kullanıcı adı alanı boş bırakılamaz..."/>
 
 
-                <h:outputText value="Parola" style="margin-left: 15px;"/>
-                <h:inputText id="j_password" required="true" maxlength="50" size="30" value="#{girisKontrolSnifi.password}"
-                               requiredMessage="Parola alanı boş bırakılamaz..." />
+                        <h:outputText value="Parola" style="margin-left: 15px;"/>
+                        <h:inputText id="j_password" required="true" maxlength="50" size="30" value="#{girisKontrolSnifi.password}"
+                                     requiredMessage="Parola alanı boş bırakılamaz..." />
 
-                <!--<h:outputText value="Doğrulama Kodu"/>
-                <p:captcha label="Captcha" />-->
-                
-                  <h:panelGrid columns="2">
-                      <h:button value="Yeni Üye" outcome="uyeKaydi.xhtml"/>
-                      <h:button value="Şifremi Unuttum" outcome="remindingPassword.xhtml"/>
-                  </h:panelGrid>
-                  <h:commandButton value="Giriş" 
-                                   action="#{girisKontrolSnifi.login()}" style="margin-left: 265px;"/>
-            </h:panelGrid>
-                <h:panelGrid columns="1">
-                  <h:outputText value="Soru ve sorunlarınız için mhrs@saglik.gov.tr adresimiz ile bize ulaşabilirsiniz." style="margin-left: 5px;"/>
-                  <h:outputLabel value="#{sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}" rendered="#{!empty sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}"
-                                 style="margin-left: 5px;color: red"/>
-                  <p:messages showDetail="true"/>
-                </h:panelGrid>
-            </div>
-        </h:form>
+                        <h:outputText value="Doğrulama Kodu"/>
+                        <p:captcha label="Captcha" />
+
+                        <h:panelGrid columns="2">
+                            <h:button value="Yeni Üye" outcome="uyeKaydi.xhtml"/>
+                            <h:button value="Şifremi Unuttum" outcome="remindingPassword.xhtml"/>
+                        </h:panelGrid>
+                        <h:commandButton value="Giriş" 
+                                         action="#{girisKontrolSnifi.login()}" style="margin-left: 265px;"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="1">
+                        <h:outputText value="Soru ve sorunlarınız için mhrs@saglik.gov.tr adresimiz ile bize ulaşabilirsiniz." style="margin-left: 5px;"/>
+                        <h:outputLabel value="#{sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}" rendered="#{!empty sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+                                       style="margin-left: 5px;color: red"/>
+                        <p:messages showDetail="true"/>
+                    </h:panelGrid>
+                </div>
+            </h:form>
         </center>
+        <br />
+        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
     </h:body>
 </html>
 
