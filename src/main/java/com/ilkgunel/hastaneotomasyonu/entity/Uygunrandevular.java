@@ -38,6 +38,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Uygunrandevular.findByKlinikid", query = "SELECT u FROM Uygunrandevular u WHERE u.klinikid = :klinikid"),
     @NamedQuery(name = "Uygunrandevular.findByKlinikyeri", query = "SELECT u FROM Uygunrandevular u WHERE u.klinikyeri = :klinikyeri")})
 public class Uygunrandevular implements Serializable {
+    @Size(max = 50)
+    @Column(name = "doktoradi")
+    private String doktoradi;
+    @Column(name = "randevualindimi")
+    private Boolean randevualindimi;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -154,6 +159,22 @@ public class Uygunrandevular implements Serializable {
     @Override
     public String toString() {
         return "com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular[ uygunrandevuid=" + uygunrandevuid + " ]";
+    }
+
+    public Boolean getRandevualindimi() {
+        return randevualindimi;
+    }
+
+    public void setRandevualindimi(Boolean randevualindimi) {
+        this.randevualindimi = randevualindimi;
+    }
+
+    public String getDoktoradi() {
+        return doktoradi;
+    }
+
+    public void setDoktoradi(String doktoradi) {
+        this.doktoradi = doktoradi;
     }
     
 }

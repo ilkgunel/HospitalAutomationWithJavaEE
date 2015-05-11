@@ -1,7 +1,9 @@
 package com.ilkgunel.hastaneotomasyonu.controller;
 
 import com.ilkgunel.hastaneotomasyonu.entity.Hastaneler;
+import com.ilkgunel.hastaneotomasyonu.entity.Klinikler;
 import com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular;
+import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -12,11 +14,17 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Query;
 //Çalışan Sınıf Budur
 @ManagedBean(name = "getAvaliableAppointments")
 @ViewScoped
-public class GetAvaliableAppointments {
+public class GetAvaliableAppointments implements Serializable{
+    
+    EntityManagerFactory emf= Persistence.createEntityManagerFactory("HospitalAutomation");
+    EntityManager em=emf.createEntityManager();
+        
     List<Uygunrandevular> availableAppointments;
+    List<Object[]> doctorAndTimeList;
     boolean renderingTakingAppointmentInfo=true;
     boolean renderingClocks=false;
     boolean renderingDataTable=false;
@@ -26,6 +34,9 @@ public class GetAvaliableAppointments {
 
     @ManagedProperty(value = "#{getHospitals}")
     private GetHospitals getHospitalsObject;
+    
+    @ManagedProperty(value = "#{getClinics}")
+    private GetClinics getClinicsObject;
 
     public boolean isRenderingTakingAppointmentInfo() {
         return renderingTakingAppointmentInfo;
@@ -75,22 +86,55 @@ public class GetAvaliableAppointments {
         this.availableAppointments = availableAppointments;
     }
 
+    public List<Object[]> getDoctorAndTimeList() {
+        return doctorAndTimeList;
+    }
+
+    public void setDoctorAndTimeList(List<Object[]> doctorAndTimeList) {
+        this.doctorAndTimeList = doctorAndTimeList;
+    }
+
+    public GetClinics getGetClinicsObject() {
+        return getClinicsObject;
+    }
+
+    public void setGetClinicsObject(GetClinics getClinicsObject) {
+        this.getClinicsObject = getClinicsObject;
+    }
+    
+
     public void fillList()
     {
         availableAppointments=new ArrayList<>();
 
-        EntityManagerFactory emf= Persistence.createEntityManagerFactory("HospitalAutomation");
-        EntityManager em=emf.createEntityManager();
+        
 
         for (Hastaneler h:getHospitalsObject.getHospitalResults())
         {
             if(h.getHastaneadi().equals(saveAppointmentsObject.getHospital()))
+            {
                 hospitalid=h.getId();
-            break;
+                break;
+            }
         }
-
-        TypedQuery<Uygunrandevular> query=em.createQuery("SELECT u FROM Uygunrandevular u WHERE u.hastaneid=:hospitalid",Uygunrandevular.class);
+        
+        int clinicId=0;
+        for(Klinikler k:getClinicsObject.clinicResults)
+        {
+            if(k.getKlinikadi().equals(saveAppointmentsObject.clinic))
+            {
+                clinicId=k.getId();
+                break;
+            }
+        }
+        
+        TypedQuery<Uygunrandevular> query=em.createQuery("SELECT U FROM Uygunrandevular U WHERE U.hastaneid=:hospitalid AND U.klinikid=:clinicid AND U.klinikyeri=:clinicplace "
+                + "AND u.tarih = (select min(uu.tarih) from Uygunrandevular uu where uu.doktorid = u.doktorid)",Uygunrandevular.class);
+        
+        
         query.setParameter("hospitalid",hospitalid);
+        query.setParameter("clinicid", clinicId);
+        query.setParameter("clinicplace", saveAppointmentsObject.clinicPlace);
 
         availableAppointments=query.getResultList();
 
@@ -100,9 +144,14 @@ public class GetAvaliableAppointments {
 
     public void changeRenderingStates()
     {
-        System.out.println("Rendering Değiştirme Metodu Çalıştı!!!\n");
         setRenderingTakingAppointmentInfo(false);
         setRenderingClocks(true);
+        
+        TypedQuery<Object[]> doctorAndTimeQuery = em.createQuery("SELECT u.doktoradi,u.tarih FROM Uygunrandevular AS u WHERE u.doktorid=:doctorid ORDER BY u.tarih ASC",Object[].class);
+        doctorAndTimeQuery.setParameter("doctorid", saveAppointmentsObject.selectedAppointment.getDoktorid());
+        
+        doctorAndTimeList=new ArrayList<>();
+        doctorAndTimeList=doctorAndTimeQuery.getResultList();
     }
 }
 

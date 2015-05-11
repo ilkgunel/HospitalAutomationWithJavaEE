@@ -29,51 +29,59 @@
                 </p:panelGrid>
 
                 <p:panelGrid id="infoOrClocksAndOptions" columns="2">
-                    <p:panelGrid columns="2" style="float: left; background-color: #CDEDE4;">
+                    <p:panelGrid columns="3" style="float: left; background-color: #CDEDE4;">
                         <p:outputLabel value="İl"/>
-                        <p:selectOneMenu value="#{getDistricts.currentCity}" style="width: 160px;">
-                            <p:ajax event="change" update="districts" listener="#{getDistricts.fillList}"/>
-                            <f:selectItem itemValue="İl Seçin" itemLabel="İl Seçin"/>
+                        <p:selectOneMenu id="citySelectOneMenu" value="#{getDistricts.currentCity}" style="width: 160px;" required="true" requiredMessage="İl Seçimi Zorunludur">
+                            <p:ajax event="change" update="districtSelectOneMenu" listener="#{getDistricts.fillList}"/>
+                            <f:selectItem  itemLabel="İl Seçin" itemValue="#{null}" />
                             <f:selectItems value="#{getCities.cities}"/>
                         </p:selectOneMenu>
-
+                        <p:message id="citySelectOneMenuMessage" for="citySelectOneMenu" />
+                                                 
                         <h:outputText value="İlçe"/>
-                        <p:selectOneMenu id="districts" value="#{saveAppointments.district}" style="width: 160px;">
-                            <p:ajax update="hospitals" listener="#{getHospitals.fillList()}"/>
-                            <f:selectItem itemLabel="-farketmez-" itemValue="-farketmez-"/>
+                        <p:selectOneMenu id="districtSelectOneMenu" value="#{saveAppointments.district}" style="width: 160px;" required="true" requiredMessage="İlçe Seçimi Zorunludur">
+                            <p:ajax update="hospitalSelectOneMenu" listener="#{getHospitals.fillList()}"/>
+                            <f:selectItem itemLabel="-farketmez-" itemValue="#{null}"/>
                             <f:selectItems value="#{getDistricts.districts}"/>
                         </p:selectOneMenu>
+                        <p:message for="districtSelectOneMenu"/>
 
                         <h:outputText value="Hastahane"/>
-                        <p:selectOneMenu id="hospitals" value="#{saveAppointments.hospital}" style="width: 160px;">
+                        <p:selectOneMenu id="hospitalSelectOneMenu" value="#{saveAppointments.hospital}" style="width: 160px;" required="true" requiredMessage="Hastane Seçimi Zorunludur">
                             <p:ajax update="clinic" listener="#{getClinics.fillList}"/>
-                            <f:selectItem itemLabel="-farketmez-" itemValue="-farketmez-"/>
+                            <f:selectItem itemLabel="-farketmez-" itemValue="#{null}"/>
                             <f:selectItems value="#{getHospitals.hospitals}"/>
                         </p:selectOneMenu>
+                        <p:message for="hospitalSelectOneMenu"/>
 
                         <h:outputText value="Klinik"/>
-                        <p:selectOneMenu id="clinic" value="#{saveAppointments.clinic}" style="width: 160px;">
+                        <p:selectOneMenu id="clinic" value="#{saveAppointments.clinic}" style="width: 160px;" required="true" requiredMessage="Klinik Seçimi Zorunludur">
                             <p:ajax event="change" update="clinicplace" listener="#{getClinicPlaces.fillList}"></p:ajax>
-                            <f:selectItem itemLabel="-farketmez-" itemValue="-farketmez-"/>
+                            <f:selectItem itemLabel="-farketmez-" itemValue="#{null}"/>
                             <f:selectItems value="#{getClinics.clinics}"/>
                         </p:selectOneMenu>
+                        <p:message for="clinic"/>
 
                         <h:outputText value="Klinik Yeri"/>
-                        <p:selectOneMenu id="clinicplace" style="width: 160px;" value="#{saveAppointments.clinicPlace}">
-                            <f:selectItem itemLabel="-farketmez-" itemValue="-farketmez-"/>
+                        <p:selectOneMenu id="clinicplace" style="width: 160px;" value="#{saveAppointments.clinicPlace}" required="true" requiredMessage="Klinik Yeri Seçimi Zorunludur">
+                            <p:ajax update="doctorSelectOneMenu" listener="#{getDoctors.fillList()}"/>
+                            <f:selectItem itemLabel="-farketmez-" itemValue="#{null}"/>
                             <f:selectItems value="#{getClinicPlaces.clinicPlaces}"/>
                         </p:selectOneMenu>
+                        <p:message for="clinicplace"/>
 
                         <h:outputText value="Hekim"/>
-                        <p:selectOneMenu style="width: 160px;" disabled="true">
-                            <f:selectItem itemValue="İstanbul" itemLabel="İstanbul"/>
-                            <f:selectItem itemValue="Ankara" itemLabel="Ankara"/>
+                        <p:selectOneMenu id="doctorSelectOneMenu" style="width: 160px;" value="#{saveAppointments.doctor}" required="true" requiredMessage="Hekim Seçimi Zorunludur">
+                            <f:selectItem itemLabel="-Hekim Seçiniz-" itemValue="Hekim"/>
+                            <f:selectItems value="#{getDoctors.doctors}"/>
                         </p:selectOneMenu>
+                        <p:message for="doctorSelectOneMenu"/>
 
                         <h:commandButton value="Temizle" type="reset"/>
-                        <p:commandButton value="Randevu Ara" style="float: right" update="panelGrid" actionListener="#{getAvaliableAppointments.fillList}"/>
-
-                        <h:outputText/>
+                        <p:commandButton value="Randevu Ara" style="float: right" update="panelGrid,infoOrClocksAndOptions" actionListener="#{getAvaliableAppointments.fillList}"/>
+                        <p:spacer/>
+                        
+                        <p:spacer/>
                         <h:commandButton value="Aile Hekiminden Randevu Al"/>
                     </p:panelGrid>
 
@@ -92,11 +100,12 @@
                     </p:panelGrid>
 
                     <h:panelGrid columns="1" id="appointmentsClocks" rendered="#{getAvaliableAppointments.renderingClocks}">
-                        <p:accordionPanel style="width: 370px;">
-                            <p:tab title="Godfather Part I" >
-                                <h:panelGrid columns="4" cellpadding="10">
-                                    <h:commandButton value="09:00"/>
-                                    <h:commandButton value="09:20"/>
+                        <p:accordionPanel style="width: 370px;" value="#{getAvaliableAppointments.doctorAndTimeList}" var="dat">
+                            <f:convertDateTime pattern="dd-MM-yyyy"/>
+                            <p:tab title="#{dat[0]} #{dat[1]}">
+                                <p:panelGrid columns="4">
+                                    <p:commandButton id="gf10900" value="09:00" disabled="true"/>
+                                    <p:commandButton value="09:20"/>
                                     <h:commandButton value="09:40"/>
                                     <h:commandButton value="10:00"/>
 
@@ -109,43 +118,7 @@
                                     <h:commandButton value="12:00"/>
                                     <h:commandButton value="12:20"/>
                                     <h:commandButton value="12:40"/>
-                                </h:panelGrid>
-                            </p:tab>
-                            <p:tab title="Godfather Part II">
-                                <h:panelGrid columns="4" cellpadding="10">
-                                    <h:commandButton value="09:00"/>
-                                    <h:commandButton value="09:20"/>
-                                    <h:commandButton value="09:40"/>
-                                    <h:commandButton value="10:00"/>
-
-                                    <h:commandButton value="10:20"/>
-                                    <h:commandButton value="10:40"/>
-                                    <h:commandButton value="11:00"/>
-                                    <h:commandButton value="11:20"/>
-
-                                    <h:commandButton value="11:40"/>
-                                    <h:commandButton value="12:00"/>
-                                    <h:commandButton value="12:20"/>
-                                    <h:commandButton value="12:40"/>
-                                </h:panelGrid>
-                            </p:tab>
-                            <p:tab title="Godfather Part III">
-                                <h:panelGrid columns="4" cellpadding="10">
-                                    <h:commandButton value="09:00"/>
-                                    <h:commandButton value="09:20"/>
-                                    <h:commandButton value="09:40"/>
-                                    <h:commandButton value="10:00"/>
-
-                                    <h:commandButton value="10:20"/>
-                                    <h:commandButton value="10:40"/>
-                                    <h:commandButton value="11:00"/>
-                                    <h:commandButton value="11:20"/>
-
-                                    <h:commandButton value="11:40"/>
-                                    <h:commandButton value="12:00"/>
-                                    <h:commandButton value="12:20"/>
-                                    <h:commandButton value="12:40"/>
-                                </h:panelGrid>
+                                </p:panelGrid>
                             </p:tab>
                         </p:accordionPanel>
                     </h:panelGrid>
@@ -154,15 +127,39 @@
 
                 <p:panelGrid id="panelGrid" columns="1">
                     <p:dataTable id="availableTableId" rendered="#{getAvaliableAppointments.renderingDataTable}" value="#{getAvaliableAppointments.availableAppointments}" var="gap"
-                                 selectionMode="single" selection="#{saveAppointments.selectedAppointment}" rowKey="#{gap.uygunrandevuid}">
+                                 selectionMode="single" selection="#{saveAppointments.selectedAppointment}" rowKey="#{gap.doktorid}">
                         <p:ajax event="rowSelect" update=":#{p:component('infoOrClocksAndOptions')}" listener="#{getAvaliableAppointments.changeRenderingStates()}"/>
-                        <p:column sortBy="#{gap.doktorid}">
+                        <p:column sortBy="#{gap.doktorid}" rendered="false">
                             <f:facet name="header">Hekim Adı</f:facet>
                             <h:outputText value="#{gap.doktorid}"/>
                         </p:column>
+                        
+                        <p:column sortBy="#{gap.doktoradi}">
+                            <f:facet name="header">Hekim Adı</f:facet>
+                            <h:outputText value="#{gap.doktoradi}"/>
+                        </p:column>
+                        
                         <p:column>
-                            <f:facet name="header">Randevu Tarihi</f:facet>
-                            <h:outputText value="#{gap.tarih}"/>
+                            <f:facet name="header">En Erken Tarih</f:facet>
+                            <h:outputText value="#{gap.tarih}">
+                               <f:convertDateTime pattern="dd-MM-yyyy"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Kurum Adı</f:facet>
+                            <h:outputText value="#{saveAppointments.hospital}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Klinik Adı</f:facet>
+                            <h:outputText value="#{saveAppointments.clinic}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Klinik Yeri</f:facet>
+                            <h:outputText value="#{saveAppointments.clinicPlace}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Yaş Kuralı</f:facet>
+                            <h:outputText value=""/>
                         </p:column>
                     </p:dataTable>
                 </p:panelGrid>

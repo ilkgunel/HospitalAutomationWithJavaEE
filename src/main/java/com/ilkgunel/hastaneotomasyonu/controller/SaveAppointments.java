@@ -21,8 +21,9 @@ public class SaveAppointments implements Serializable{
     private String city;
     String district;
     private String hospital;
-    private String clinic;
-    private String clinicPlace;
+    String clinic;
+    String clinicPlace;
+    String doctor;
 
     Uygunrandevular selectedAppointment;
 
@@ -63,5 +64,14 @@ public class SaveAppointments implements Serializable{
     public String getHospital() {
         return hospital;
     }
+
+    public String getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
+    }
+    
     
 }
