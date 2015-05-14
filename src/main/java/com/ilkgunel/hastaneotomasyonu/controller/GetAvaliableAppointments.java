@@ -4,6 +4,7 @@ import com.ilkgunel.hastaneotomasyonu.entity.Hastaneler;
 import com.ilkgunel.hastaneotomasyonu.entity.Klinikler;
 import com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -128,7 +129,7 @@ public class GetAvaliableAppointments implements Serializable{
             }
         }
         
-        TypedQuery<Uygunrandevular> query=em.createQuery("SELECT U FROM Uygunrandevular U WHERE U.hastaneid=:hospitalid AND U.klinikid=:clinicid AND U.klinikyeri=:clinicplace "
+        TypedQuery<Uygunrandevular> query=em.createQuery("SELECT u FROM Uygunrandevular AS u WHERE u.hastaneid=:hospitalid AND u.klinikid=:clinicid AND u.klinikyeri=:clinicplace "
                 + "AND u.tarih = (select min(uu.tarih) from Uygunrandevular uu where uu.doktorid = u.doktorid)",Uygunrandevular.class);
         
         
@@ -144,14 +145,17 @@ public class GetAvaliableAppointments implements Serializable{
 
     public void changeRenderingStates()
     {
+        SimpleDateFormat dateFormat=new SimpleDateFormat("dd-MM-yyyy");
+        
         setRenderingTakingAppointmentInfo(false);
         setRenderingClocks(true);
         
-        TypedQuery<Object[]> doctorAndTimeQuery = em.createQuery("SELECT u.doktoradi,u.tarih FROM Uygunrandevular AS u WHERE u.doktorid=:doctorid ORDER BY u.tarih ASC",Object[].class);
+        TypedQuery<Object[]> doctorAndTimeQuery = em.createQuery("SELECT u.doktoradi,FUNCTION('DATE',u.tarih) FROM Uygunrandevular AS u WHERE u.doktorid=:doctorid ORDER BY u.tarih ASC",Object[].class);
         doctorAndTimeQuery.setParameter("doctorid", saveAppointmentsObject.selectedAppointment.getDoktorid());
-        
         doctorAndTimeList=new ArrayList<>();
         doctorAndTimeList=doctorAndTimeQuery.getResultList();
+        
+        
     }
 }
 

@@ -13,6 +13,7 @@ background-image: url(../resources/images/bg.jpg);
 #divClass1
 {
 background-image: url(../resources/images/loginBg.png);
+background-size: cover;
 width: 535px;
 height: 400px;
 margin-top: 20px;
@@ -30,4 +31,34 @@ margin-left: 375px;
 font-size: 26px;
 color: #F00;
 font-weight: normal;
+}
+
+.ui-accordion{
+    font-size: 50%;
+}
+.ui-panelgrid .ui-panelgrid-cell{
+    border: none;
+}
+
+.ui-panelgrid-cell{
+    font-size: 90%;
+}
+.ui-widget-content {
+    border:none;
+    background-color: aquamarine;
+}
+.ui-panelgrid{
+    font-size: 90%;
+    border:none !important;
+    background-color: aquamarine;
+}
+table {
+    border:none !important ;
+}
+tbody {
+    border: none !important;
+}
+
+#infoOrClocksAndOptions tr{
+    background-color: red;
 }

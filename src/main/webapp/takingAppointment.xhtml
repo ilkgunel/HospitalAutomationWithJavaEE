@@ -11,16 +11,16 @@
         <h:outputStylesheet library="css" name="cssfile.css"/>
         <h:form>
             <center>
-              <div style="height: 450px;width: 800px;">
-                <p:panelGrid columns="3">
-                    <h:graphicImage library="images" name="saglikBakanligiLogo.png"/>
-                    <h:panelGrid columns="1">
+              <div style="height: 450px;">
+                  <p:panelGrid style="width: 732px;background-color: wheat;" columns="3">
+                      <h:graphicImage library="images" name="saglikBakanligiLogo.png" />
+                      <h:panelGrid columns="1">
                         <h:outputText value="T.C. SAĞLIK BAKANLIĞI"
-                                      style='padding-left: 119px;padding-right: 119px;'/>
+                                      style='text-align: center;'/>
                         <h:outputText value="Merkezi Hekim Randevu Sistemi"
-                                      style='padding-left: 119px;padding-right: 119px;'/>
+                                      style='text-align: center;'/>
                     </h:panelGrid>
-                    <h:graphicImage library="images" name="logo.png"/>
+                      <h:graphicImage library="images" name="logo.png"/>
 
 
                     <p:clock pattern="HH:mm:ss" />
@@ -28,8 +28,8 @@
                     <p:outputLabel value="Sayın İlkay Günel"/>
                 </p:panelGrid>
 
-                <p:panelGrid id="infoOrClocksAndOptions" columns="2">
-                    <p:panelGrid columns="3" style="float: left; background-color: #CDEDE4;">
+                  <p:panelGrid id="infoOrClocksAndOptions" columns="2">
+                    <p:panelGrid columns="3" style="float: left;">
                         <p:outputLabel value="İl"/>
                         <p:selectOneMenu id="citySelectOneMenu" value="#{getDistricts.currentCity}" style="width: 160px;" required="true" requiredMessage="İl Seçimi Zorunludur">
                             <p:ajax event="change" update="districtSelectOneMenu" listener="#{getDistricts.fillList}"/>
@@ -79,30 +79,29 @@
 
                         <h:commandButton value="Temizle" type="reset"/>
                         <p:commandButton value="Randevu Ara" style="float: right" update="panelGrid,infoOrClocksAndOptions" actionListener="#{getAvaliableAppointments.fillList}"/>
-                        <p:spacer/>
-                        
-                        <p:spacer/>
-                        <h:commandButton value="Aile Hekiminden Randevu Al"/>
+                        <br/>
+                        <h:outputText/>
+                        <h:commandButton value="Aile Hekiminden Randevu Al" />
+                        <br/>
                     </p:panelGrid>
 
-                    <p:panelGrid id="takingAppointmentInfoGrid" columns="1"
-                                 rendered="#{getAvaliableAppointments.renderingTakingAppointmentInfo}">
+                    <h:panelGrid id="takingAppointmentInfoGrid" columns="1"
+                                 rendered="#{getAvaliableAppointments.renderingTakingAppointmentInfo}" style="background-color: white;height: 5px;">
                         <h3>Hoş Geldiniz</h3>
                         <hr></hr>
                         <b>Randevunuzu <span id="randevuAdim"> 3 </span> adımda alabilirsiniz.</b>
-                        <blockquote style="width: 305px;height: 300px;">
+                        <blockquote style="width: 320px;height: 200px;">
                             <b><span id="randevuAdim">1.</span> adımda sol taraftaki arama araçlarını kullanarak uygun hekimlerin listesini getirebilirsiniz.</b>
                             <br/>
                             <b><span id="randevuAdim">2.</span>adımda hekim listesinden istediğiniz hekimi seçerek hekim çalışma cetvelini görüntüleyebilirsiniz.</b>
                             <br/>
                             <b><span id="randevuAdim">3.</span>adımda hekim çalışma cetvelinden uygun bir slot seçip randevunuzu kaydedebilirsiniz.</b>
                         </blockquote>
-                    </p:panelGrid>
+                    </h:panelGrid>
 
-                    <h:panelGrid columns="1" id="appointmentsClocks" rendered="#{getAvaliableAppointments.renderingClocks}">
+                    <h:panelGrid columns="1" id="appointmentsClocks" rendered="#{getAvaliableAppointments.renderingClocks}" style="width: 407px;">
                         <p:accordionPanel style="width: 370px;" value="#{getAvaliableAppointments.doctorAndTimeList}" var="dat">
-                            <f:convertDateTime pattern="dd-MM-yyyy"/>
-                            <p:tab title="#{dat[0]} #{dat[1]}">
+                            <p:tab title="#{dat[0]} #{dat[1]}" >
                                 <p:panelGrid columns="4">
                                     <p:commandButton id="gf10900" value="09:00" disabled="true"/>
                                     <p:commandButton value="09:20"/>
@@ -125,7 +124,7 @@
 
                 </p:panelGrid>
 
-                <p:panelGrid id="panelGrid" columns="1">
+                  <p:panelGrid id="panelGrid" columns="1" style="width: 733px;">
                     <p:dataTable id="availableTableId" rendered="#{getAvaliableAppointments.renderingDataTable}" value="#{getAvaliableAppointments.availableAppointments}" var="gap"
                                  selectionMode="single" selection="#{saveAppointments.selectedAppointment}" rowKey="#{gap.doktorid}">
                         <p:ajax event="rowSelect" update=":#{p:component('infoOrClocksAndOptions')}" listener="#{getAvaliableAppointments.changeRenderingStates()}"/>
