@@ -6,10 +6,11 @@
 /Users/ilkaygunel/GitHub/HospitalAutomationWithJavaEEGit/src/main/java/com/ilkgunel/hastaneotomasyonu/controller/GetClinicPlaces.java
 /Users/ilkaygunel/GitHub/HospitalAutomationWithJavaEEGit/src/main/java/com/ilkgunel/hastaneotomasyonu/entity/Hastaneler.java
 /Users/ilkaygunel/GitHub/HospitalAutomationWithJavaEEGit/src/main/java/com/ilkgunel/hastaneotomasyonu/controller/GetDoctors.java
+/Users/ilkaygunel/GitHub/HospitalAutomationWithJavaEEGit/src/main/java/com/ilkgunel/hastaneotomasyonu/entity/Randevusaatleri.java
 /Users/ilkaygunel/GitHub/HospitalAutomationWithJavaEEGit/src/main/java/com/ilkgunel/hastaneotomasyonu/entity/Iller.java
 /Users/ilkaygunel/GitHub/HospitalAutomationWithJavaEEGit/src/main/java/com/ilkgunel/hastaneotomasyonu/filter/TurkishCharacterFilter.java
-/Users/ilkaygunel/GitHub/HospitalAutomationWithJavaEEGit/src/main/java/com/ilkgunel/hastaneotomasyonu/entity/User.java
 /Users/ilkaygunel/GitHub/HospitalAutomationWithJavaEEGit/src/main/java/com/ilkgunel/hastaneotomasyonu/controller/GetAvaliableAppointments.java
+/Users/ilkaygunel/GitHub/HospitalAutomationWithJavaEEGit/src/main/java/com/ilkgunel/hastaneotomasyonu/entity/User.java
 /Users/ilkaygunel/GitHub/HospitalAutomationWithJavaEEGit/src/main/java/com/ilkgunel/hastaneotomasyonu/controller/GetHospitals.java
 /Users/ilkaygunel/GitHub/HospitalAutomationWithJavaEEGit/src/main/java/com/ilkgunel/hastaneotomasyonu/entity/Doktorlar.java
 /Users/ilkaygunel/GitHub/HospitalAutomationWithJavaEEGit/src/main/java/com/ilkgunel/hastaneotomasyonu/controller/GetClinics.java

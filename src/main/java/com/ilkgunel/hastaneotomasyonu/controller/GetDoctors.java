@@ -9,13 +9,14 @@ import javax.persistence.Persistence;
 
 import com.ilkgunel.hastaneotomasyonu.entity.Doktorlar;
 import com.ilkgunel.hastaneotomasyonu.entity.Klinikler;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedProperty;
 import javax.persistence.TypedQuery;
 
 @ManagedBean
 @ViewScoped
-public class GetDoctors {
+public class GetDoctors implements Serializable{
     EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
     EntityManager em=emf.createEntityManager();
     

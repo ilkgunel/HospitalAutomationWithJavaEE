@@ -3,13 +3,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Randevu Alma Sayfası</title>
     </h:head>
     <h:body>
         <h:outputStylesheet library="css" name="cssfile.css"/>
         <h:form>
+            <p:dock position="top">
+                <p:menuitem value="Randevularım" icon="/resources/images/randevu.png" url="#"/>
+                <p:menuitem value="Hesap Bilgileri" icon="/resources/images/uyelik.png" url="#"/>
+                <p:menuitem value="Duyurular" icon="/resources/images/uyelik.png" url="#"/>
+                <p:menuitem value="E-Nabız" icon="/resources/images/nabiz.png" url="#"/>
+                <p:menuitem value="Çıkış" icon="/resources/images/cikis.png" url="/j_spring_security_logout"/>
+            </p:dock>
             <center>
               <div style="height: 450px;">
                   <p:panelGrid style="width: 732px;background-color: wheat;" columns="3">
@@ -78,7 +87,7 @@
                         <p:message for="doctorSelectOneMenu"/>
 
                         <h:commandButton value="Temizle" type="reset"/>
-                        <p:commandButton value="Randevu Ara" style="float: right" update="panelGrid,infoOrClocksAndOptions" actionListener="#{getAvaliableAppointments.fillList}"/>
+                        <p:commandButton value="Randevu Ara" style="float: right" update="panelGrid,infoOrClocksAndOptions" actionListener="#{getAvaliableAppointments.fillList}" />
                         <br/>
                         <h:outputText/>
                         <h:commandButton value="Aile Hekiminden Randevu Al" />
@@ -102,22 +111,15 @@
                     <h:panelGrid columns="1" id="appointmentsClocks" rendered="#{getAvaliableAppointments.renderingClocks}" style="width: 407px;">
                         <p:accordionPanel style="width: 370px;" value="#{getAvaliableAppointments.doctorAndTimeList}" var="dat">
                             <p:tab title="#{dat[0]} #{dat[1]}" >
-                                <p:panelGrid columns="4">
-                                    <p:commandButton id="gf10900" value="09:00" disabled="true"/>
-                                    <p:commandButton value="09:20"/>
-                                    <h:commandButton value="09:40"/>
-                                    <h:commandButton value="10:00"/>
-
-                                    <h:commandButton value="10:20"/>
-                                    <h:commandButton value="10:40"/>
-                                    <h:commandButton value="11:00"/>
-                                    <h:commandButton value="11:20"/>
-
-                                    <h:commandButton value="11:40"/>
-                                    <h:commandButton value="12:00"/>
-                                    <h:commandButton value="12:20"/>
-                                    <h:commandButton value="12:40"/>
-                                </p:panelGrid>
+                                
+                                <p:dataGrid value="#{getAvaliableAppointments.appointmentClockResults}" var="write">
+                                    <p:panel>
+                                            <p:panelGrid columns="4">
+                                                <p:commandButton title="#{write.title}" value="#{write.saat}" rendered="#{dat[2]==write.randevuid}" disabled="#{write.saatalindimi}"/>  
+                                            </p:panelGrid>   
+                                    </p:panel>
+                                </p:dataGrid>
+                                
                             </p:tab>
                         </p:accordionPanel>
                     </h:panelGrid>
@@ -128,9 +130,9 @@
                     <p:dataTable id="availableTableId" rendered="#{getAvaliableAppointments.renderingDataTable}" value="#{getAvaliableAppointments.availableAppointments}" var="gap"
                                  selectionMode="single" selection="#{saveAppointments.selectedAppointment}" rowKey="#{gap.doktorid}">
                         <p:ajax event="rowSelect" update=":#{p:component('infoOrClocksAndOptions')}" listener="#{getAvaliableAppointments.changeRenderingStates()}"/>
-                        <p:column sortBy="#{gap.doktorid}" rendered="false">
+                        <p:column sortBy="#{gap.doktorid}" rendered="true">
                             <f:facet name="header">Hekim Adı</f:facet>
-                            <h:outputText value="#{gap.doktorid}"/>
+                            <h:outputText value="#{gap.uygunrandevuid}"/>
                         </p:column>
                         
                         <p:column sortBy="#{gap.doktoradi}">

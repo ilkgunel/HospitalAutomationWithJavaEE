@@ -2,6 +2,7 @@ package com.ilkgunel.hastaneotomasyonu.controller;
 
 import com.ilkgunel.hastaneotomasyonu.entity.Hastaneler;
 import com.ilkgunel.hastaneotomasyonu.entity.Klinikler;
+import com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri;
 import com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -26,6 +27,7 @@ public class GetAvaliableAppointments implements Serializable{
         
     List<Uygunrandevular> availableAppointments;
     List<Object[]> doctorAndTimeList;
+    List<Randevusaatleri> appointmentClockResults;
     boolean renderingTakingAppointmentInfo=true;
     boolean renderingClocks=false;
     boolean renderingDataTable=false;
@@ -102,8 +104,15 @@ public class GetAvaliableAppointments implements Serializable{
     public void setGetClinicsObject(GetClinics getClinicsObject) {
         this.getClinicsObject = getClinicsObject;
     }
-    
 
+    public List<Randevusaatleri> getAppointmentClockResults() {
+        return appointmentClockResults;
+    }
+
+    public void setAppointmentClockResults(List<Randevusaatleri> appointmentClockResults) {
+        this.appointmentClockResults = appointmentClockResults;
+    }
+    
     public void fillList()
     {
         availableAppointments=new ArrayList<>();
@@ -145,16 +154,22 @@ public class GetAvaliableAppointments implements Serializable{
 
     public void changeRenderingStates()
     {
-        SimpleDateFormat dateFormat=new SimpleDateFormat("dd-MM-yyyy");
         
-        setRenderingTakingAppointmentInfo(false);
-        setRenderingClocks(true);
         
-        TypedQuery<Object[]> doctorAndTimeQuery = em.createQuery("SELECT u.doktoradi,FUNCTION('DATE',u.tarih) FROM Uygunrandevular AS u WHERE u.doktorid=:doctorid ORDER BY u.tarih ASC",Object[].class);
+        
+        TypedQuery<Object[]> doctorAndTimeQuery = em.createQuery("SELECT u.doktoradi,FUNCTION('DATE',u.tarih),u.uygunrandevuid FROM Uygunrandevular AS u WHERE u.doktorid=:doctorid ORDER BY u.tarih ASC",Object[].class);
         doctorAndTimeQuery.setParameter("doctorid", saveAppointmentsObject.selectedAppointment.getDoktorid());
         doctorAndTimeList=new ArrayList<>();
         doctorAndTimeList=doctorAndTimeQuery.getResultList();
         
+        TypedQuery<Randevusaatleri> query=em.createQuery("SELECT c FROM Randevusaatleri c WHERE c.doktorid=:doctorid",Randevusaatleri.class);
+        System.out.println("Seçilen Randevunun ID'si"+saveAppointmentsObject.selectedAppointment.getUygunrandevuid());
+        query.setParameter("doctorid", saveAppointmentsObject.selectedAppointment.getDoktorid());
+        appointmentClockResults=new ArrayList<>();
+        appointmentClockResults=query.getResultList();
+        
+        setRenderingTakingAppointmentInfo(false);
+        setRenderingClocks(true);
         
     }
 }

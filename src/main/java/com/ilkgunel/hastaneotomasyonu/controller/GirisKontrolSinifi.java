@@ -67,7 +67,7 @@ public class GirisKontrolSinifi implements Serializable{
         if(!authentication.getPrincipal().toString().equals("anonymousUser")){
 
             NavigationHandler nh =  FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-            nh.handleNavigation(FacesContext.getCurrentInstance(), null, "/member/index.xhtml?faces-redirect=true");
+            nh.handleNavigation(FacesContext.getCurrentInstance(), null, "/takingAppointment.xhtml?faces-redirect=true");
 
         }
     }
