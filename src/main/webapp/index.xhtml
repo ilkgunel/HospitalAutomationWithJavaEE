@@ -7,14 +7,14 @@
     <h:head>
         <title>Hastane Otomasyonu</title>
         <f:metadata>
-            <f:event type="preRenderView" listener="#{girisKontrolSnifi.authorizedUserControl}"/>
+            <f:event type="preRenderView" listener="#{loginControlClass.authorizedUserControl}"/>
         </f:metadata>
         <meta http-equiv="content-type" content="text/html; charset=utf-8"></meta>
     </h:head>
     <h:body>
         <h:outputStylesheet library="css" name="cssfile.css"/>
         <center style="margin-top: 100px;">
-            <h:form prependId="false">
+            <h:form id="form" prependId="false">
                 <h:messages showDetail="true" />
                 <center>T.C. SAĞLIK BAKANLIĞI</center>
                 <center><h3>MERKEZİ HEKİM RANDEVU SİSTEMİ</h3></center>
@@ -25,23 +25,23 @@
                         <h:outputText value=""/>
 
                         <h:outputText value="T.C. Kimlik No" style="margin-left: 15px;"/>
-                        <h:inputText id="j_username" required="true" maxlength="100" size="30" value="#{girisKontrolSnifi.identityNumber}"
+                        <h:inputText id="j_username" required="true" maxlength="100" size="30" value="#{saveAppointments.comingIdentityNumber}"
                                      requiredMessage="Kullanıcı adı alanı boş bırakılamaz..."/>
 
 
                         <h:outputText value="Parola" style="margin-left: 15px;"/>
-                        <h:inputText id="j_password" required="true" maxlength="50" size="30" value="#{girisKontrolSnifi.password}"
+                        <h:inputText id="j_password" required="true" maxlength="50" size="30" value="#{saveAppointments.comingPassword}"
                                      requiredMessage="Parola alanı boş bırakılamaz..." />
 
                         <!--<h:outputText value="Doğrulama Kodu"/>
                         <p:captcha label="Captcha" />-->
 
                         <h:panelGrid columns="2">
-                            <h:button value="Yeni Üye" outcome="uyeKaydi.xhtml"/>
+                            <h:button value="Yeni Üye" outcome="savingPatients.xhtml"/>
                             <h:button value="Şifremi Unuttum" outcome="remindingPassword.xhtml"/>
                         </h:panelGrid>
-                        <h:commandButton value="Giriş" 
-                                         action="#{girisKontrolSnifi.login()}" style="margin-left: 265px;"/>
+                        <h:commandButton value="Giriş" action="#{loginControlClass.login()}" actionListener="#{getPatientInformation.fillList}" style="margin-left: 265px;">
+                        </h:commandButton>
                     </h:panelGrid>
                     <h:panelGrid columns="1">
                         <h:outputText value="Soru ve sorunlarınız için mhrs@saglik.gov.tr adresimiz ile bize ulaşabilirsiniz." style="margin-left: 5px;"/>

@@ -25,9 +25,6 @@ import java.io.Serializable;
 @ManagedBean(name="getDistricts")
 @ViewScoped
 public class GetDistricts implements Serializable {
-
-    @ManagedProperty(value="#{saveAppointments}")
-    private SaveAppointments saveAppointments;
     
     @ManagedProperty(value="#{getCities}")
     private GetCities getCities;
@@ -60,14 +57,6 @@ public class GetDistricts implements Serializable {
 
     public void setGetCities(GetCities getCities) {
         this.getCities = getCities;
-    }
-
-    public SaveAppointments getSaveAppointments() {
-        return saveAppointments;
-    }
-
-    public void setSaveAppointments(SaveAppointments saveAppointments) {
-        this.saveAppointments = saveAppointments;
     }
 
     public List<String> getDistricts() {

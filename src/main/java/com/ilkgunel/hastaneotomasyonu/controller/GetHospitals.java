@@ -44,7 +44,7 @@ public class GetHospitals implements  Serializable{
     {
         hospitals=new ArrayList<>();
         hospitalResults=new ArrayList<>();
-        String currentDistrict=saveAppointments.getDistrict();
+        String currentDistrict=saveAppointments.district;
         for(Ilceler i:districtsObject.districtResults)
         {
             if(currentDistrict.equals(i.getIlce()))
@@ -105,5 +105,9 @@ public class GetHospitals implements  Serializable{
     public void setSaveAppointments(SaveAppointments saveAppointments) {
         this.saveAppointments = saveAppointments;
     }
+    
+    
+    
+    
     
 }

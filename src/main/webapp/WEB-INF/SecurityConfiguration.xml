@@ -27,9 +27,9 @@
         <security:authentication-provider>
             <security:password-encoder hash="md5"/>
             <security:jdbc-user-service data-source-ref="dataSource"
-                                        users-by-username-query="select username, password, enabled from kullanicilar where username=?"
-                                        authorities-by-username-query="select u.username, r.role from kullanicilar u, user_roles r
-                                            where u.username = r.user and u.username =?"/>
+                                        users-by-username-query="select identitynumber,password, enabled from patients where identitynumber=?"
+                                        authorities-by-username-query="select u.identitynumber, r.role from patients u, userroles r
+                                        where u.identitynumber = r.useridentitynumber and u.identitynumber =?"/>
         </security:authentication-provider>
     </security:authentication-manager>
 

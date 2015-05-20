@@ -5,7 +5,6 @@ import com.ilkgunel.hastaneotomasyonu.entity.Klinikler;
 import com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri;
 import com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -16,7 +15,6 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Query;
 //Çalışan Sınıf Budur
 @ManagedBean(name = "getAvaliableAppointments")
 @ViewScoped
@@ -33,7 +31,7 @@ public class GetAvaliableAppointments implements Serializable{
     boolean renderingDataTable=false;
     int hospitalid;
     @ManagedProperty(value = "#{saveAppointments}")
-    private SaveAppointments saveAppointmentsObject;
+    private SaveAppointments saveAppointmentsObjectInAvaliableAppointments;
 
     @ManagedProperty(value = "#{getHospitals}")
     private GetHospitals getHospitalsObject;
@@ -56,14 +54,7 @@ public class GetAvaliableAppointments implements Serializable{
     public void setRenderingClocks(boolean renderingClocks) {
         this.renderingClocks = renderingClocks;
     }
-
-    public SaveAppointments getSaveAppointmentsObject() {
-        return saveAppointmentsObject;
-    }
-
-    public void setSaveAppointmentsObject(SaveAppointments saveAppointmentsObject) {
-        this.saveAppointmentsObject = saveAppointmentsObject;
-    }
+    
 
     public boolean isRenderingDataTable() {
         return renderingDataTable;
@@ -121,7 +112,7 @@ public class GetAvaliableAppointments implements Serializable{
 
         for (Hastaneler h:getHospitalsObject.getHospitalResults())
         {
-            if(h.getHastaneadi().equals(saveAppointmentsObject.getHospital()))
+            if(h.getHastaneadi().equals(saveAppointmentsObjectInAvaliableAppointments.getHospital()))
             {
                 hospitalid=h.getId();
                 break;
@@ -131,7 +122,7 @@ public class GetAvaliableAppointments implements Serializable{
         int clinicId=0;
         for(Klinikler k:getClinicsObject.clinicResults)
         {
-            if(k.getKlinikadi().equals(saveAppointmentsObject.clinic))
+            if(k.getKlinikadi().equals(saveAppointmentsObjectInAvaliableAppointments.clinic))
             {
                 clinicId=k.getId();
                 break;
@@ -144,7 +135,7 @@ public class GetAvaliableAppointments implements Serializable{
         
         query.setParameter("hospitalid",hospitalid);
         query.setParameter("clinicid", clinicId);
-        query.setParameter("clinicplace", saveAppointmentsObject.clinicPlace);
+        query.setParameter("clinicplace", saveAppointmentsObjectInAvaliableAppointments.clinicPlace);
 
         availableAppointments=query.getResultList();
 
@@ -158,19 +149,27 @@ public class GetAvaliableAppointments implements Serializable{
         
         
         TypedQuery<Object[]> doctorAndTimeQuery = em.createQuery("SELECT u.doktoradi,FUNCTION('DATE',u.tarih),u.uygunrandevuid FROM Uygunrandevular AS u WHERE u.doktorid=:doctorid ORDER BY u.tarih ASC",Object[].class);
-        doctorAndTimeQuery.setParameter("doctorid", saveAppointmentsObject.selectedAppointment.getDoktorid());
+        doctorAndTimeQuery.setParameter("doctorid", saveAppointmentsObjectInAvaliableAppointments.selectedAppointment.getDoktorid());
         doctorAndTimeList=new ArrayList<>();
         doctorAndTimeList=doctorAndTimeQuery.getResultList();
         
         TypedQuery<Randevusaatleri> query=em.createQuery("SELECT c FROM Randevusaatleri c WHERE c.doktorid=:doctorid",Randevusaatleri.class);
-        System.out.println("Seçilen Randevunun ID'si"+saveAppointmentsObject.selectedAppointment.getUygunrandevuid());
-        query.setParameter("doctorid", saveAppointmentsObject.selectedAppointment.getDoktorid());
+        System.out.println("Seçilen Randevunun ID'si"+saveAppointmentsObjectInAvaliableAppointments.selectedAppointment.getUygunrandevuid());
+        query.setParameter("doctorid", saveAppointmentsObjectInAvaliableAppointments.selectedAppointment.getDoktorid());
         appointmentClockResults=new ArrayList<>();
         appointmentClockResults=query.getResultList();
         
         setRenderingTakingAppointmentInfo(false);
         setRenderingClocks(true);
         
+    }
+
+    public SaveAppointments getSaveAppointmentsObjectInAvaliableAppointments() {
+        return saveAppointmentsObjectInAvaliableAppointments;
+    }
+
+    public void setSaveAppointmentsObjectInAvaliableAppointments(SaveAppointments saveAppointmentsObjectInAvaliableAppointments) {
+        this.saveAppointmentsObjectInAvaliableAppointments = saveAppointmentsObjectInAvaliableAppointments;
     }
 }
 

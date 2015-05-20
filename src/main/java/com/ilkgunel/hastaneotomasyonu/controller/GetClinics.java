@@ -21,17 +21,6 @@ public class GetClinics implements Serializable{
      List<Klinikler> clinicResults;
      List<String> clinics;
 
-    @ManagedProperty(value = "#{saveAppointments}")
-    private SaveAppointments sao;
-
-    public SaveAppointments getSao() {
-        return sao;
-    }
-
-    public void setSao(SaveAppointments sao) {
-        this.sao = sao;
-    }
-
     public List<Klinikler> getClinicResults() {
         return clinicResults;
     }

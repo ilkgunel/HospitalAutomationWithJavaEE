@@ -21,6 +21,18 @@ position: absolute;
 margin-left: 375px;
 }
 
+.ui-stack{
+    margin-bottom: 200px;
+    margin-right: 0px;
+    position: fixed;
+    
+}
+
+.ui-menuitem-link .openStack li span{
+    height: 30px;
+}
+               
+
 #divClass2
 {
     background-image: url(..//resources/images/g.png);
@@ -45,12 +57,11 @@ font-weight: normal;
 }
 .ui-widget-content {
     border:none;
-    background-color: aquamarine;
+    background-color: white;
 }
 .ui-panelgrid{
     font-size: 90%;
     border:none !important;
-    background-color: aquamarine;
 }
 table {
     border:none !important ;

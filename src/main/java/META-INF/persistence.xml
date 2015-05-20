@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
-  <persistence-unit name="HospitalAutomation" transaction-type="JTA">
-    <jta-data-source>HospitalAutomationMySql</jta-data-source>
+  <persistence-unit name="HospitalAutomation" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <non-jta-data-source>HospitalAutomation</non-jta-data-source>
+    <class>com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Klinikler</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Klinikyerleri</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Doktorlar</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.HastanelerEntity</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular</class>
+    <validation-mode>NONE</validation-mode>
     <properties>
-      <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/HospitalAutomation?characterEncoding=utf8"/>
-      <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="eclipselink.jdbc.user" value="ilkay"/>
-      <property name="eclipselink.jdbc.password" value="12345"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/HospitalAutomation?useUnicode=true&amp;characterEncoding=UTF-8"/>
+      <property name="javax.persistence.jdbc.password" value="12345"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="ilkay"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>
 </persistence>
