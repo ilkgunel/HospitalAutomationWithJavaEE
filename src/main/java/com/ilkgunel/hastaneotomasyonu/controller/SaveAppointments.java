@@ -10,25 +10,21 @@ import com.ilkgunel.hastaneotomasyonu.entity.Takenappointments;
 import com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 /**
  *
  * @author ilkaygunel
  */
-@ManagedBean(name="saveAppointments")
-@ViewScoped
+@ManagedBean
+@SessionScoped
 public class SaveAppointments implements Serializable{
 
     String comingIdentityNumber;
@@ -136,8 +132,6 @@ public class SaveAppointments implements Serializable{
         this.comingPassword = comingPassword;
     }
     
-    
-    
     public void saveToDb(ActionEvent event)
     {
         EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
@@ -147,7 +141,7 @@ public class SaveAppointments implements Serializable{
         System.out.println(selectedAppointment.getDoktorid());
         takenappointmentsObject.setDoctorid(selectedAppointment.getDoktorid());
         System.out.println(comingIdentityNumber);
-        takenappointmentsObject.setPatientid("11111111111");
+        takenappointmentsObject.setPatientid(comingIdentityNumber);
         System.out.println(selectedAppointment.getTarih());
         takenappointmentsObject.setDate(selectedAppointment.getTarih());
         System.out.println(hospital);

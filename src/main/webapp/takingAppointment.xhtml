@@ -109,6 +109,7 @@
                             <br/>
                             <b><span id="randevuAdim">3.</span>adımda hekim çalışma cetvelinden uygun bir slot seçip randevunuzu kaydedebilirsiniz.</b>
                         </blockquote>
+                        
                     </h:panelGrid>
 
                     <h:panelGrid columns="1" id="appointmentsClocks" rendered="#{getAvaliableAppointments.renderingClocks}" style="width: 407px;">
@@ -127,7 +128,10 @@
                                 </p:dataGrid>-->
                                 <p:panelGrid columns="4" style="width:100%;">
                                     <c:forEach items="#{getAvaliableAppointments.appointmentClockResults}" var="itm">
-                                        <p:commandButton value="#{itm.saat}" rendered="#{dat[2]==itm.randevuid}" disabled="#{itm.saatalindimi}"/>
+                                        <p:commandButton title="#{write.title}" value="#{itm.saat}" oncomplete="PF('dialog').show()" 
+                                                         rendered="#{dat[2]==itm.randevuid}" disabled="#{itm.saatalindimi}">
+                                            <f:setPropertyActionListener target="#{saveAppointments.clockId}" value="#{itm.saatid}" />
+                                        </p:commandButton>
                                     </c:forEach>
                                 </p:panelGrid>
                                 
