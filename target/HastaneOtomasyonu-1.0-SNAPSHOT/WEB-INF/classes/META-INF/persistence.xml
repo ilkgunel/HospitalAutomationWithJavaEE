@@ -2,11 +2,17 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="HospitalAutomation" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <non-jta-data-source>HospitalAutomation</non-jta-data-source>
+    <jta-data-source>HospitalAutomation</jta-data-source>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Klinikler</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Klinikyerleri</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Doktorlar</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.HastanelerEntity</class>
+    <class>com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular</class>
+    <class>com.com.ilkgunel.hastaneotomasyonu.entity.Ilceler</class>
+    <class>com.ilkgunel.hastaneotomasyonu.entity.Iller</class>
+    <class>com.ilkgunel.hastaneotomasyonu.entity.Patients</class>
+    <class>com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri</class>
+    <class>com.ilkgunel.hastaneotomasyonu.entity.Takenappointments</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <validation-mode>NONE</validation-mode>

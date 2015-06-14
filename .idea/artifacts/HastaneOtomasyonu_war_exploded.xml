@@ -5,6 +5,7 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="HastaneOtomasyonu" />
+          <element id="jpa-descriptors" facet="HastaneOtomasyonu/jpa/JPA" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.0.2.RELEASE" />
@@ -31,13 +32,15 @@
           <element id="library" level="project" name="Maven: org.eclipse.persistence:eclipselink:2.5.2" />
           <element id="library" level="project" name="Maven: org.eclipse.persistence:javax.persistence:2.1.0" />
           <element id="library" level="project" name="Maven: org.eclipse.persistence:commonj.sdo:2.1.1" />
-          <element id="library" level="project" name="Maven: org.primefaces:primefaces:5.1" />
+          <element id="library" level="project" name="Maven: postgresql:postgresql:9.1-901.jdbc4" />
+          <element id="library" level="project" name="Maven: org.primefaces:primefaces:5.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/HastaneOtomasyonu-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="HastaneOtomasyonu/web/Web" />
+      <element id="javaee-facet-resources" facet="HastaneOtomasyonu/javaeeApplication/javaEEApplication" />
     </root>
   </artifact>
 </component>

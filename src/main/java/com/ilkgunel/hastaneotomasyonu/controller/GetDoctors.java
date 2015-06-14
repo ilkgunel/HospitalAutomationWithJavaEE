@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import com.ilkgunel.hastaneotomasyonu.entity.Doktorlar;
+import com.ilkgunel.hastaneotomasyonu.entity.Hastaneler;
 import com.ilkgunel.hastaneotomasyonu.entity.Klinikler;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,6 +26,9 @@ public class GetDoctors implements Serializable{
     
     @ManagedProperty(value = "#{getClinics}")
     private GetClinics getClinicsObject;
+
+    @ManagedProperty(value = "#{getHospitals}")
+    private GetHospitals getHospitalsObject;
     
     List<Doktorlar> doctorResults;
     List<String> doctors;
@@ -52,7 +56,15 @@ public class GetDoctors implements Serializable{
     public void setGetClinicsObject(GetClinics getClinicsObject) {
         this.getClinicsObject = getClinicsObject;
     }
-    
+
+    public GetHospitals getGetHospitalsObject() {
+        return getHospitalsObject;
+    }
+
+    public void setGetHospitalsObject(GetHospitals getHospitalsObject) {
+        this.getHospitalsObject = getHospitalsObject;
+    }
+
     public  void fillList() {
         int clinicId=0;
         for(Klinikler k:getClinicsObject.clinicResults)
@@ -63,8 +75,18 @@ public class GetDoctors implements Serializable{
                 break;
             }
         }
-        TypedQuery<Doktorlar> query=em.createQuery("SELECT d FROM Doktorlar d WHERE d.bransid=:clinicid",Doktorlar.class);
+
+        int hospitalId=0;
+        for(Hastaneler h:getGetHospitalsObject().getHospitalResults())
+        {
+            if(h.getHastaneadi().equals(saveAppointmentsObject.getHospital()))
+            {
+                hospitalId=h.getId();
+            }
+        }
+        TypedQuery<Doktorlar> query=em.createQuery("SELECT d FROM Doktorlar d WHERE d.bransid=:clinicid AND d.hastaneid=:hospitalid",Doktorlar.class);
         query.setParameter("clinicid", clinicId);
+        query.setParameter("hospitalid",hospitalId);
         doctorResults=new ArrayList<>();
         doctors=new ArrayList<>();
         doctorResults=query.getResultList();

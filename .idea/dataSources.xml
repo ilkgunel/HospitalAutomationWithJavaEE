@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="4095200260">
+  <component name="DataSourceManagerImpl" format="xml" hash="1572111774">
     <data-source source="LOCAL" name="MySQL - HospitalAutomation@localhost" uuid="f59f87f5-7419-49cd-a945-ce33076fe1b5">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
@@ -13,7 +13,11 @@
         <property name="characterSetResults" value="utf8" />
         <property name="yearIsDateType" value="false" />
       </driver-properties>
-      <libraries />
+      <libraries>
+        <library>
+          <url>file://$PROJECT_DIR$/target/HastaneOtomasyonu-1.0-SNAPSHOT/WEB-INF/lib/mysql-connector-java-5.1.6.jar</url>
+        </library>
+      </libraries>
     </data-source>
   </component>
 </project>

@@ -25,19 +25,19 @@
             <center>    
               <div style="height: 450px;">
                   <p:panelGrid style="width: 732px;" columns="3">
-                      <h:graphicImage library="images" name="saglikBakanligiLogo.png" />
+                      <h:outputText value="Yazılım Mühendisliği Dersi"/>
                       <h:panelGrid columns="1">
-                        <h:outputText value="T.C. SAĞLIK BAKANLIĞI"
+                        <h:outputText value="2014-2015"
                                       style='text-align: center;'/>
-                        <h:outputText value="Merkezi Hekim Randevu Sistemi"
+                        <h:outputText value="Bahar Dönemi"
                                       style='text-align: center;'/>
                     </h:panelGrid>
-                      <h:graphicImage library="images" name="logo.png"/>
+                    <h:outputText value="Randevu Alma Otomasyonu Proje Ödevi"/>
 
 
                     <p:clock pattern="HH:mm:ss" />
-                    <p:outputLabel/>
-                    <p:outputLabel value="#{getPatientInformation.name} #{getPatientInformation.surname}"/>
+                    <p:spacer/>
+                    <p:outputLabel value="Randevu Alınan Kişi:#{getPatientInformation.name} #{getPatientInformation.surname}"/>
                 </p:panelGrid>
 
                   <p:panelGrid id="infoOrClocksAndOptions" columns="2">
@@ -128,7 +128,7 @@
                                 </p:dataGrid>-->
                                 <p:panelGrid columns="4" style="width:100%;">
                                     <c:forEach items="#{getAvaliableAppointments.appointmentClockResults}" var="itm">
-                                        <p:commandButton title="#{write.title}" value="#{itm.saat}" oncomplete="PF('dialog').show()" 
+                                        <p:commandButton title="#{itm.title}" value="#{itm.saat}" oncomplete="PF('dialog').show()" 
                                                          rendered="#{dat[2]==itm.randevuid}" disabled="#{itm.saatalindimi}">
                                             <f:setPropertyActionListener target="#{saveAppointments.clockId}" value="#{itm.saatid}" />
                                         </p:commandButton>

@@ -105,7 +105,11 @@
                 <h:panelGrid columns="1">
                     <h:outputText value="* İşaretli Alanların Doldurulması Zorunludur"/>
                     <h:outputText value="** İşaretli Alanların En Az Birisnin Doldurulması Zorunludur"/>
-                    <p:commandButton value="Kaydet"  style="float: right" update="display" oncomplete="PF('dialog').show()" actionListener="#{savePatients.saveToDb()}"/>
+                    <p:panelGrid columns="2">
+                        <p:commandButton value="Kaydet"  style="float: right" update="display" oncomplete="PF('dialog').show()" actionListener="#{savePatients.saveToDb()}"/>
+                        <p:commandButton value="Giriş Sayfasına Dön" action="index.xhtml?faces-redirect=true"/>
+                    </p:panelGrid>
+                    
                     <p style="float:left;width:206px;margin-left:20px;font-family:Arial;font-size:14px;color:red;font-weight:bold;" id="warning_text"></p>
                 </h:panelGrid>
                 
