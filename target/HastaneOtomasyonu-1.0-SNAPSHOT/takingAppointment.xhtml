@@ -4,7 +4,6 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Randevu Alma Sayfası</title>
@@ -16,7 +15,7 @@
            
             <p:stack icon="/resources/images/stack.png" expanded="true">
                 <p:menuitem value="Randevularım" icon="/resources/images/randevu.png" url="#"/>
-                <p:menuitem value="HesapBilgileri" style="height: 30px;" icon="/resources/images/uyelik.png" url="#"/>
+                <p:menuitem value="HesapBilgileri" style="height: 30px;" icon="/resources/images/uyelik.png" oncomplete="PF('memberInfoDialog').show()"/>
                 <p:menuitem value="Duyurular" icon="/resources/images/duyurular.png" url="#"/>
                 <p:menuitem value="E-Nabız" icon="/resources/images/nabiz.png" url="#"/>
                 <p:menuitem value="Çıkış" icon="/resources/images/cikis.png" url="/j_spring_security_logout"/>
@@ -194,6 +193,49 @@
             
             <p:dialog header="İşlem Sonucu" modal="true" resizable="false" widgetVar="resultDialog" showEffect="fade">
                 <p:outputLabel id="operationResultText" value="#{saveAppointments.operationResult}"/>
+            </p:dialog>
+
+            <p:dialog id="memberInfoDialog" header="Üye Bilgileri" modal="true" resizable="false" widgetVar="memberInfoDialog" showEffect="fade">
+                <p:panelGrid columns="2">
+                    <h:outputText value="Kimlik Numarası:"/>
+                    <p:inputText value="#{getPatientInformation.identityNumber}" disabled="true"/>
+
+                    <h:outputText value="İsim:"/>
+                    <p:inputText value="#{getPatientInformation.name}"/>
+
+                    <h:outputText value="Soyisim:"/>
+                    <p:inputText value="#{getPatientInformation.surname}"/>
+
+                    <h:outputText value="Cinsiyeti:"/>
+                    <p:selectOneMenu value="#{getPatientInformation.gender}">
+                        <f:selectItem itemLabel="Erkek" itemValue="Erkek"/>
+                        <f:selectItem itemLabel="Bayan" itemValue="Bayan"/>
+                    </p:selectOneMenu>
+
+                    <h:outputText value="Doğum Yeri:"/>
+                    <p:inputText value="#{getPatientInformation.birthplace}"/>
+
+                    <h:outputText value="Doğum Tarihi:"/>
+                    <p:calendar value="#{getPatientInformation.birthDate}"/>
+
+                    <h:outputText value="Baba Adı"/>
+                    <p:inputText value="#{getPatientInformation.fatherName}"/>
+
+                    <h:outputText value="Anne Adı"/>
+                    <p:inputText value="#{getPatientInformation.motherName}"/>
+
+                    <h:outputText value="Telefon"/>
+                    <p:inputText value="#{getPatientInformation.mobilePhoneNumber}"/>
+
+                    <h:outputText value="E-posta Adresi:"/>
+                    <p:inputText value="#{getPatientInformation.emailAddress}"/>
+
+                    <h:outputText value="Şifre"/>
+                    <p:commandLink value="Şifremi Sıfırla"/>
+
+                    <p:commandButton value="İptal" oncomplete="PF('memberInfoDialog').hide();"/>
+                    <p:commandButton value="Değişiklikleri Kaydet"/>
+                </p:panelGrid>
             </p:dialog>
         </h:form>
     </h:body>

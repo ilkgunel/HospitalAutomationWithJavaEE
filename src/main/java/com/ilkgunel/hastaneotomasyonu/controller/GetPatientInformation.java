@@ -5,9 +5,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import  javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,13 +15,13 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class GetPatientInformation implements Serializable{
     
     
     private String identityNumber;
-    static private String name;
-    static private String surname;
+    private String name;
+    private String surname;
     private String gender;
     private String birthplace;
     private Date birthDate;
@@ -67,11 +67,29 @@ public class GetPatientInformation implements Serializable{
         System.out.println("Hasta Bilgisi Getirme Medodu Bitti");
     }
 
+    public void updatePatientInfo()
+    {
+        em.getTransaction().begin();
+        Patients p=em.find(Patients.class,identityNumber);
+        p.setName(name);
+        p.setSurname(surname);
+        p.setGender(gender);
+        p.setBirthplace(birthplace);
+        p.setBirthdate(birthDate);
+        p.setFathername(fatherName);
+        p.setMothername(motherName);
+        p.setPhonenumber(mobilePhoneNumber);
+        p.setEmailaddress(emailAddress);
+        em.getTransaction().commit();
+        em.close();
+    }
+
     public List<Patients> getPatientInfo() {
         return patientInfo;
     }
 
-    public void setPatientInfo(List<Patients> patientInfo) {
+    public void setPatientInfo(List<Patients> patientInfo)
+    {
         this.patientInfo = patientInfo;
     }
 

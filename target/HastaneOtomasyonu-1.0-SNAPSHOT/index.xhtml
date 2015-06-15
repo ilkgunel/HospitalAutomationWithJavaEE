@@ -16,15 +16,15 @@
         <center style="margin-top: 100px;">
             <h:form id="form" prependId="false">
                 <h:messages showDetail="true" />
-                <center>T.C. SAĞLIK BAKANLIĞI</center>
-                <center><h3>MERKEZİ HEKİM RANDEVU SİSTEMİ</h3></center>
+                <center>HASTANE OTOMASYONU PROJESİ</center>
+                <center><h3>RANDEVU ALMA SİSTEMİ</h3></center>
                 <div id="divClass1">
                     <h:panelGrid columns="2" style="margin-top:60px;">
 
-                        <center><h:outputText value="Vatandaş Giriş Ekranı" /></center>
+                        <center><h:outputText value="Üye Giriş Ekranı" /></center>
                         <h:outputText value=""/>
 
-                        <h:outputText value="T.C. Kimlik No" style="margin-left: 15px;"/>
+                        <h:outputText value="Kimlik Numaranız" style="margin-left: 15px;"/>
                         <h:inputText id="j_username" required="true" maxlength="100" size="30" value="#{saveAppointments.comingIdentityNumber}"
                                      requiredMessage="Kullanıcı adı alanı boş bırakılamaz..."/>
 
@@ -44,7 +44,7 @@
                         </h:commandButton>
                     </h:panelGrid>
                     <h:panelGrid columns="1">
-                        <h:outputText value="Soru ve sorunlarınız için mhrs@saglik.gov.tr adresimiz ile bize ulaşabilirsiniz." style="margin-left: 5px;"/>
+                        <h:outputText value="Soru ve düşünceleriniz için ilkgunel93@gmail.com adresine mail atabilirsiniz." style="margin-left: 5px;"/>
                         <h:outputLabel value="#{sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}" rendered="#{!empty sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}"
                                        style="margin-left: 5px;color: red"/>
                         <p:messages showDetail="true"/>
