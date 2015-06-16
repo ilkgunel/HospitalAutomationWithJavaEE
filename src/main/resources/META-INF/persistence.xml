@@ -6,9 +6,9 @@
     <class>com.ilkgunel.hastaneotomasyonu.entity.Klinikler</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Klinikyerleri</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Doktorlar</class>
-    <class>com.ilkgunel.hastaneotomasyonu.entity.HastanelerEntity</class>
+    <class>com.ilkgunel.hastaneotomasyonu.entity.Hastaneler</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular</class>
-    <class>com.com.ilkgunel.hastaneotomasyonu.entity.Ilceler</class>
+    <class>com.ilkgunel.hastaneotomasyonu.entity.Ilceler</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Iller</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Patients</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri</class>

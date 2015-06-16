@@ -14,6 +14,8 @@
     <class>com.ilkgunel.hastaneotomasyonu.entity.Iller</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Patients</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Takenappointments</class>
+    <class>com.ilkgunel.hastaneotomasyonu.entity.Patients</class>
+    <class>com.ilkgunel.hastaneotomasyonu.entity.Patients</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <validation-mode>NONE</validation-mode>
     <properties>
@@ -22,6 +24,10 @@
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.user" value="ilkay"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/HospitalAutomation"/>
+      <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="eclipselink.jdbc.user"/>
+      <property name="eclipselink.jdbc.password"/>
     </properties>
   </persistence-unit>
 </persistence>

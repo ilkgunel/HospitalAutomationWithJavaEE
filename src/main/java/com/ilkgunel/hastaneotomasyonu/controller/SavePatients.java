@@ -5,7 +5,6 @@
  */
 package com.ilkgunel.hastaneotomasyonu.controller;
 
-import com.ilkgunel.hastaneotomasyonu.entity.Patients;
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -19,6 +18,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+
+import com.ilkgunel.hastaneotomasyonu.entity.Patients;
+import javax.persistence.PersistenceContext;
+
 /**
  *
  * @author ilkaygunel
@@ -26,6 +29,10 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 @ManagedBean
 @ViewScoped
 public class SavePatients implements Serializable{
+    
+    /*@PersistenceContext(unitName = "HospitalAutomation")
+    private EntityManager em;*/
+    
     private String identityNumber;
     private String name;
     private String surname;

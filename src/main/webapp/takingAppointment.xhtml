@@ -36,7 +36,7 @@
 
                     <p:clock pattern="HH:mm:ss" />
                     <p:spacer/>
-                    <p:outputLabel value="Randevu Alınan Kişi:#{getPatientInformation.name} #{getPatientInformation.surname}"/>
+                    <p:outputLabel id="whichPerson" value="Randevu Alınan Kişi:#{getPatientInformation.name} #{getPatientInformation.surname}"/>
                 </p:panelGrid>
 
                   <p:panelGrid id="infoOrClocksAndOptions" columns="2">
@@ -198,43 +198,61 @@
             <p:dialog id="memberInfoDialog" header="Üye Bilgileri" modal="true" resizable="false" widgetVar="memberInfoDialog" showEffect="fade">
                 <p:panelGrid columns="2">
                     <h:outputText value="Kimlik Numarası:"/>
-                    <p:inputText value="#{getPatientInformation.identityNumber}" disabled="true"/>
+                    <p:inputText id="identitiyNumber" value="#{getPatientInformation.identityNumber}" disabled="true"/>
 
                     <h:outputText value="İsim:"/>
-                    <p:inputText value="#{getPatientInformation.name}"/>
+                    <p:inputText id="name" value="#{getPatientInformation.name}"/>
 
                     <h:outputText value="Soyisim:"/>
-                    <p:inputText value="#{getPatientInformation.surname}"/>
+                    <p:inputText id="surname" value="#{getPatientInformation.surname}"/>
 
                     <h:outputText value="Cinsiyeti:"/>
-                    <p:selectOneMenu value="#{getPatientInformation.gender}">
+                    <p:selectOneMenu id="gender" value="#{getPatientInformation.gender}">
                         <f:selectItem itemLabel="Erkek" itemValue="Erkek"/>
                         <f:selectItem itemLabel="Bayan" itemValue="Bayan"/>
                     </p:selectOneMenu>
 
                     <h:outputText value="Doğum Yeri:"/>
-                    <p:inputText value="#{getPatientInformation.birthplace}"/>
+                    <p:inputText id="birthPlace" value="#{getPatientInformation.birthplace}"/>
 
                     <h:outputText value="Doğum Tarihi:"/>
-                    <p:calendar value="#{getPatientInformation.birthDate}"/>
+                    <p:calendar id="birthDate" value="#{getPatientInformation.birthDate}"/>
 
                     <h:outputText value="Baba Adı"/>
-                    <p:inputText value="#{getPatientInformation.fatherName}"/>
+                    <p:inputText id="fatherName" value="#{getPatientInformation.fatherName}"/>
 
                     <h:outputText value="Anne Adı"/>
-                    <p:inputText value="#{getPatientInformation.motherName}"/>
+                    <p:inputText id="motherName" value="#{getPatientInformation.motherName}"/>
 
                     <h:outputText value="Telefon"/>
-                    <p:inputText value="#{getPatientInformation.mobilePhoneNumber}"/>
+                    <p:inputText id="mobilePhoneNumber" value="#{getPatientInformation.mobilePhoneNumber}"/>
 
                     <h:outputText value="E-posta Adresi:"/>
-                    <p:inputText value="#{getPatientInformation.emailAddress}"/>
+                    <p:inputText  id="email" value="#{getPatientInformation.emailAddress}"/>
 
                     <h:outputText value="Şifre"/>
                     <p:commandLink value="Şifremi Sıfırla"/>
 
                     <p:commandButton value="İptal" oncomplete="PF('memberInfoDialog').hide();"/>
-                    <p:commandButton value="Değişiklikleri Kaydet"/>
+                    <p:commandButton value="Değişiklikleri Kaydet" oncomplete="PF('resultDialogForUpdate').show()" 
+                                     onclick="PF('memberInfoDialog').hide()" update="resultDialogForUpdateGrid">
+                        <f:ajax listener="#{getPatientInformation.updatePatientInfo}"/>
+                        <f:ajax execute="name"/>
+                        <f:ajax execute="surname"/>
+                        <f:ajax execute="gender"/>
+                        <f:ajax execute="birthPlace"/>
+                        <f:ajax execute="birthDate"/>
+                        <f:ajax execute="fatherName"/>
+                        <f:ajax execute="motherName"/>
+                        <f:ajax execute="mobilePhoneNumber"/>
+                        <f:ajax execute="email"/>
+                    </p:commandButton>
+                </p:panelGrid>
+            </p:dialog>
+
+            <p:dialog id="resultDialogForUpdate" header="İşlem Sonucu" widgetVar="resultDialogForUpdate" modal="true" showEffect="fade" resizable="false">
+                <p:panelGrid id="resultDialogForUpdateGrid" columns="1">
+                    <h:outputText value="#{getPatientInformation.messageForUpdate}"/>
                 </p:panelGrid>
             </p:dialog>
         </h:form>

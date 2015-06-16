@@ -3,11 +3,6 @@
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="HastaneOtomasyonu-1.0-SNAPSHOT.war">
       <element id="artifact" artifact-name="HastaneOtomasyonu:war exploded" />
-      <element id="directory" name="WEB-INF">
-        <element id="directory" name="classes">
-          <element id="jpa-descriptors" facet="HastaneOtomasyonu/jpa/JPA" />
-        </element>
-      </element>
     </root>
   </artifact>
 </component>

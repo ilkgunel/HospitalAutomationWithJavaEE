@@ -1,6 +1,5 @@
 package com.ilkgunel.hastaneotomasyonu.controller;
 
-import com.ilkgunel.hastaneotomasyonu.entity.Patients;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,10 +13,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+import com.ilkgunel.hastaneotomasyonu.entity.Patients;
+
 @ManagedBean
 @SessionScoped
 public class GetPatientInformation implements Serializable{
     
+   /* @PersistenceContext(unitName = "HospitalAutomation")
+    private EntityManager em;*/
     
     private String identityNumber;
     private String name;
@@ -32,6 +35,8 @@ public class GetPatientInformation implements Serializable{
     private String emailAddress;
     private String password;
     
+    private String messageForUpdate;
+    
     @ManagedProperty(value = "#{saveAppointments}")
     private SaveAppointments saveAppointments;
     
@@ -43,7 +48,6 @@ public class GetPatientInformation implements Serializable{
     
     public void fillList(ActionEvent event)
     {
-        System.out.println("Hasta Bilgisi Getirme Medodu Çalıitı");
         TypedQuery<Patients> query=em.createQuery("SELECT p FROM Patients p WHERE p.identitynumber=:patientid",Patients.class);
         query.setParameter("patientid", saveAppointments.comingIdentityNumber);
         patientInfo=new ArrayList<>();
@@ -63,25 +67,6 @@ public class GetPatientInformation implements Serializable{
             setEmailAddress(p.getEmailaddress());
             setPassword(p.getPassword());
         }
-        System.out.println("Gönderilen İsim:"+name);
-        System.out.println("Hasta Bilgisi Getirme Medodu Bitti");
-    }
-
-    public void updatePatientInfo()
-    {
-        em.getTransaction().begin();
-        Patients p=em.find(Patients.class,identityNumber);
-        p.setName(name);
-        p.setSurname(surname);
-        p.setGender(gender);
-        p.setBirthplace(birthplace);
-        p.setBirthdate(birthDate);
-        p.setFathername(fatherName);
-        p.setMothername(motherName);
-        p.setPhonenumber(mobilePhoneNumber);
-        p.setEmailaddress(emailAddress);
-        em.getTransaction().commit();
-        em.close();
     }
 
     public List<Patients> getPatientInfo() {
@@ -198,4 +183,45 @@ public class GetPatientInformation implements Serializable{
         this.saveAppointments = saveAppointments;
     }
     
+    
+    
+    public void updatePatientInfo()
+    {
+        try {
+            em.getTransaction().begin();
+            Patients p = em.find(Patients.class, identityNumber);
+
+            p.setName(name);
+            System.out.println(p.getName());
+            p.setSurname(surname);
+            System.out.println(p.getSurname());
+            p.setGender(gender);
+            p.setBirthplace(birthplace);
+
+            java.sql.Date sqlBirDate =new java.sql.Date(birthDate.getTime());
+            p.setBirthdate(sqlBirDate);
+
+            p.setFathername(fatherName);
+            p.setMothername(motherName);
+            p.setPhonenumber(mobilePhoneNumber);
+            p.setEmailaddress(emailAddress);
+            em.getTransaction().commit();
+
+            messageForUpdate="Bilgileriniz Başarı İle Güncellendi!";
+
+        }
+        catch (Exception ex)
+        {
+            System.out.println("\nBir hata meydana geldi:\n"+ex);
+            messageForUpdate="Güncelleme Sırasında Bir Hata Meydana Geldi";
+        }
+    }
+
+    public String getMessageForUpdate() {
+        return messageForUpdate;
+    }
+
+    public void setMessageForUpdate(String messageForUpdate) {
+        this.messageForUpdate = messageForUpdate;
+    }
 }
