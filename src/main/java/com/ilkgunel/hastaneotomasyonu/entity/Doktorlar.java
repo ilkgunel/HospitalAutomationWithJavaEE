@@ -113,10 +113,7 @@ public class Doktorlar implements Serializable {
             return false;
         }
         Doktorlar other = (Doktorlar) object;
-        if ((this.doktorid == null && other.doktorid != null) || (this.doktorid != null && !this.doktorid.equals(other.doktorid))) {
-            return false;
-        }
-        return true;
+        return !((this.doktorid == null && other.doktorid != null) || (this.doktorid != null && !this.doktorid.equals(other.doktorid)));
     }
 
     @Override

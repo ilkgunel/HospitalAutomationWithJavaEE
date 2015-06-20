@@ -6,7 +6,7 @@
 package com.ilkgunel.hastaneotomasyonu.controller;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedProperty;
 
 
@@ -26,8 +26,18 @@ import java.io.Serializable;
  * @author ilkaygunel
  */
 @ManagedBean(name="getHospitals")
-@ViewScoped
+@SessionScoped
 public class GetHospitals implements  Serializable{
+    
+    String mesaj="İlkay Günel";
+
+    public String getMesaj() {
+        return mesaj;
+    }
+
+    public void setMesaj(String mesaj) {
+        this.mesaj = mesaj;
+    }
 
     @ManagedProperty(value="#{getDistricts}")
     private GetDistricts districtsObject;

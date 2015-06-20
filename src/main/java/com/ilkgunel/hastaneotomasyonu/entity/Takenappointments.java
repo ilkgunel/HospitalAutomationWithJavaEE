@@ -177,10 +177,7 @@ public class Takenappointments implements Serializable {
             return false;
         }
         Takenappointments other = (Takenappointments) object;
-        if ((this.takedappointmentid == null && other.takedappointmentid != null) || (this.takedappointmentid != null && !this.takedappointmentid.equals(other.takedappointmentid))) {
-            return false;
-        }
-        return true;
+        return !((this.takedappointmentid == null && other.takedappointmentid != null) || (this.takedappointmentid != null && !this.takedappointmentid.equals(other.takedappointmentid)));
     }
 
     @Override

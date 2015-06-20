@@ -4,10 +4,16 @@
  * and open the template in the editor.
  */
 package com.ilkgunel.hastaneotomasyonu.controller;
-import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
+import com.ilkgunel.hastaneotomasyonu.entity.Takenappointments;
 /**
  *
  * @author ilkaygunel
@@ -23,7 +29,7 @@ public class Test {
         System.out.println("Şifrelendi"+t.passwordEncoder.encodePassword(t.isim, ""));
     }*/
     
-    public static void main(String[] args)
+   /* public static void main(String[] args)
 {
 String parola = "malmesap93";
     
@@ -43,5 +49,22 @@ String parola = "malmesap93";
     catch(NoSuchAlgorithmException ex){
         System.err.println(ex);
     }
-}
+}*/
+	
+	public static void main(String[] args)
+	{
+		System.out.println("Metot Çalıştı");
+		EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
+	    EntityManager em=emf.createEntityManager();
+		List<Takenappointments> patientsAppointments=new ArrayList<Takenappointments>();
+		TypedQuery<Takenappointments> query=em.createQuery("SELECT t FROM Takenappointments t",Takenappointments.class);
+		//query.setParameter("patientid", "11111111111");
+		patientsAppointments=query.getResultList();
+		
+		for (Takenappointments t:patientsAppointments) {
+			System.out.println("Döngü içindeyiz:");
+			System.out.println(t.getDoctorid());
+			System.out.println(t.getClinicplace());
+		}
+	}
 }

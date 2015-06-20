@@ -8,16 +8,16 @@ import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.SessionScoped;
 //Çalışan Sınıf Budur
 @ManagedBean(name = "getAvaliableAppointments")
-@ViewScoped
+@SessionScoped
 public class GetAvaliableAppointments implements Serializable{
     
     EntityManagerFactory emf= Persistence.createEntityManagerFactory("HospitalAutomation");
@@ -144,10 +144,7 @@ public class GetAvaliableAppointments implements Serializable{
     }
 
     public void changeRenderingStates()
-    {
-        
-        
-        
+    {   
         TypedQuery<Object[]> doctorAndTimeQuery = em.createQuery("SELECT u.doktoradi,FUNCTION('DATE',u.tarih),u.uygunrandevuid FROM Uygunrandevular AS u WHERE u.doktorid=:doctorid ORDER BY u.tarih ASC",Object[].class);
         doctorAndTimeQuery.setParameter("doctorid", saveAppointmentsObjectInAvaliableAppointments.selectedAppointment.getDoktorid());
         doctorAndTimeList=new ArrayList<>();

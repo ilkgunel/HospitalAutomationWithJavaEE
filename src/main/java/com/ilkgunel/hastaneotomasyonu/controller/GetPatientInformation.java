@@ -12,9 +12,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-
+import java.lang.Object;
 import com.ilkgunel.hastaneotomasyonu.entity.Patients;
-
+import com.ilkgunel.hastaneotomasyonu.entity.Takenappointments;
 @ManagedBean
 @SessionScoped
 public class GetPatientInformation implements Serializable{
@@ -40,20 +40,33 @@ public class GetPatientInformation implements Serializable{
     @ManagedProperty(value = "#{saveAppointments}")
     private SaveAppointments saveAppointments;
     
+    @ManagedProperty(value="#{getAppointmentsOfPatient}")
+    private GetAppointmentsOfPatient g;
+    
     EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
     EntityManager em=emf.createEntityManager();
     
-    List<Patients> patientInfo;
+    //List<Patient> patientInfo;
+    List<Takenappointments> takenAppointmentsOfPatient;
+
+    public List<Takenappointments> getTakenAppointmentsOfPatient() {
+        return takenAppointmentsOfPatient;
+    }
+
+    public void setTakenAppointmentsOfPatient(List<Takenappointments> takenAppointmentsOfPatient) {
+        this.takenAppointmentsOfPatient = takenAppointmentsOfPatient;
+    }
     
-    
+
     public void fillList(ActionEvent event)
     {
         TypedQuery<Patients> query=em.createQuery("SELECT p FROM Patients p WHERE p.identitynumber=:patientid",Patients.class);
         query.setParameter("patientid", saveAppointments.comingIdentityNumber);
-        patientInfo=new ArrayList<>();
-        patientInfo=query.getResultList();
-        
-        for (Patients p : patientInfo) {
+        //patientInfo=new ArrayList<Patient>();
+        //patientInfo=query.getResultList();
+
+        for (Patients p : query.getResultList()) 
+        {
             setIdentityNumber(p.getIdentitynumber());
             setName(p.getName());
             setSurname(p.getSurname());
@@ -67,16 +80,17 @@ public class GetPatientInformation implements Serializable{
             setEmailAddress(p.getEmailaddress());
             setPassword(p.getPassword());
         }
+        g.fillList1();
     }
 
-    public List<Patients> getPatientInfo() {
+    /*public List<Patient> getPatientInfo() {
         return patientInfo;
     }
 
-    public void setPatientInfo(List<Patients> patientInfo)
+    public void setPatientInfo(List<Patient> patientInfo)
     {
         this.patientInfo = patientInfo;
-    }
+    }*/
 
     public String getIdentityNumber() {
         return identityNumber;
@@ -91,7 +105,7 @@ public class GetPatientInformation implements Serializable{
     }
 
     public void setName(String name) {
-        
+
         this.name = name;
     }
 
@@ -182,9 +196,9 @@ public class GetPatientInformation implements Serializable{
     public void setSaveAppointments(SaveAppointments saveAppointments) {
         this.saveAppointments = saveAppointments;
     }
-    
-    
-    
+
+
+
     public void updatePatientInfo()
     {
         try {
@@ -224,4 +238,14 @@ public class GetPatientInformation implements Serializable{
     public void setMessageForUpdate(String messageForUpdate) {
         this.messageForUpdate = messageForUpdate;
     }
+
+    public GetAppointmentsOfPatient getG() {
+        return g;
+    }
+
+    public void setG(GetAppointmentsOfPatient g) {
+        this.g = g;
+    }
+    
+    
 }

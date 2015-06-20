@@ -8,7 +8,7 @@ package com.ilkgunel.hastaneotomasyonu.controller;
 import com.ilkgunel.hastaneotomasyonu.entity.Ilceler;
 import com.ilkgunel.hastaneotomasyonu.entity.Iller;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedProperty;
 
 import java.util.List;
@@ -23,7 +23,7 @@ import java.io.Serializable;
  * @author ilkaygunel
  */
 @ManagedBean(name="getDistricts")
-@ViewScoped
+@SessionScoped
 public class GetDistricts implements Serializable {
     
     @ManagedProperty(value="#{getCities}")

@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.RequestDispatcher;
@@ -16,12 +15,14 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import java.util.logging.Logger;
 import java.util.logging.Level;
+import javax.faces.bean.SessionScoped;
 @ManagedBean(name="loginControlClass")
-@ViewScoped
+@SessionScoped
 public class LoginControlClass implements Serializable{
     
-    public String login()  {
+    public void login()  {
 
+        System.out.println("Login Metoduna Girildi");
         try {
 
             ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
@@ -33,9 +34,11 @@ public class LoginControlClass implements Serializable{
         } catch (ServletException | IOException ex) {
             Logger.getLogger(LoginControlClass.class.getName()).log(Level.SEVERE, null, ex);
 
-        } finally {
+        } 
+        /*finally {
             return null;
-        }
+        }*/
+        System.out.println("Login Metodundan Çıkıldı");
     }
 
     public void authorizedUserControl(){

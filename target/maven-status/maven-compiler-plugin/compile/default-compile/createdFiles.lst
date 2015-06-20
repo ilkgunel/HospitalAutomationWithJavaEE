@@ -22,6 +22,7 @@ com/ilkgunel/hastaneotomasyonu/entity/Uygunrandevular.class
 com/ilkgunel/hastaneotomasyonu/controller/GetClinicPlaces.class
 com/ilkgunel/hastaneotomasyonu/entity/Uygunrandevular_.class
 com/ilkgunel/hastaneotomasyonu/entity/Doktorlar_.class
+com/ilkgunel/hastaneotomasyonu/controller/GetAppointmentsOfPatient.class
 com/ilkgunel/hastaneotomasyonu/controller/GetDoctors.class
 com/ilkgunel/hastaneotomasyonu/entity/Ilceler_.class
 com/ilkgunel/hastaneotomasyonu/entity/Iller.class

@@ -152,10 +152,7 @@ public class Uygunrandevular implements Serializable {
             return false;
         }
         Uygunrandevular other = (Uygunrandevular) object;
-        if ((this.uygunrandevuid == null && other.uygunrandevuid != null) || (this.uygunrandevuid != null && !this.uygunrandevuid.equals(other.uygunrandevuid))) {
-            return false;
-        }
-        return true;
+        return !((this.uygunrandevuid == null && other.uygunrandevuid != null) || (this.uygunrandevuid != null && !this.uygunrandevuid.equals(other.uygunrandevuid)));
     }
 
     @Override

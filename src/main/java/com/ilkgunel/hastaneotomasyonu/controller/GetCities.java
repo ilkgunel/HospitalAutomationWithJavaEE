@@ -6,7 +6,7 @@
 package com.ilkgunel.hastaneotomasyonu.controller;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -21,7 +21,7 @@ import com.ilkgunel.hastaneotomasyonu.entity.Iller;
  * @author ilkaygunel
  */
 @ManagedBean(name="getCities")
-@ViewScoped
+@SessionScoped
 public class GetCities implements Serializable {
 
     List<String> cities;

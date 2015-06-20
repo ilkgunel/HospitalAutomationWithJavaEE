@@ -13,26 +13,23 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
-
 import com.ilkgunel.hastaneotomasyonu.entity.Patients;
-import javax.persistence.PersistenceContext;
-
+import javax.faces.bean.SessionScoped;
 /**
  *
  * @author ilkaygunel
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class SavePatients implements Serializable{
     
     /*@PersistenceContext(unitName = "HospitalAutomation")
     private EntityManager em;*/
-    
+
     private String identityNumber;
     private String name;
     private String surname;
@@ -45,14 +42,14 @@ public class SavePatients implements Serializable{
     private String homePhoneNumber;
     private String emailAddress;
     private String password;
-    
+
     private String operationResult;
     private Md5PasswordEncoder passwordEncoder;
-    
+
     private EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
     private EntityManager em=emf.createEntityManager();
-        
-    
+
+
     Matcher matcher;
 
     public String getIdentityNumber() {
@@ -161,40 +158,40 @@ public class SavePatients implements Serializable{
     public void setOperationResult(String operationResult) {
         this.operationResult = operationResult;
     }
-    
+
     public void saveToDb()
     {
-        Patients patientsObject=new Patients();
-        patientsObject.setIdentitynumber(identityNumber);
+        Patients PatientObject=new Patients();
+        PatientObject.setIdentitynumber(identityNumber);
         System.out.println("İsim:"+name);
-        patientsObject.setName(name);
+        PatientObject.setName(name);
         System.out.println("Soyİsim:"+surname);
-        patientsObject.setSurname(surname);
-        patientsObject.setGender(gender);
-         System.out.println("Doğum Yeri:"+birthplace);
-        patientsObject.setBirthplace(birthplace);
-        
+        PatientObject.setSurname(surname);
+        PatientObject.setGender(gender);
+        System.out.println("Doğum Yeri:"+birthplace);
+        PatientObject.setBirthplace(birthplace);
+
         java.sql.Date sqlBirDate =new java.sql.Date(birthDate.getTime());
-        patientsObject.setBirthdate(sqlBirDate);
-        
+        PatientObject.setBirthdate(sqlBirDate);
+
         System.out.println("Baba Adı:"+fatherName);
-        patientsObject.setFathername(fatherName);
-        patientsObject.setMothername(motherName);
-        
+        PatientObject.setFathername(fatherName);
+        PatientObject.setMothername(motherName);
+
         if (mobilePhoneNumber!=null&&homePhoneNumber==null)
         {
-            patientsObject.setPhonenumber(mobilePhoneNumber);
-        } 
+            PatientObject.setPhonenumber(mobilePhoneNumber);
+        }
         else if(mobilePhoneNumber==null&&homePhoneNumber!=null)
         {
-            patientsObject.setPhonenumber(mobilePhoneNumber);
+            PatientObject.setPhonenumber(mobilePhoneNumber);
         }
-        else if (mobilePhoneNumber!=null&&homePhoneNumber!=null) 
+        else if (mobilePhoneNumber!=null&&homePhoneNumber!=null)
         {
-            patientsObject.setPhonenumber(mobilePhoneNumber);
+            PatientObject.setPhonenumber(mobilePhoneNumber);
         }
-        
-        patientsObject.setEmailaddress(emailAddress);   
+
+        PatientObject.setEmailaddress(emailAddress);
         try
         {
             MessageDigest messageDigestNesnesi = MessageDigest.getInstance("MD5");
@@ -205,25 +202,25 @@ public class SavePatients implements Serializable{
             for (int i = 0; i < messageDigestDizisi.length; i++)
             {
                 sb16.append(Integer.toString((messageDigestDizisi[i] & 0xff) + 0x100, 16).substring(1));
-                patientsObject.setPassword(sb16.toString());
+                PatientObject.setPassword(sb16.toString());
             }
         }
-    catch(NoSuchAlgorithmException ex){
-        System.err.println(ex);
-    }
-        
-        patientsObject.setRole("ROLE_GUEST");
-        patientsObject.setEnabled(true);
-        
+        catch(NoSuchAlgorithmException ex){
+            System.err.println(ex);
+        }
+
+        PatientObject.setRole("ROLE_GUEST");
+        PatientObject.setEnabled(true);
+
         try {
             em.getTransaction().begin();
-            em.persist(patientsObject);
+            em.persist(PatientObject);
             em.getTransaction().commit();
             operationResult="Bilgileriniz Kaydedildi. Sisteme Giriş Yapıp Randevu Alabilirsiniz";
         } catch (Exception e) {
             System.err.println(e);
             operationResult="Bilgilerin Kaydı Sırasında Bir Hata Meydana Geldi!";
         }
-        
+
     }
 }

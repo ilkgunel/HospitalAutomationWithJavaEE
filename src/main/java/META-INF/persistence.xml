@@ -2,32 +2,27 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
   <persistence-unit name="HospitalAutomation" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <non-jta-data-source>HospitalAutomation</non-jta-data-source>
-    <class>com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri</class>
-    <class>com.ilkgunel.hastaneotomasyonu.entity.Klinikler</class>
-    <class>com.ilkgunel.hastaneotomasyonu.entity.Klinikyerleri</class>
+    <jta-data-source>HospitalAutomation</jta-data-source>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Doktorlar</class>
-    <class>com.ilkgunel.hastaneotomasyonu.entity.HastanelerEntity</class>
-    <class>com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Hastaneler</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Ilceler</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Iller</class>
+    <class>com.ilkgunel.hastaneotomasyonu.entity.Klinikler</class>
+    <class>com.ilkgunel.hastaneotomasyonu.entity.Klinikyerleri</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Patients</class>
+    <class>com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Takenappointments</class>
-    <class>com.ilkgunel.hastaneotomasyonu.entity.Patients</class>
-    <class>com.ilkgunel.hastaneotomasyonu.entity.Patients</class>
+    <class>com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <validation-mode>NONE</validation-mode>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/HospitalAutomation?useUnicode=true&amp;characterEncoding=UTF-8"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/HospitalAutomation"/>
       <property name="javax.persistence.jdbc.password" value="12345"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.user" value="ilkay"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
       <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/HospitalAutomation"/>
       <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="eclipselink.jdbc.user"/>
-      <property name="eclipselink.jdbc.password"/>
     </properties>
   </persistence-unit>
 </persistence>

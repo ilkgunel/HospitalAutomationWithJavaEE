@@ -2,7 +2,7 @@ package com.ilkgunel.hastaneotomasyonu.controller;
 
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -16,7 +16,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.persistence.TypedQuery;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class GetDoctors implements Serializable{
     EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
     EntityManager em=emf.createEntityManager();

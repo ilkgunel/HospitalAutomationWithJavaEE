@@ -133,10 +133,7 @@ public class Randevusaatleri implements Serializable {
             return false;
         }
         Randevusaatleri other = (Randevusaatleri) object;
-        if ((this.saatid == null && other.saatid != null) || (this.saatid != null && !this.saatid.equals(other.saatid))) {
-            return false;
-        }
-        return true;
+        return !((this.saatid == null && other.saatid != null) || (this.saatid != null && !this.saatid.equals(other.saatid)));
     }
 
     @Override
