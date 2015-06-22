@@ -284,9 +284,20 @@
 		           </p:column>
 		           <p:column>
 		           	   <f:facet name="header">Durum</f:facet>
-		           	   <h:outputText value="Geçmiş"/>
+                                   <p:commandButton value="İptal Et" rendered="#{!write.datepassed}"  oncomplete="PF('cancelResultDialog').show()" update=":#{p:component('cancelResultGrid')}">
+		           	   	<f:param name="takenAppointmentId" value="#{write.takedappointmentid}"/>
+                                        <p:ajax listener="#{getAppointmentsOfPatient.cancelAppointment()}"/>
+		           	   </p:commandButton>
+		           	   <h:outputText value="Geçmiş" rendered="#{write.datepassed}" />
+		           	   <h:outputText value="İptal Edildi" rendered="#{write.wasappointmentcancelled}"/>
 		           </p:column>
 		        </p:dataTable>
+	        </p:dialog>
+	        
+	        <p:dialog widgetVar="cancelResultDialog" id="cancelResultDialog">
+                    <p:panelGrid id="cancelResultGrid" columns="1">
+                        <h:outputText value="#{getAppointmentsOfPatient.cancelMessage}"/>
+	            </p:panelGrid>
 	        </p:dialog>
         </h:form>
     </h:body>

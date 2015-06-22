@@ -14,6 +14,8 @@ import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -36,10 +38,13 @@ public class SaveAppointments implements Serializable{
     private String hospital;
     String clinicPlace;
     String doctor;
-    String clockId;
+    private String clockId;
     Uygunrandevular selectedAppointment;
     
     String operationResult;
+    
+    int randevuid=0;
+    String hour="";
     
     public Uygunrandevular getSelectedAppointment() {
         return selectedAppointment;
@@ -100,14 +105,6 @@ public class SaveAppointments implements Serializable{
         this.doctor = doctor;
     }
     
-    public String getClockId() {
-        return clockId;
-    }
-
-    public void setClockId(String clockId) {
-        this.clockId = clockId;
-    }
-    
     public String getOperationResult() {
         return operationResult;
     }
@@ -132,32 +129,44 @@ public class SaveAppointments implements Serializable{
         this.comingPassword = comingPassword;
     }
     
+    
+    
     public void saveToDb(ActionEvent event)
     {
         EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
         EntityManager em=emf.createEntityManager();
-        
+                
         Takenappointments takenappointmentsObject=new Takenappointments();
-        System.out.println(selectedAppointment.getDoktorid());
         takenappointmentsObject.setDoctorid(selectedAppointment.getDoktorid());
-        System.out.println(comingIdentityNumber);
         takenappointmentsObject.setPatientid(comingIdentityNumber);
-        System.out.println(selectedAppointment.getTarih());
-        takenappointmentsObject.setDate(selectedAppointment.getTarih());
-        System.out.println(hospital);
         takenappointmentsObject.setHospitalname(hospital);
-        System.out.println(clinic);
         takenappointmentsObject.setClinicname(clinic);
-        System.out.println(clinicPlace);
         takenappointmentsObject.setClinicplace(clinicPlace);
-        System.out.println("");
+        takenappointmentsObject.setClockid(Integer.parseInt(clockId));
         
-        TypedQuery<Randevusaatleri> query=em.createQuery("SELECT c FROM Randevusaatleri c",Randevusaatleri.class);
+        TypedQuery<Randevusaatleri> appointmentClockQuery=em.createQuery("SELECT c FROM Randevusaatleri c",Randevusaatleri.class);
         List<Randevusaatleri> appointmentClockResults =new ArrayList<>();
-        appointmentClockResults=query.getResultList();
+        
+        appointmentClockResults=appointmentClockQuery.getResultList();
         for (Randevusaatleri r  : appointmentClockResults) {
-            if(r.getSaatid()==Integer.parseInt(clockId));
-                takenappointmentsObject.setHour(r.getSaat());
+            if(r.getSaatid()==Integer.parseInt(clockId))
+            {	
+                System.out.println("Saatin ID'si:"+clockId);
+                hour=r.getSaat();
+                randevuid=r.getRandevuid();
+                break;
+            }
+        }
+        
+        takenappointmentsObject.setHour(hour);
+        TypedQuery<Uygunrandevular> appointmentdIdQuery=em.createQuery("SELECT u FROM Uygunrandevular u WHERE u.uygunrandevuid=:appointmentid",Uygunrandevular.class);
+        List<Uygunrandevular> appointmentIdResults =new ArrayList<>();
+        appointmentdIdQuery.setParameter("appointmentid", randevuid);
+        appointmentIdResults=appointmentdIdQuery.getResultList();
+        
+        for(Uygunrandevular u:appointmentIdResults)
+        {
+        	takenappointmentsObject.setDate(u.getTarih());
         }
         
         try {
@@ -181,6 +190,15 @@ public class SaveAppointments implements Serializable{
             System.out.println("Meydana Gelen Hata:"+e);
             operationResult="Randevunun Kaydı Sırasında Bir Hata Meydana Geldi!";
         }
+        
+    }
+
+    public String getClockId() {
+        return clockId;
+    }
+
+    public void setClockId(String clockId) {
+        this.clockId = clockId;
         
     }
     

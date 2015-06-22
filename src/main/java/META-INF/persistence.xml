@@ -11,8 +11,8 @@
     <class>com.ilkgunel.hastaneotomasyonu.entity.Klinikyerleri</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Patients</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri</class>
-    <class>com.ilkgunel.hastaneotomasyonu.entity.Takenappointments</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular</class>
+    <class>com.ilkgunel.hastaneotomasyonu.entity.Takenappointments</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <validation-mode>NONE</validation-mode>
     <properties>
