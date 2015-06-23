@@ -18,4 +18,11 @@ Any value defined here will override the pom.xml file value but is only applicab
         <org-netbeans-modules-projectapi.jsf_2e_present>true</org-netbeans-modules-projectapi.jsf_2e_present>
         <org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>gfv3ee6</org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>
     </properties>
+    <spring-data xmlns="http://www.netbeans.org/ns/spring-data/1">
+        <config-files>
+            <config-file>src/main/webapp/WEB-INF/applicationContext.xml</config-file>
+            <config-file>src/main/webapp/WEB-INF/newSpringXMLConfig.xml</config-file>
+        </config-files>
+        <config-file-groups/>
+    </spring-data>
 </project-shared-configuration>

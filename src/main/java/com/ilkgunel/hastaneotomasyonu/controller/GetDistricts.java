@@ -18,16 +18,23 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
+import javax.faces.context.FacesContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.web.jsf.FacesContextUtils;
 /**
  *
  * @author ilkaygunel
  */
+@Component
 @ManagedBean(name="getDistricts")
 @SessionScoped
 public class GetDistricts implements Serializable {
     
-    @ManagedProperty(value="#{getCities}")
-    private GetCities getCities;
+    //@ManagedProperty(value="#{getCities}")
+    //private GetCities getCities;
     
     List<String> districts;
     List<Ilceler> districtResults;
@@ -51,13 +58,13 @@ public class GetDistricts implements Serializable {
     }
     
 
-    public GetCities getGetCities() {
+    /*public GetCities getGetCities() {
         return getCities;
     }
 
     public void setGetCities(GetCities getCities) {
         this.getCities = getCities;
-    }
+    }*/
 
     public List<String> getDistricts() {
         return districts;
@@ -77,6 +84,9 @@ public class GetDistricts implements Serializable {
     
     public void fillList()
     {
+        ApplicationContext context=FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+                                                                        
+        GetCities getCities=(GetCities) context.getBean("getCities");
         for(Iller i:getCities.cityResults)
         {
             if(i.getSehir().equals(currentCity))

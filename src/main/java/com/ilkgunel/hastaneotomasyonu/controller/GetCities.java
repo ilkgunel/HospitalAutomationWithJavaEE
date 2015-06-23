@@ -56,7 +56,7 @@ public class GetCities implements Serializable {
     @PostConstruct
     public void fillList()
     {
-
+        System.out.println("Şehirleri Getirme Metodu Çalıştı!");
         cities=new ArrayList<>();
         cityResults=new ArrayList<>();
         EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
