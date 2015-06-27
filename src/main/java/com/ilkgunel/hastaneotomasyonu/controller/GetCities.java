@@ -28,35 +28,40 @@ public class GetCities implements Serializable {
     List<Iller> cityResults;
     int cityId;
     
-    public List<Iller> getAllResults() {
+    public List<Iller> getAllResults()
+    {
         return cityResults;
     }
 
-    public void setAllResults(List<Iller> cityResults) {
+    public void setAllResults(List<Iller> cityResults)
+    {
         this.cityResults = cityResults;
     }
 
-    public int getCityId() {
+    public int getCityId()
+    {
         return cityId;
     }
 
-    public void setCityId(int cityId) {
+    public void setCityId(int cityId)
+    {
         this.cityId = cityId;
     }
     
-    public List<String> getCities() {
+    public List<String> getCities()
+    {
         
         return cities;
     }
 
-    public void setCities(List<String> cities) {
+    public void setCities(List<String> cities)
+    {
         this.cities = cities;
     }
     
     @PostConstruct
     public void fillList()
     {
-        System.out.println("Şehirleri Getirme Metodu Çalıştı!");
         cities=new ArrayList<>();
         cityResults=new ArrayList<>();
         EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
@@ -66,7 +71,6 @@ public class GetCities implements Serializable {
         
         for (Iller i:cityResults)
         {
-           System.out.println(i.getSehir());
             cities.add(i.getSehir());
         }
          

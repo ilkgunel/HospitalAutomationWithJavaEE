@@ -58,5 +58,9 @@
     
     <!-- Şehirler Sınıfının Spring İle Gönderilmesi -->
     <bean id="getCities" class="com.ilkgunel.hastaneotomasyonu.controller.GetCities"></bean>
-    
+    <bean id="getAvaliableAppointments" class="com.ilkgunel.hastaneotomasyonu.controller.GetAvaliableAppointments"/>
+    <bean id="getHospitals" class="com.ilkgunel.hastaneotomasyonu.controller.GetHospitals"></bean>
+    <bean id="saveAppointments" class="com.ilkgunel.hastaneotomasyonu.controller.SaveAppointments"></bean>
+    <bean id="getDistricts" class="com.ilkgunel.hastaneotomasyonu.controller.GetDistricts"></bean>
+    <bean id="getClinics" class="com.ilkgunel.hastaneotomasyonu.controller.GetClinics"></bean>
     </beans>

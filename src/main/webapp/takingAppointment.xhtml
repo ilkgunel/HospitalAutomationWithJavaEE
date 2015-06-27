@@ -14,10 +14,8 @@
         <h:form>
            
             <p:stack icon="/resources/images/stack.png" expanded="true">
-                <p:menuitem value="Randevularım" icon="/resources/images/randevu.png" oncomplete="PF('appointmentInfoDialog').show()"/>
-                <p:menuitem value="HesapBilgileri" style="height: 30px;" icon="/resources/images/uyelik.png" oncomplete="PF('memberInfoDialog').show()"/>
-                <p:menuitem value="Duyurular" icon="/resources/images/duyurular.png" url="#"/>
-                <p:menuitem value="E-Nabız" icon="/resources/images/nabiz.png" url="#"/>
+                <p:menuitem value="Randevularım" icon="/resources/images/randevularim.jpg" oncomplete="PF('appointmentInfoDialog').show()"/>
+                <p:menuitem value="HesapBilgileri" style="height: 30px;" icon="/resources/images/bilgi.png" oncomplete="PF('memberInfoDialog').show()"/>
                 <p:menuitem value="Çıkış" icon="/resources/images/cikis.png" url="/j_spring_security_logout"/>
             </p:stack>>
        
@@ -88,7 +86,7 @@
                         </p:selectOneMenu>
                         <p:message for="doctorSelectOneMenu"/>
 
-                        <h:commandButton value="Temizle" type="reset"/>
+                        <h:button value="Temizle" type="reset"/>
                         <p:commandButton value="Randevu Ara" style="float: right" update="panelGrid,infoOrClocksAndOptions" actionListener="#{getAvaliableAppointments.fillList}" />
                         <br/>
                         <h:outputText/>
@@ -100,19 +98,19 @@
                                  rendered="#{getAvaliableAppointments.renderingTakingAppointmentInfo}" style="background-color: white;height: 5px;">
                         <h3>Hoş Geldiniz</h3>
                         <hr></hr>
-                        <b>Randevunuzu <span id="randevuAdim"> 3 </span> adımda alabilirsiniz.</b>
+                        <b>Randevunuzu almak için <span id="randevuAdim"> 3 </span> adımı uygulayınız.</b>
                         <blockquote style="width: 320px;height: 200px;">
-                            <b><span id="randevuAdim">1.</span> adımda sol taraftaki arama araçlarını kullanarak uygun hekimlerin listesini getirebilirsiniz.</b>
+                            <b><span id="randevuAdim">1.</span> adımda sol taraftan gerekli bilgileri girin ve doktorları görünteleyin.</b>
                             <br/>
-                            <b><span id="randevuAdim">2.</span>adımda hekim listesinden istediğiniz hekimi seçerek hekim çalışma cetvelini görüntüleyebilirsiniz.</b>
+                            <b><span id="randevuAdim">2.</span>adımda gelen doktorlardan tarih seçin.</b>
                             <br/>
-                            <b><span id="randevuAdim">3.</span>adımda hekim çalışma cetvelinden uygun bir slot seçip randevunuzu kaydedebilirsiniz.</b>
+                            <b><span id="randevuAdim">3.</span>adımda kendinize uygun bir saat seçin.</b>
                         </blockquote>
                         
                     </h:panelGrid>
 
                     <h:panelGrid columns="1" id="appointmentsClocks" rendered="#{getAvaliableAppointments.renderingClocks}" style="width: 407px;">
-                        <p:accordionPanel style="width: 370px;" value="#{getAvaliableAppointments.doctorAndTimeList}" var="dat">
+                        <p:accordionPanel id="appointmentsClocksPanel" style="width: 370px;" value="#{getAvaliableAppointments.doctorAndTimeList}" var="dat">
                             <p:tab title="#{dat[0]} #{dat[1]}" >
                                 
                                 <!--<p:dataGrid value="#{getAvaliableAppointments.appointmentClockResults}" var="write">
@@ -185,7 +183,9 @@
                 <p:panelGrid id="acceptAppointment" columns="1">
                     <p:outputLabel value="Randevuyu almak istediğinize emin misiniz?"/>
                     <p:panelGrid columns="2">
-                        <p:commandButton value="Evet" actionListener="#{saveAppointments.saveToDb}" update=":#{p:component('operationResultText')}" oncomplete="PF('resultDialog').show()"/>
+                        <p:commandButton value="Evet" action="#{getAppointmentsOfPatient.fillList}" actionListener="#{saveAppointments.saveToDb}"
+                                         update=":#{p:component('operationResultText')} appointmentInfoDataTable appointmentsClocks" oncomplete="PF('resultDialog').show()">
+                        </p:commandButton>
                         <p:commandButton value="Hayır"/>
                     </p:panelGrid>
                 </p:panelGrid>
@@ -257,7 +257,7 @@
             </p:dialog>
             
             <p:dialog id="appointmentInfoDialog" widgetVar="appointmentInfoDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-                <p:dataTable style="width: 800px;" value="#{getAppointmentsOfPatient.takenAppointmentsOfPatient}" var="write">
+                <p:dataTable id="appointmentInfoDataTable" style="width: 800px;" value="#{getAppointmentsOfPatient.takenAppointmentsOfPatient}" var="write">
 		           <p:column>
 		              <f:facet name="header">Doktor İd</f:facet>
                       <h:outputText value="#{write.doctorid}"/>
@@ -284,10 +284,10 @@
 		           </p:column>
 		           <p:column>
 		           	   <f:facet name="header">Durum</f:facet>
-                                   <p:commandButton value="İptal Et" rendered="#{!write.datepassed}"  oncomplete="PF('cancelResultDialog').show()" update=":#{p:component('cancelResultGrid')}">
-		           	   	<f:param name="takenAppointmentId" value="#{write.takedappointmentid}"/>
-                                        <p:ajax listener="#{getAppointmentsOfPatient.cancelAppointment()}"/>
-		           	   </p:commandButton>
+                             <p:commandButton value="İptal Et" rendered="#{!write.datepassed}"  oncomplete="PF('cancelResultDialog').show()" update=":#{p:component('cancelResultGrid')}">
+                                 <f:param name="takenAppointmentId" value="#{write.takedappointmentid}"/>
+                                 <p:ajax listener="#{getAppointmentsOfPatient.cancelAppointment()}"/>
+                             </p:commandButton>
 		           	   <h:outputText value="Geçmiş" rendered="#{write.datepassed}" />
 		           	   <h:outputText value="İptal Edildi" rendered="#{write.wasappointmentcancelled}"/>
 		           </p:column>

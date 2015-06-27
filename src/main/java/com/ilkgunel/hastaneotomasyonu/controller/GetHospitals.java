@@ -15,7 +15,10 @@ import java.util.ArrayList;
 
 import com.ilkgunel.hastaneotomasyonu.entity.Ilceler;
 import com.ilkgunel.hastaneotomasyonu.entity.Hastaneler;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.jsf.FacesContextUtils;
 
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -39,11 +42,11 @@ public class GetHospitals implements  Serializable{
         this.mesaj = mesaj;
     }
 
-    @ManagedProperty(value="#{getDistricts}")
-    private GetDistricts districtsObject;
+    //@ManagedProperty(value="#{getDistricts}")
+    //private GetDistricts districtsObject;
     
-    @ManagedProperty(value="#{saveAppointments}")
-    private SaveAppointments saveAppointments;
+    //@ManagedProperty(value="#{saveAppointments}")
+    //private SaveAppointments saveAppointments;
     
     private List<String> hospitals;
     private List<Hastaneler> hospitalResults;
@@ -52,6 +55,10 @@ public class GetHospitals implements  Serializable{
     
     public void fillList()
     {
+        ApplicationContext context= FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+        SaveAppointments saveAppointments=(SaveAppointments) context.getBean("saveAppointments");
+        GetDistricts districtsObject=(GetDistricts) context.getBean("getDistricts");
+
         hospitals=new ArrayList<>();
         hospitalResults=new ArrayList<>();
         String currentDistrict=saveAppointments.district;
@@ -100,7 +107,7 @@ public class GetHospitals implements  Serializable{
         this.districtId = districtId;
     }
 
-    public GetDistricts getDistrictsObject() {
+    /*public GetDistricts getDistrictsObject() {
         return districtsObject;
     }
 
@@ -112,12 +119,8 @@ public class GetHospitals implements  Serializable{
         return saveAppointments;
     }
 
-    public void setSaveAppointments(SaveAppointments saveAppointments) {
+    /*public void setSaveAppointments(SaveAppointments saveAppointments) {
         this.saveAppointments = saveAppointments;
-    }
-    
-    
-    
-    
-    
+    }*/
+
 }

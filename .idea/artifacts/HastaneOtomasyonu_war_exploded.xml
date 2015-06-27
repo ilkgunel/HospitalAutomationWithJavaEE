@@ -7,9 +7,9 @@
           <element id="module-output" name="HastaneOtomasyonu" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:4.0.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.0.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.0.2.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-core:4.0.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.0.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:3.2.1.RELEASE" />
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />

@@ -7,9 +7,6 @@ and open the template in the editor.
     Created on : Mar 23, 2015, 6:56:05 PM
     Author     : ilkaygunel
 */
-body {
-background-image: url(../resources/images/bg.jpg);
-}
 #divClass1
 {
 background-color: aquamarine;
@@ -35,7 +32,6 @@ margin-left: 375px;
 
 #divClass2
 {
-    background-image: url(..//resources/images/g.png);
 }
 
 #randevuAdim

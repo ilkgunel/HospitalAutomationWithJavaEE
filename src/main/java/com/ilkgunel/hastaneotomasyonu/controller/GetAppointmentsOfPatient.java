@@ -45,7 +45,7 @@ public class GetAppointmentsOfPatient implements Serializable {
     private SaveAppointments saveAppointments;
     
     
-    public void fillList1()
+    public void fillList()
 	{
     	DateFormat appointmentDateFormat=new SimpleDateFormat("yyyy-MM-dd");
     	DateFormat nowDateFormat=new SimpleDateFormat("yyyy-MM-dd");
@@ -82,7 +82,6 @@ public class GetAppointmentsOfPatient implements Serializable {
 				}
 
 			} catch (Exception e) {
-				// TODO: handle exception
 				System.err.println("Meydana Gelen Hata:"+e);
 			}
 

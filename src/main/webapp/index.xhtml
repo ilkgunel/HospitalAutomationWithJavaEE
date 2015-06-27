@@ -15,7 +15,7 @@
         <h:outputStylesheet library="css" name="cssfile.css"/>
         <center style="margin-top: 100px;">
             <h:form id="form" prependId="false">
-                <h:messages showDetail="true" />
+
                 <center>HASTANE OTOMASYONU PROJESİ</center>
                 <center><h3>RANDEVU ALMA SİSTEMİ</h3></center>
                 <div id="divClass1">
@@ -25,16 +25,16 @@
                         <h:outputText value=""/>
 
                         <h:outputText value="Kimlik Numaranız" style="margin-left: 15px;"/>
-                        <h:inputText id="j_username" required="true" maxlength="100" size="30" value="#{saveAppointments.comingIdentityNumber}"
-                                     requiredMessage="Kullanıcı adı alanı boş bırakılamaz..."/>
+                        <p:inputMask id="j_username" mask="99999999999" style="width: 130px;" required="true" maxlength="100" size="30"
+                                     value="#{saveAppointments.comingIdentityNumber}"  requiredMessage="Kullanıcı adı alanı boş bırakılamaz..."/>
 
 
                         <h:outputText value="Parola" style="margin-left: 15px;"/>
-                        <h:inputText id="j_password" required="true" maxlength="50" size="30" value="#{saveAppointments.comingPassword}"
+                        <p:password id="j_password" required="true" style="width: 130px;" maxlength="50" size="30" value="#{saveAppointments.comingPassword}"
                                      requiredMessage="Parola alanı boş bırakılamaz..." />
 
-                        <!--<h:outputText value="Doğrulama Kodu"/>
-                        <p:captcha label="Captcha" />-->
+                        <h:outputText value="Doğrulama Kodu"/>
+                        <p:captcha label="Captcha" requiredMessage="Doğrulama Kodu Boş Bırakılamaz..." />
 
                         <h:panelGrid columns="2">
                             <h:button value="Yeni Üye" outcome="savingPatients.xhtml"/>
@@ -42,7 +42,6 @@
                         </h:panelGrid>
                         <h:commandButton value="Giriş" action="#{loginControlClass.login()}" actionListener="#{getPatientInformation.fillList}" 
                         style="margin-left: 265px;"/>
-                        <h:outputLink value="http://www.google.com">Tıkla</h:outputLink>
                     </h:panelGrid>
                     <h:panelGrid columns="1">
                         <h:outputText value="Soru ve düşünceleriniz için ilkgunel93@gmail.com adresine mail atabilirsiniz." style="margin-left: 5px;"/>

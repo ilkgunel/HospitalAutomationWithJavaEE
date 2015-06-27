@@ -8,8 +8,11 @@ package com.ilkgunel.hastaneotomasyonu.controller;
 import com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri;
 import com.ilkgunel.hastaneotomasyonu.entity.Takenappointments;
 import com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.jsf.FacesContextUtils;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -45,12 +48,14 @@ public class SaveAppointments implements Serializable{
     
     int randevuid=0;
     String hour="";
-    
-    public Uygunrandevular getSelectedAppointment() {
+
+    public Uygunrandevular getSelectedAppointment()
+    {
         return selectedAppointment;
     }
 
-    public void setSelectedAppointment(Uygunrandevular selectedAppointment) {
+    public void setSelectedAppointment(Uygunrandevular selectedAppointment)
+    {
         this.selectedAppointment = selectedAppointment;
     }
 
@@ -190,7 +195,12 @@ public class SaveAppointments implements Serializable{
             System.out.println("Meydana Gelen Hata:"+e);
             operationResult="Randevunun Kaydı Sırasında Bir Hata Meydana Geldi!";
         }
-        
+
+        ApplicationContext context= FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+        GetAvaliableAppointments getAvaliableAppointments=(GetAvaliableAppointments) context.getBean("getAvaliableAppointments");
+        getAvaliableAppointments.changeRenderingStates();
+
+
     }
 
     public String getClockId() {

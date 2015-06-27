@@ -4,10 +4,14 @@ import com.ilkgunel.hastaneotomasyonu.entity.Hastaneler;
 import com.ilkgunel.hastaneotomasyonu.entity.Klinikler;
 import com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri;
 import com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.jsf.FacesContextUtils;
+
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -30,14 +34,14 @@ public class GetAvaliableAppointments implements Serializable{
     boolean renderingClocks=false;
     boolean renderingDataTable=false;
     int hospitalid;
-    @ManagedProperty(value = "#{saveAppointments}")
-    private SaveAppointments saveAppointmentsObjectInAvaliableAppointments;
+    //@ManagedProperty(value = "#{saveAppointments}")
+    //private SaveAppointments saveAppointmentsObjectInAvaliableAppointments;
 
-    @ManagedProperty(value = "#{getHospitals}")
-    private GetHospitals getHospitalsObject;
+    /*@ManagedProperty(value = "#{getHospitals}")
+    private GetHospitals getHospitalsObject;*/
     
-    @ManagedProperty(value = "#{getClinics}")
-    private GetClinics getClinicsObject;
+    //@ManagedProperty(value = "#{getClinics}")
+    //private GetClinics getClinicsObject;
 
     public boolean isRenderingTakingAppointmentInfo() {
         return renderingTakingAppointmentInfo;
@@ -64,13 +68,15 @@ public class GetAvaliableAppointments implements Serializable{
         this.renderingDataTable = renderingDataTable;
     }
 
-    public GetHospitals getGetHospitalsObject() {
+    /*public GetHospitals getGetHospitalsObject()
+    {
         return getHospitalsObject;
     }
 
-    public void setGetHospitalsObject(GetHospitals getHospitalsObject) {
+    public void setGetHospitalsObject(GetHospitals getHospitalsObject)
+    {
         this.getHospitalsObject = getHospitalsObject;
-    }
+    }*/
 
     public List<Uygunrandevular> getAvailableAppointments() {
         return availableAppointments;
@@ -88,13 +94,13 @@ public class GetAvaliableAppointments implements Serializable{
         this.doctorAndTimeList = doctorAndTimeList;
     }
 
-    public GetClinics getGetClinicsObject() {
+   /* public GetClinics getGetClinicsObject() {
         return getClinicsObject;
     }
 
     public void setGetClinicsObject(GetClinics getClinicsObject) {
         this.getClinicsObject = getClinicsObject;
-    }
+    }*/
 
     public List<Randevusaatleri> getAppointmentClockResults() {
         return appointmentClockResults;
@@ -108,7 +114,10 @@ public class GetAvaliableAppointments implements Serializable{
     {
         availableAppointments=new ArrayList<>();
 
-        
+        ApplicationContext context= FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+        GetHospitals getHospitalsObject=(GetHospitals) context.getBean("getHospitals");
+        SaveAppointments saveAppointmentsObjectInAvaliableAppointments=(SaveAppointments) context.getBean("saveAppointments");
+        GetClinics getClinicsObject=(GetClinics) context.getBean("getClinics");
 
         for (Hastaneler h:getHospitalsObject.getHospitalResults())
         {
@@ -144,7 +153,12 @@ public class GetAvaliableAppointments implements Serializable{
     }
 
     public void changeRenderingStates()
-    {   
+    {
+
+        ApplicationContext context= FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+        SaveAppointments saveAppointmentsObjectInAvaliableAppointments=(SaveAppointments) context.getBean("saveAppointments");
+
+
         TypedQuery<Object[]> doctorAndTimeQuery = em.createQuery("SELECT u.doktoradi,FUNCTION('DATE',u.tarih),u.uygunrandevuid FROM Uygunrandevular AS u WHERE u.doktorid=:doctorid ORDER BY u.tarih ASC",Object[].class);
         doctorAndTimeQuery.setParameter("doctorid", saveAppointmentsObjectInAvaliableAppointments.selectedAppointment.getDoktorid());
         doctorAndTimeList=new ArrayList<>();
@@ -161,12 +175,12 @@ public class GetAvaliableAppointments implements Serializable{
         
     }
 
-    public SaveAppointments getSaveAppointmentsObjectInAvaliableAppointments() {
+    /*public SaveAppointments getSaveAppointmentsObjectInAvaliableAppointments() {
         return saveAppointmentsObjectInAvaliableAppointments;
     }
 
     public void setSaveAppointmentsObjectInAvaliableAppointments(SaveAppointments saveAppointmentsObjectInAvaliableAppointments) {
         this.saveAppointmentsObjectInAvaliableAppointments = saveAppointmentsObjectInAvaliableAppointments;
-    }
+    }*/
 }
 

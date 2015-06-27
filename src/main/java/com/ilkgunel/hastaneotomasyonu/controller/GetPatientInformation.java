@@ -80,7 +80,7 @@ public class GetPatientInformation implements Serializable{
             setEmailAddress(p.getEmailaddress());
             setPassword(p.getPassword());
         }
-        g.fillList1();
+        g.fillList();
     }
 
     /*public List<Patient> getPatientInfo() {
