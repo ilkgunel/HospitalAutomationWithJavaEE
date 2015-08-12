@@ -23,22 +23,22 @@
                     
                     <h:outputText value="T.C. Kimlik No"/>
                     <h:outputText value="*"/>
-                    <p:inputMask id="identitiyNumber" value="#{savePatients.identityNumber}" mask="99999999999" required="true" requiredMessage="Kimlik Numarası Zorunludur"/>
+                    <p:inputMask id="identitiyNumber" value="#{savePatients.patientsObject.identitynumber}" mask="99999999999" required="true" requiredMessage="Kimlik Numarası Zorunludur"/>
                     <p:message for="identitiyNumber"/>
                     
                     <h:outputText value="Adı"/>
                     <h:outputText value="*"/>
-                    <p:inputText id="name" value="#{savePatients.name}" required="true"/>
+                    <p:inputText id="name" value="#{savePatients.patientsObject.name}" required="true"/>
                     <p:message for="name"/>
                     
                     <h:outputText value="Soyadı"/>
                     <h:outputText value="*"/>
-                    <p:inputText id="surname" value="#{savePatients.surname}" required="true"/>
+                    <p:inputText id="surname" value="#{savePatients.patientsObject.surname}" required="true"/>
                     <p:message for="surname"/>
                     
                     <h:outputText value="Cinsiyeti"/>
                     <h:outputText value="*"/>
-                    <p:selectOneMenu id="gender" value="#{savePatients.gender}" required="true">
+                    <p:selectOneMenu id="gender" value="#{savePatients.patientsObject.gender}" required="true">
                         <f:selectItem itemLabel="-" itemValue="-"/>
                         <f:selectItem itemLabel="Erkek" itemValue="Erkek"/>
                         <f:selectItem itemLabel="Kadın" itemValue="Kadın"/>
@@ -47,24 +47,22 @@
                     
                     <h:outputText value="Doğum Yeri" />
                     <h:outputText value="*"/>
-                    <p:inputText id="birthPlace" value="#{savePatients.birthplace}" required="true"/>
+                    <p:inputText id="birthPlace" value="#{savePatients.patientsObject.birthplace}" required="true"/>
                     <p:message for="birthPlace"/>
                     
                     <h:outputText value="Doğum Tarihi"/>
                     <h:outputText value="*"/>
-                    <p:calendar id="birthDate" value="#{savePatients.birthDate}" required="true">
-                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                    </p:calendar>
+                    <p:calendar id="birthDate" value="#{savePatients.patientsObject.birthdate}" required="true"/>
                     <p:message for="birthDate"/>
                     
                     <h:outputText value="Baba Adı"/>
                     <h:outputText/>
-                    <p:inputText id="fatherName" value="#{savePatients.fatherName}" required="true"/>
+                    <p:inputText id="fatherName" value="#{savePatients.patientsObject.fathername}" required="true"/>
                     <p:message for="fatherName"/>
                     
                     <h:outputText value="Anne Adı"/>
                     <h:outputText/>
-                    <p:inputText id="motherName" value="#{savePatients.motherName}" required="true" />
+                    <p:inputText id="motherName" value="#{savePatients.patientsObject.mothername}" required="true" />
                     <p:message for="motherName"/>
                     
                     <h:outputText value="Cep Telefonu"/>
@@ -79,7 +77,7 @@
                     
                     <h:outputText value="E-posta Adresi"/>
                     <h:outputText/>
-                    <h:inputText id="email" value="#{savePatients.emailAddress}" validatorMessage="Uygun Formatta E-Mail Girilmedi Örnek:abc@abc.com">
+                    <h:inputText id="email" value="#{savePatients.patientsObject.emailaddress}" validatorMessage="Uygun Formatta E-Mail Girilmedi Örnek:abc@abc.com">
                         <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
                     </h:inputText>
                     <h:message for="email"/>
@@ -93,7 +91,7 @@
                     
                     <h:outputText value="Parola"/>
                     <h:outputText value="*"/>
-                    <p:password id="password" value="#{savePatients.password}" required="true" match="passwordAgain"/>
+                    <p:password id="password" value="#{savePatients.patientsObject.password}" required="true" match="passwordAgain"/>
                     <p:message for="password"/>
                     
                     <h:outputText value="Parola Tekrar"/>
@@ -102,21 +100,22 @@
                     <p:message for="passwordAgain"/>
                 </h:panelGrid>
                 
-                <h:panelGrid columns="1">
-                    <h:outputText value="* İşaretli Alanların Doldurulması Zorunludur"/>
-                    <h:outputText value="** İşaretli Alanların En Az Birisnin Doldurulması Zorunludur"/>
+                <p:panelGrid columns="1">
+                    <p:outputLabel value="* İşaretli Alanların Doldurulması Zorunludur"/>
+                    <p:outputLabel value="** İşaretli Alanların En Az Birisnin Doldurulması Zorunludur"/>
                     <p:panelGrid columns="2">
-                        <p:commandButton value="Kaydet"  style="float: right" update="display" oncomplete="PF('dialog').show()" actionListener="#{savePatients.saveToDb()}"/>
+                        <p:commandButton value="Kaydet"  style="float: right" update="display"
+                                         oncomplete="PF('dialog').show()"  actionListener="#{savePatients.saveToDb}"/>
                         <p:commandButton value="Giriş Sayfasına Dön" action="index.xhtml?faces-redirect=true"/>
                     </p:panelGrid>
                     
                     <p style="float:left;width:206px;margin-left:20px;font-family:Arial;font-size:14px;color:red;font-weight:bold;" id="warning_text"></p>
-                </h:panelGrid>
+                </p:panelGrid>
                 
             </center>
             
             <p:dialog widgetVar="dialog" header="İşlem Sonucu" showEffect="fade">
-                <p:inputText id="display" value="#{savePatients.operationResult}"/>
+                <p:inputTextarea id="display" value="#{savePatients.operationResult}"/>
             </p:dialog>
         </h:form>
     </h:body>
