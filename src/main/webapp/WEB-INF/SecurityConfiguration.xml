@@ -52,15 +52,16 @@
     </bean>
     
     <!-- PostConstruct Metodunun Çalışması İçin Lazım -->
-    <context:component-scan base-package="com.ilkgunel.hastaneotomasyonu.controller">
-        
-    </context:component-scan>
+    <context:component-scan base-package="com.ilkgunel.hastaneotomasyonu.controller"/>
+     
+    <context:annotation-config/>
     
     <!-- Şehirler Sınıfının Spring İle Gönderilmesi -->
     <bean id="getCities" class="com.ilkgunel.hastaneotomasyonu.controller.GetCities"></bean>
     <bean id="getAvaliableAppointments" class="com.ilkgunel.hastaneotomasyonu.controller.GetAvaliableAppointments"/>
-    <bean id="getHospitals" class="com.ilkgunel.hastaneotomasyonu.controller.GetHospitals"></bean>
+    <bean id="getHospitals" name="getHospitals" class="com.ilkgunel.hastaneotomasyonu.controller.GetHospitals"></bean>
     <!--<bean id="saveAppointments" class="com.ilkgunel.hastaneotomasyonu.controller.SaveAppointments"></bean>-->
     <!--<bean id="getDistricts" class="com.ilkgunel.hastaneotomasyonu.controller.GetDistricts"></bean>-->
     <bean id="getClinics" class="com.ilkgunel.hastaneotomasyonu.controller.GetClinics"></bean>
+    <bean id="getClinicPlaces" class="com.ilkgunel.hastaneotomasyonu.controller.GetClinicPlaces"/>
     </beans>

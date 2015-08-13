@@ -9,16 +9,20 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.Resource;
 import javax.faces.bean.SessionScoped;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 @ManagedBean
 @SessionScoped
 public class GetClinicPlaces implements Serializable {
 
-    @ManagedProperty(value = "#{getHospitals}")
-    private GetHospitals hospitalObject;
+    //@ManagedProperty(value = "#{getHospitals}")
+    @Autowired
+    private GetHospitals getHospitals;
 
-    @ManagedProperty(value = "#{saveAppointments}")
+    @Resource
     private SaveAppointments appointmentObject;
 
     int hospitalId;
@@ -49,13 +53,14 @@ public class GetClinicPlaces implements Serializable {
         this.hospitalId = hospitalId;
     }
 
-    public GetHospitals getHospitalObject() {
-        return hospitalObject;
+    public GetHospitals getGetHospitals() {
+        return getHospitals;
     }
 
-    public void setHospitalObject(GetHospitals hospitalObject) {
-        this.hospitalObject = hospitalObject;
+    public void setGetHospitals(GetHospitals getHospitals) {
+        this.getHospitals = getHospitals;
     }
+    
 
     public SaveAppointments getAppointmentObject() {
         return appointmentObject;
@@ -76,7 +81,7 @@ public class GetClinicPlaces implements Serializable {
 
         System.out.println("Seçilen Klinik:"+appointmentObject.getClinic());
 
-        for(Hastaneler h:hospitalObject.getHospitalResults())
+        for(Hastaneler h:getHospitals.getHospitalResults())
         {
             if(h.getHastaneadi().equals(currentHospital))
             {

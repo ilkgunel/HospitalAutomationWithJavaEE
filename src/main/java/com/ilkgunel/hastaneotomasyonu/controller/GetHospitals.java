@@ -24,6 +24,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 /**
  *
  * @author ilkaygunel
