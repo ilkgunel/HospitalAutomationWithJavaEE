@@ -7,7 +7,6 @@ package com.ilkgunel.hastaneotomasyonu.controller;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ManagedProperty;
 
 
 import java.util.List;
@@ -24,6 +23,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
+import javax.annotation.Resource;
 /**
  *
  * @author ilkaygunel
@@ -42,11 +42,11 @@ public class GetHospitals implements  Serializable{
         this.mesaj = mesaj;
     }
 
-    //@ManagedProperty(value="#{getDistricts}")
-    //private GetDistricts districtsObject;
+    @Resource
+    private GetDistricts districtsObject;
     
-    //@ManagedProperty(value="#{saveAppointments}")
-    //private SaveAppointments saveAppointments;
+    @Resource
+    private SaveAppointments saveAppointments;
     
     private List<String> hospitals;
     private List<Hastaneler> hospitalResults;
@@ -55,9 +55,9 @@ public class GetHospitals implements  Serializable{
     
     public void fillList()
     {
-        ApplicationContext context= FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
-        SaveAppointments saveAppointments=(SaveAppointments) context.getBean("saveAppointments");
-        GetDistricts districtsObject=(GetDistricts) context.getBean("getDistricts");
+        //ApplicationContext context= FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+        //SaveAppointments saveAppointments=(SaveAppointments) context.getBean("saveAppointments");
+        //GetDistricts districtsObject=(GetDistricts) context.getBean("getDistricts");
 
         hospitals=new ArrayList<>();
         hospitalResults=new ArrayList<>();

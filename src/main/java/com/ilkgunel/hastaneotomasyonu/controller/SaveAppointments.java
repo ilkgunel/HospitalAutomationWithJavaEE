@@ -24,10 +24,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import org.springframework.stereotype.Component;
 /**
  *
  * @author ilkaygunel
  */
+@Component
 @ManagedBean
 @SessionScoped
 public class SaveAppointments implements Serializable{
