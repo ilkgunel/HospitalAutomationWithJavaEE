@@ -25,7 +25,7 @@
           <element id="library" level="project" name="Maven: javax:javaee-api:7.0" />
           <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.5.0" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
-          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.6" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.36" />
           <element id="library" level="project" name="Maven: com.sun.faces:jsf-impl:2.2.10" />
           <element id="library" level="project" name="Maven: com.sun.faces:jsf-api:2.2.10" />
           <element id="library" level="project" name="Maven: org.eclipse.persistence:eclipselink:2.5.2" />
