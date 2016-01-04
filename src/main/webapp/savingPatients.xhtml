@@ -77,16 +77,16 @@
                     
                     <h:outputText value="E-posta Adresi"/>
                     <h:outputText/>
-                    <h:inputText id="email" value="#{savePatients.patientsObject.emailaddress}" validatorMessage="Uygun Formatta E-Mail Girilmedi Örnek:abc@abc.com">
+                    <p:inputText id="email" value="#{savePatients.patientsObject.emailaddress}" validatorMessage="Uygun Formatta E-Mail Girilmedi Örnek:abc@abc.com">
                         <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
-                    </h:inputText>
+                    </p:inputText>
                     <h:message for="email"/>
                     
                     <h:outputText value="E-posta Adresi Tekrar"/>
                     <h:outputText/>
-                    <h:inputText id="emailAgain" onblur="sameness('savePatientForm:email', 'savePatientForm:emailAgain', 'Email adresleri')" validatorMessage="Uygun Formatta E-Mail Girilmedi Örnek:abc@abc.com" >
+                    <p:inputText id="emailAgain" onblur="sameness('savePatientForm:email', 'savePatientForm:emailAgain', 'Email adresleri')" validatorMessage="Uygun Formatta E-Mail Girilmedi Örnek:abc@abc.com" >
                         <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-                    </h:inputText>
+                    </p:inputText>
                     <p:message for="emailAgain"/>
                     
                     <h:outputText value="Parola"/>

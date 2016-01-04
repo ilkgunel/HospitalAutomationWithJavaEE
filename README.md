@@ -11,3 +11,9 @@ This project is being developed with Maven,JSF,PrimeFaces,JPA and Spring Securit
 Arif Cemal Özcan is tester.
 
 Tolga Durak is designer.
+
+We use some images that taken from the internet for taking appointment page.
+The source of the images like this:
+http://www.uottawa.ca/sante/sites/www.uottawa.ca.sante/files/icon-appointment_0.png
+http://www.geelus.com/wp-content/uploads/2014/01/InfoIcon.png
+http://iconizer.net/files/Crystal_Clear/orig/exit.png
