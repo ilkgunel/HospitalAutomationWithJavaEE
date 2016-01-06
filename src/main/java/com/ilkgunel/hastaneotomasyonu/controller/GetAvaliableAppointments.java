@@ -10,22 +10,24 @@ import org.springframework.web.jsf.FacesContextUtils;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.PersistenceContext;
 //Çalışan Sınıf Budur
 @ManagedBean(name = "getAvaliableAppointments")
 @SessionScoped
 public class GetAvaliableAppointments implements Serializable{
     
-    EntityManagerFactory emf= Persistence.createEntityManagerFactory("HospitalAutomation");
-    EntityManager em=emf.createEntityManager();
+    @PersistenceContext(unitName = "HospitalAutomation")
+    private EntityManager em;
+    
+    
+    /*EntityManagerFactory emf= Persistence.createEntityManagerFactory("HospitalAutomation");
+    EntityManager em=emf.createEntityManager();*/
         
     List<Uygunrandevular> availableAppointments;
     List<Object[]> doctorAndTimeList;

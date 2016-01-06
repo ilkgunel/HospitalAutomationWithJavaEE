@@ -4,8 +4,6 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import com.ilkgunel.hastaneotomasyonu.entity.Doktorlar;
 import com.ilkgunel.hastaneotomasyonu.entity.Hastaneler;
@@ -13,13 +11,18 @@ import com.ilkgunel.hastaneotomasyonu.entity.Klinikler;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedProperty;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 @ManagedBean
 @SessionScoped
 public class GetDoctors implements Serializable{
-    EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
-    EntityManager em=emf.createEntityManager();
+    
+    @PersistenceContext(unitName = "HospitalAutomation")
+    private EntityManager em;
+    
+    //EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
+    //EntityManager em=emf.createEntityManager();
     
     @ManagedProperty(value = "#{saveAppointments}")
     private SaveAppointments saveAppointmentsObject;

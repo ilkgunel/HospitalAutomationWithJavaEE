@@ -19,6 +19,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import javax.faces.context.FacesContext;
+import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -32,6 +33,10 @@ import org.springframework.web.jsf.FacesContextUtils;
 @ManagedBean(name="getDistricts")
 @SessionScoped
 public class GetDistricts implements Serializable {
+    
+    @PersistenceContext(unitName = "HospitalAutomation")
+    private EntityManager em;
+    
     
     //@ManagedProperty(value="#{getCities}")
     //private GetCities getCities;
@@ -96,8 +101,8 @@ public class GetDistricts implements Serializable {
             }
         }
         
-        EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
-        EntityManager em=emf.createEntityManager();
+        //EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
+        //EntityManager em=emf.createEntityManager();
         TypedQuery<Ilceler> query=em.createQuery("SELECT i FROM Ilceler i WHERE i.sehir=:value",Ilceler.class);
         query.setParameter("value", cityId);
         districts=new ArrayList<>();

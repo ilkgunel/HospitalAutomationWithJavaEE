@@ -18,6 +18,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 @SessionScoped
 public class GetClinicPlaces implements Serializable {
 
+    @PersistenceContext(unitName = "HospitalAutomation")
+    private EntityManager em;
+    
     //@ManagedProperty(value = "#{getHospitals}")
     @Autowired
     private GetHospitals getHospitals;
@@ -92,8 +95,8 @@ public class GetClinicPlaces implements Serializable {
 
         System.out.println("Seçilen Hastanenin ID'si"+hospitalId);
 
-        EntityManagerFactory emf= Persistence.createEntityManagerFactory("HospitalAutomation");
-        EntityManager em=emf.createEntityManager();
+        /*EntityManagerFactory emf= Persistence.createEntityManagerFactory("HospitalAutomation");
+        EntityManager em=emf.createEntityManager();*/
 
         TypedQuery<Klinikyerleri> query=em.createQuery("select  c from Klinikyerleri c where c.hastaneid=:value",Klinikyerleri.class);
         query.setParameter("value",hospitalId);

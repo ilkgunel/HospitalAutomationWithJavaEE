@@ -19,12 +19,11 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri;
 import com.ilkgunel.hastaneotomasyonu.entity.Takenappointments;
+import javax.persistence.PersistenceContext;
 /**
  *
  * @author ilkaygunel
@@ -32,13 +31,18 @@ import com.ilkgunel.hastaneotomasyonu.entity.Takenappointments;
 @ManagedBean
 @SessionScoped
 public class GetAppointmentsOfPatient implements Serializable {
+    
+    @PersistenceContext(unitName = "HospitalAutomation")
+    private EntityManager em;
+    
+    
     List<Takenappointments> takenAppointmentsOfPatient;
     Boolean cancelButtonRendered;
     Boolean passedText;
     String cancelMessage;
     
-    EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
-    EntityManager em=emf.createEntityManager();
+    /*EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
+    EntityManager em=emf.createEntityManager();*/
     
     
     @ManagedProperty(value = "#{saveAppointments}")

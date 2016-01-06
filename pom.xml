@@ -23,6 +23,14 @@
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        
+        <!-- @PersistenceContext notasyonu için SecurityConfiguration.xml içinde yazılmış alanlar için 
+             gerekli kütüphanelerin bağımlılığı-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
         
         <dependency>

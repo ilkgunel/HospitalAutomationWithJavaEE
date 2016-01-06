@@ -12,17 +12,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.jsf.FacesContextUtils;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Component;
 /**
@@ -34,6 +31,9 @@ import org.springframework.stereotype.Component;
 @SessionScoped
 public class SaveAppointments implements Serializable{
 
+    @PersistenceContext(unitName = "HospitalAutomation")
+    private EntityManager em;
+    
     String comingIdentityNumber;
     String comingPassword;
     
@@ -140,8 +140,8 @@ public class SaveAppointments implements Serializable{
     
     public void saveToDb(ActionEvent event)
     {
-        EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
-        EntityManager em=emf.createEntityManager();
+        //EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
+        //EntityManager em=emf.createEntityManager();
                 
         Takenappointments takenappointmentsObject=new Takenappointments();
         takenappointmentsObject.setDoctorid(selectedAppointment.getDoktorid());

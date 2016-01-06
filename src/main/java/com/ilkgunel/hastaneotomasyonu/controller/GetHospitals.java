@@ -14,17 +14,11 @@ import java.util.ArrayList;
 
 import com.ilkgunel.hastaneotomasyonu.entity.Ilceler;
 import com.ilkgunel.hastaneotomasyonu.entity.Hastaneler;
-import org.springframework.context.ApplicationContext;
-import org.springframework.web.jsf.FacesContextUtils;
-
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import javax.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.PersistenceContext;
 /**
  *
  * @author ilkaygunel
@@ -32,6 +26,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 @ManagedBean(name="getHospitals")
 @SessionScoped
 public class GetHospitals implements  Serializable{
+    @PersistenceContext(unitName = "HospitalAutomation")
+    private EntityManager em;
     
     String mesaj="İlkay Günel";
 
@@ -71,8 +67,8 @@ public class GetHospitals implements  Serializable{
                 break;
             }
         }
-        EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
-        EntityManager em=emf.createEntityManager();
+        //EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
+        //EntityManager em=emf.createEntityManager();
         TypedQuery<Hastaneler> query=em.createQuery("SELECT h FROM Hastaneler h WHERE h.ilceid=:value",Hastaneler.class);
         query.setParameter("value", districtId);
         hospitalResults=query.getResultList();

@@ -18,6 +18,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.faces.bean.RequestScoped;
 import javax.faces.event.ActionEvent;
+import javax.persistence.PersistenceContext;
 /**
  *
  * @author ilkaygunel
@@ -26,8 +27,8 @@ import javax.faces.event.ActionEvent;
 @RequestScoped
 public class SavePatients implements Serializable{
     
-    /*@PersistenceContext(unitName = "HospitalAutomation")
-    private EntityManager em;*/
+    @PersistenceContext(unitName = "HospitalAutomation")
+    private EntityManager em;
     
     private Patients patientsObject=new Patients();
 
@@ -49,8 +50,8 @@ public class SavePatients implements Serializable{
     private String operationResult;
     private Md5PasswordEncoder passwordEncoder;
 
-    private EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
-    private EntityManager em=emf.createEntityManager();
+    /*private EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
+    private EntityManager em=emf.createEntityManager();*/
 
     public String getMobilePhoneNumber() {
         return mobilePhoneNumber;

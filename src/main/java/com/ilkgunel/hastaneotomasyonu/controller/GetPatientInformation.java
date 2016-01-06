@@ -1,7 +1,6 @@
 package com.ilkgunel.hastaneotomasyonu.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.SessionScoped;
@@ -9,18 +8,16 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import java.lang.Object;
 import com.ilkgunel.hastaneotomasyonu.entity.Patients;
 import com.ilkgunel.hastaneotomasyonu.entity.Takenappointments;
+import javax.persistence.PersistenceContext;
 @ManagedBean
 @SessionScoped
 public class GetPatientInformation implements Serializable{
-    
-   /* @PersistenceContext(unitName = "HospitalAutomation")
-    private EntityManager em;*/
+   
+    @PersistenceContext(unitName = "HospitalAutomation")
+    private EntityManager em;
     
     private String identityNumber;
     private String name;
@@ -43,8 +40,8 @@ public class GetPatientInformation implements Serializable{
     @ManagedProperty(value="#{getAppointmentsOfPatient}")
     private GetAppointmentsOfPatient g;
     
-    EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
-    EntityManager em=emf.createEntityManager();
+    //EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
+    //EntityManager em=emf.createEntityManager();
     
     //List<Patient> patientInfo;
     List<Takenappointments> takenAppointmentsOfPatient;

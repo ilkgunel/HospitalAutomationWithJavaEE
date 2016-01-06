@@ -4,6 +4,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                             http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
                             http://www.springframework.org/schema/jdbc 
@@ -11,7 +12,9 @@
                             http://www.springframework.org/schema/security 
                             http://www.springframework.org/schema/security/spring-security-3.2.xsd
                             http://www.springframework.org/schema/context
-                            http://www.springframework.org/schema/context/spring-context.xsd">
+                            http://www.springframework.org/schema/context/spring-context.xsd
+                            http://www.springframework.org/schema/tx 
+                            http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
     <security:http auto-config="true" use-expressions="true">
 
@@ -64,4 +67,19 @@
     <!--<bean id="getDistricts" class="com.ilkgunel.hastaneotomasyonu.controller.GetDistricts"></bean>-->
     <bean id="getClinics" class="com.ilkgunel.hastaneotomasyonu.controller.GetClinics"></bean>
     <bean id="getClinicPlaces" class="com.ilkgunel.hastaneotomasyonu.controller.GetClinicPlaces"/>
-    </beans>
+    
+    <!-- JPA Persistence Unit'i Spring'e Tanıtıyoruz. @PersistenceContext kullanılırken 
+         yeni EntityManeger tesisi için bu alan gereklidir.-->
+    <bean id="entityManagerFactory"
+    class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean" >
+        <property name="persistenceUnitName" value="HospitalAutomation"/>
+    </bean>
+    
+    <!-- Spring&JPA Entegrasyonunda transaction mekanizması için gerekli kısım. -->
+    <bean class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <!-- Notasyon kullanımı için gerekli -->
+    <tx:annotation-driven />
+</beans>

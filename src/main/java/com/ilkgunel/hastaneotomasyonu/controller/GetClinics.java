@@ -18,6 +18,9 @@ import java.util.ArrayList;
 @SessionScoped
 public class GetClinics implements Serializable{
 
+    @PersistenceContext(unitName = "HospitalAutomation")
+    private EntityManager em;
+    
      List<Klinikler> clinicResults;
      List<String> clinics;
 
@@ -39,8 +42,8 @@ public class GetClinics implements Serializable{
 
     public void fillList() throws Exception
     {
-        EntityManagerFactory emf= Persistence.createEntityManagerFactory("HospitalAutomation");
-        EntityManager em=emf.createEntityManager();
+        //EntityManagerFactory emf= Persistence.createEntityManagerFactory("HospitalAutomation");
+        //EntityManager em=emf.createEntityManager();
         TypedQuery<Klinikler> query=em.createQuery("select k from Klinikler k",Klinikler.class);
         clinicResults=new ArrayList<>();
         clinics=new ArrayList<>();
