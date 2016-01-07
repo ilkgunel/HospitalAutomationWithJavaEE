@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -9,13 +9,10 @@ import com.ilkgunel.hastaneotomasyonu.entity.Ilceler;
 import com.ilkgunel.hastaneotomasyonu.entity.Iller;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ManagedProperty;
-
 import java.util.List;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import javax.faces.context.FacesContext;
@@ -36,10 +33,6 @@ public class GetDistricts implements Serializable {
     
     @PersistenceContext(unitName = "HospitalAutomation")
     private EntityManager em;
-    
-    
-    //@ManagedProperty(value="#{getCities}")
-    //private GetCities getCities;
     
     List<String> districts;
     List<Ilceler> districtResults;

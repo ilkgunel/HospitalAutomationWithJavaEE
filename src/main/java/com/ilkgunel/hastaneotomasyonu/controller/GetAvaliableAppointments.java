@@ -24,10 +24,6 @@ public class GetAvaliableAppointments implements Serializable{
     
     @PersistenceContext(unitName = "HospitalAutomation")
     private EntityManager em;
-    
-    
-    /*EntityManagerFactory emf= Persistence.createEntityManagerFactory("HospitalAutomation");
-    EntityManager em=emf.createEntityManager();*/
         
     List<Uygunrandevular> availableAppointments;
     List<Object[]> doctorAndTimeList;

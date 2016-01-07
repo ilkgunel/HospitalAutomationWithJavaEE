@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.faces.bean.ManagedProperty;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @ManagedBean
 @SessionScoped
@@ -21,16 +22,16 @@ public class GetDoctors implements Serializable{
     @PersistenceContext(unitName = "HospitalAutomation")
     private EntityManager em;
     
-    //EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
-    //EntityManager em=emf.createEntityManager();
-    
-    @ManagedProperty(value = "#{saveAppointments}")
+    //@ManagedProperty(value = "#{saveAppointments}")
+    @Autowired
     private SaveAppointments saveAppointmentsObject;
     
-    @ManagedProperty(value = "#{getClinics}")
+    //@ManagedProperty(value = "#{getClinics}")
+    @Autowired
     private GetClinics getClinicsObject;
 
-    @ManagedProperty(value = "#{getHospitals}")
+    //@ManagedProperty(value = "#{getHospitals}")
+    @Autowired
     private GetHospitals getHospitalsObject;
     
     List<Doktorlar> doctorResults;

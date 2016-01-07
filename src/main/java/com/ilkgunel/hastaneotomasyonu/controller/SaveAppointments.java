@@ -177,7 +177,6 @@ public class SaveAppointments implements Serializable{
         }
         
         try {
-            em.getTransaction().begin();
             /*Query updateQuery=em.createQuery("UPDATE Randevusaatleri r SET r.saatalindimi=TRUE,r.title='DOLU' WHERE r.saatid=:clockId");
             updateQuery.setParameter("clockId", Integer.parseInt(clockId));
             int updateCount = query.executeUpdate();	
@@ -187,11 +186,10 @@ public class SaveAppointments implements Serializable{
             Randevusaatleri r=em.find(Randevusaatleri.class, Integer.parseInt(clockId));
             r.setSaatalindimi(true);
             r.setTitle("DOLU");
-            em.getTransaction().commit();
+            //em.getTransaction().commit();
             
-            em.getTransaction().begin();
             em.persist(takenappointmentsObject);
-            em.getTransaction().commit();
+            //em.getTransaction().commit();
             operationResult="Randevuz Sisteme Kaydedildi,Seçtiğiniz Gün ve Saatte 15 Dakika Erken Geliniz Lütfen";
         } catch (Exception e) {
             System.out.println("Meydana Gelen Hata:"+e);

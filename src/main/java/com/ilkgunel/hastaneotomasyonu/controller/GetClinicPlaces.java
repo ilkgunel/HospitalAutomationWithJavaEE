@@ -4,7 +4,6 @@ import com.ilkgunel.hastaneotomasyonu.entity.Hastaneler;
 import com.ilkgunel.hastaneotomasyonu.entity.Klinikyerleri;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,7 +11,6 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.bean.SessionScoped;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 @ManagedBean
 @SessionScoped
@@ -21,7 +19,6 @@ public class GetClinicPlaces implements Serializable {
     @PersistenceContext(unitName = "HospitalAutomation")
     private EntityManager em;
     
-    //@ManagedProperty(value = "#{getHospitals}")
     @Autowired
     private GetHospitals getHospitals;
 
@@ -95,20 +92,15 @@ public class GetClinicPlaces implements Serializable {
 
         System.out.println("Seçilen Hastanenin ID'si"+hospitalId);
 
-        /*EntityManagerFactory emf= Persistence.createEntityManagerFactory("HospitalAutomation");
-        EntityManager em=emf.createEntityManager();*/
-
         TypedQuery<Klinikyerleri> query=em.createQuery("select  c from Klinikyerleri c where c.hastaneid=:value",Klinikyerleri.class);
         query.setParameter("value",hospitalId);
 
-
-        System.out.println("Döngü Öncesi");
+        /*System.out.println("Döngü Öncesi");
         for(Klinikyerleri k:query.getResultList())
         {
             System.out.println(k.getKlinikyeri());
         }
-        System.out.println("Döngü Sonrası");
-
+        System.out.println("Döngü Sonrası");*/
 
         clinicPlaceResults=query.getResultList();
 
@@ -119,15 +111,3 @@ public class GetClinicPlaces implements Serializable {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-

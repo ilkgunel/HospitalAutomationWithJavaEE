@@ -33,15 +33,14 @@
                         <p:password id="j_password" required="true" style="width: 130px;" maxlength="50" size="30" value="#{saveAppointments.comingPassword}"
                                      requiredMessage="Parola alanı boş bırakılamaz..." />
 
-                        <h:outputText value="Doğrulama Kodu"/>
-                        <p:captcha label="Captcha" requiredMessage="Doğrulama Kodu Boş Bırakılamaz..." />
+                        <!--<h:outputText value="Doğrulama Kodu"/>
+                        <p:captcha label="Captcha" requiredMessage="Doğrulama Kodu Boş Bırakılamaz..." />-->
 
                         <h:panelGrid columns="2">
                             <h:button value="Yeni Üye" outcome="savingPatients.xhtml"/>
                             <h:button value="Şifremi Unuttum" outcome="remindingPassword.xhtml"/>
                         </h:panelGrid>
-                        <h:commandButton value="Giriş" action="#{loginControlClass.login()}" actionListener="#{getPatientInformation.fillList}" 
-                        style="margin-left: 265px;"/>
+                        <h:commandButton value="Giriş" action="#{loginControlClass.login()}" actionListener="#{getPatientInformation.fillList}"  style="margin-left: 265px;"/>
                     </h:panelGrid>
                     <h:panelGrid columns="1">
                         <h:outputText value="Soru ve düşünceleriniz için ilkgunel93@gmail.com adresine mail atabilirsiniz." style="margin-left: 5px;"/>

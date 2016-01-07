@@ -5,13 +5,13 @@ import java.util.Date;
 import java.util.List;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import com.ilkgunel.hastaneotomasyonu.entity.Patients;
 import com.ilkgunel.hastaneotomasyonu.entity.Takenappointments;
 import javax.persistence.PersistenceContext;
+import org.springframework.beans.factory.annotation.Autowired;
 @ManagedBean
 @SessionScoped
 public class GetPatientInformation implements Serializable{
@@ -34,10 +34,10 @@ public class GetPatientInformation implements Serializable{
     
     private String messageForUpdate;
     
-    @ManagedProperty(value = "#{saveAppointments}")
+    @Autowired
     private SaveAppointments saveAppointments;
     
-    @ManagedProperty(value="#{getAppointmentsOfPatient}")
+    @Autowired
     private GetAppointmentsOfPatient g;
     
     //EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
@@ -78,6 +78,7 @@ public class GetPatientInformation implements Serializable{
             setPassword(p.getPassword());
         }
         g.fillList();
+        System.out.println("Bu metod çalışıyor ki!");
     }
 
     /*public List<Patient> getPatientInfo() {
@@ -186,20 +187,9 @@ public class GetPatientInformation implements Serializable{
         this.password = password;
     }
 
-    public SaveAppointments getSaveAppointments() {
-        return saveAppointments;
-    }
-
-    public void setSaveAppointments(SaveAppointments saveAppointments) {
-        this.saveAppointments = saveAppointments;
-    }
-
-
-
     public void updatePatientInfo()
     {
         try {
-            em.getTransaction().begin();
             Patients p = em.find(Patients.class, identityNumber);
 
             p.setName(name);
@@ -242,7 +232,5 @@ public class GetPatientInformation implements Serializable{
 
     public void setG(GetAppointmentsOfPatient g) {
         this.g = g;
-    }
-    
-    
+    }   
 }

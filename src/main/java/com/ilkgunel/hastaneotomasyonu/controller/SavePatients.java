@@ -10,8 +10,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import com.ilkgunel.hastaneotomasyonu.entity.Patients;
 import java.text.ParseException;
@@ -119,10 +117,11 @@ public class SavePatients implements Serializable{
         patientsObject.setRole("ROLE_GUEST");
         patientsObject.setEnabled(true);
 
-        try {
-            em.getTransaction().begin();
+        try 
+        {
+            //em.getTransaction().begin();
             em.persist(patientsObject);
-            em.getTransaction().commit();
+            //em.getTransaction().commit();
             operationResult="Bilgileriniz Kaydedildi. Sisteme Giriş Yapıp Randevu Alabilirsiniz";
         } catch (Exception e) {
             System.err.println(e);
