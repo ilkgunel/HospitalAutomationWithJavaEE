@@ -23,3 +23,4 @@
 /Users/ilkaygunel/Desktop/HospitalAutomationWithJavaEE/src/main/java/com/ilkgunel/hastaneotomasyonu/controller/GetClinicPlaces.java
 /Users/ilkaygunel/Desktop/HospitalAutomationWithJavaEE/src/main/java/com/ilkgunel/hastaneotomasyonu/entity/Takenappointments.java
 /Users/ilkaygunel/Desktop/HospitalAutomationWithJavaEE/src/main/java/com/ilkgunel/hastaneotomasyonu/controller/LoginControlClass.java
+/Users/ilkaygunel/Desktop/HospitalAutomationWithJavaEE/src/main/java/com/ilkgunel/hastaneotomasyonu/entity/LocalDateConverter.java

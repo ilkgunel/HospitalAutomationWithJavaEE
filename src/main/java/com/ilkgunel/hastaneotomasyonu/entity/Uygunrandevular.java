@@ -6,6 +6,7 @@
 package com.ilkgunel.hastaneotomasyonu.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -58,8 +59,8 @@ public class Uygunrandevular implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "tarih")
-    @Temporal(TemporalType.DATE)
-    private Date tarih;
+    //@Temporal(TemporalType.DATE)
+    private LocalDate tarih;
     @Basic(optional = false)
     @NotNull
     @Column(name = "hastaneid")
@@ -81,7 +82,7 @@ public class Uygunrandevular implements Serializable {
         this.uygunrandevuid = uygunrandevuid;
     }
 
-    public Uygunrandevular(Integer uygunrandevuid, int doktorid, Date tarih, int hastaneid, int klinikid, String klinikyeri) {
+    public Uygunrandevular(Integer uygunrandevuid, int doktorid, LocalDate tarih, int hastaneid, int klinikid, String klinikyeri) {
         this.uygunrandevuid = uygunrandevuid;
         this.doktorid = doktorid;
         this.tarih = tarih;
@@ -106,11 +107,11 @@ public class Uygunrandevular implements Serializable {
         this.doktorid = doktorid;
     }
 
-    public Date getTarih() {
+    public LocalDate getTarih() {
         return tarih;
     }
 
-    public void setTarih(Date tarih) {
+    public void setTarih(LocalDate tarih) {
         this.tarih = tarih;
     }
 

@@ -35,7 +35,6 @@ public class GetAppointmentsOfPatient implements Serializable {
     @PersistenceContext(unitName = "HospitalAutomation")
     private EntityManager em;
     
-    
     List<Takenappointments> takenAppointmentsOfPatient;
     Boolean cancelButtonRendered;
     Boolean passedText;
@@ -43,7 +42,6 @@ public class GetAppointmentsOfPatient implements Serializable {
     
     @Autowired
     private SaveAppointments saveAppointments;
-    
     
     public void fillList()
     {
@@ -61,41 +59,6 @@ public class GetAppointmentsOfPatient implements Serializable {
         {
             System.out.println("Bir Hata Meydana Geldi!\nHata:"+e);
         }
-        
-        
-        for(Takenappointments t:takenAppointmentsOfPatient)
-        {
-            try 
-            {
-                String dateStr = t.getDate().toString();
-                System.out.println("dateStr:"+dateStr);
-                DateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
-                Date date = (Date)formatter.parse(dateStr);
-                System.out.println(date);        
-
-                Calendar cal = Calendar.getInstance();
-                cal.setTime(date);
-                String formatedDate = cal.get(Calendar.DATE) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.YEAR);
-                System.out.println("formatedDate : " + formatedDate);    
-
-                Date comparisonDate=new Date();
-
-                if((formatedDate.compareTo(nowDateFormat.format(comparisonDate)))>0)
-                {
-                        System.out.println("Randevu Tarihi Şu anki tarihten sonra");
-                        t.setDatepassed(false);
-                }
-                else {
-                        System.out.println("Randevu Tarihi Şu anki tarihten önce");
-                        t.setDatepassed(true);
-                }
-            } 
-            catch (Exception e) 
-            {
-                System.err.println("Meydana Gelen Hata:"+e);
-            }   
-        }
-        
     }
     
 

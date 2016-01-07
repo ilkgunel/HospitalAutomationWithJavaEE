@@ -1,6 +1,7 @@
 package com.ilkgunel.hastaneotomasyonu.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import javax.persistence.*;
 import java.util.Date;
 
@@ -23,8 +24,8 @@ public class Takenappointments implements Serializable {
 
 	private int clockid;
 
-	@Temporal(TemporalType.DATE)
-	private Date date;
+	//@Temporal(TemporalType.DATE)
+	private LocalDate date;
 
 	private boolean datepassed;
 
@@ -73,11 +74,11 @@ public class Takenappointments implements Serializable {
 		this.clockid = clockid;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return this.date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 

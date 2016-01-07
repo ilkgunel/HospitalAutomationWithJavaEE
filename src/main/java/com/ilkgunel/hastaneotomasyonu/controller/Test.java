@@ -14,6 +14,10 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import com.ilkgunel.hastaneotomasyonu.entity.Takenappointments;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 /**
  *
  * @author ilkaygunel
@@ -53,7 +57,7 @@ String parola = "malmesap93";
 	
 	public static void main(String[] args)
 	{
-		System.out.println("Metot Çalıştı");
+		/*System.out.println("Metot Çalıştı");
 		EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
 	    EntityManager em=emf.createEntityManager();
 		List<Takenappointments> patientsAppointments=new ArrayList<Takenappointments>();
@@ -65,6 +69,18 @@ String parola = "malmesap93";
 			System.out.println("Döngü içindeyiz:");
 			System.out.println(t.getDoctorid());
 			System.out.println(t.getClinicplace());
-		}
+		}*/
+            //Sat Jan 02 00:00:00 GMT 2010
+            String startDateString = "06/27/2007";
+    DateFormat df = new SimpleDateFormat("MM/dd/yyyy"); 
+    Date startDate;
+    try {
+        startDate = df.parse(startDateString);
+        String newDateString = df.format(startDate);
+        System.out.println(newDateString);
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+
 	}
 }

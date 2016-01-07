@@ -28,6 +28,7 @@ com/ilkgunel/hastaneotomasyonu/entity/Iller.class
 com/ilkgunel/hastaneotomasyonu/entity/Klinikler_.class
 com/ilkgunel/hastaneotomasyonu/entity/Randevusaatleri.class
 com/ilkgunel/hastaneotomasyonu/entity/Iller_.class
+com/ilkgunel/hastaneotomasyonu/entity/LocalDateConverter.class
 com/ilkgunel/hastaneotomasyonu/entity/Uygunrandevular.class
 com/ilkgunel/hastaneotomasyonu/controller/GetClinics.class
 com/ilkgunel/hastaneotomasyonu/entity/Hastaneler.class
