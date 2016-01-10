@@ -10,11 +10,11 @@
   </context-param>
   <context-param>
     <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
-    <param-value>6Ld7pMESAAAAAHd1VihJkqPUXAJVwU3Cghc8fzrq</param-value>
+    <param-value>6Lfy-BQTAAAAAEXmsTfhc-r1m-i_yclp9KERD1aX</param-value>
   </context-param>
   <context-param>
-    <param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
-    <param-value>6Ld7pMESAAAAAMhr5WSk5bcRrff8Y08NtDi8Buoq</param-value>
+      <param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+      <param-value>6Lfy-BQTAAAAAHKz-rrCKze6g5K0tET4NBmayk2H</param-value>
   </context-param>
   <context-param>
     <param-name>contextConfigLocation</param-name>
