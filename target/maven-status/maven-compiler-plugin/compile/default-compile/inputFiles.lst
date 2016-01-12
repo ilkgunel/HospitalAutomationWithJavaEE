@@ -1,3 +1,4 @@
+/Users/ilkaygunel/Desktop/HospitalAutomationWithJavaEE/src/main/java/com/ilkgunel/hastaneotomasyonu/ejb/SavePatientSessionBean.java
 /Users/ilkaygunel/Desktop/HospitalAutomationWithJavaEE/src/main/java/com/ilkgunel/hastaneotomasyonu/entity/Iller.java
 /Users/ilkaygunel/Desktop/HospitalAutomationWithJavaEE/src/main/java/com/ilkgunel/hastaneotomasyonu/entity/Klinikler.java
 /Users/ilkaygunel/Desktop/HospitalAutomationWithJavaEE/src/main/java/com/ilkgunel/hastaneotomasyonu/entity/Patients.java
@@ -12,6 +13,7 @@
 /Users/ilkaygunel/Desktop/HospitalAutomationWithJavaEE/src/main/java/com/ilkgunel/hastaneotomasyonu/controller/SavePatients.java
 /Users/ilkaygunel/Desktop/HospitalAutomationWithJavaEE/src/main/java/com/ilkgunel/hastaneotomasyonu/entity/Klinikyerleri.java
 /Users/ilkaygunel/Desktop/HospitalAutomationWithJavaEE/src/main/java/com/ilkgunel/hastaneotomasyonu/entity/Doktorlar.java
+/Users/ilkaygunel/Desktop/HospitalAutomationWithJavaEE/src/main/java/com/ilkgunel/hastaneotomasyonu/ejb/SavePatientSessionBeanLocal.java
 /Users/ilkaygunel/Desktop/HospitalAutomationWithJavaEE/src/main/java/com/ilkgunel/hastaneotomasyonu/controller/SaveAppointments.java
 /Users/ilkaygunel/Desktop/HospitalAutomationWithJavaEE/src/main/java/com/ilkgunel/hastaneotomasyonu/entity/Hastaneler.java
 /Users/ilkaygunel/Desktop/HospitalAutomationWithJavaEE/src/main/java/com/ilkgunel/hastaneotomasyonu/controller/GetDistricts.java

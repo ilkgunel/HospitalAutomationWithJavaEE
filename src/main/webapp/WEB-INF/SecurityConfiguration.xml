@@ -17,14 +17,14 @@
                             http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
     <security:http auto-config="true" use-expressions="true">
-        <!--<security:csrf disabled="true"></security:csrf>-->
+        <security:csrf disabled="true"></security:csrf>
         <security:intercept-url pattern="/index.xhtml" access="permitAll" />
         <security:intercept-url pattern="/takingAppointment.xhtml" access="hasAnyRole('ROLE_ADMIN', 'ROLE_GUEST')" />
 
         <!-- Spring Security 4 ile birlikte username ve passwordü parametre olarak geçirmek gerekiyor. -->
         <security:form-login username-parameter="j_username" password-parameter="j_password" login-processing-url="/j_spring_security_check" login-page="/index.xhtml"
                              default-target-url="/takingAppointment.xhtml" authentication-failure-url="/index.xhtml"/>
-        <security:logout invalidate-session="true" logout-success-url="/index.xhtml" />
+        <security:logout logout-url="/j_spring_security_logout" invalidate-session="true" logout-success-url="/index.xhtml" />
         <security:remember-me data-source-ref="dataSource" token-validity-seconds="86400" />
 
     </security:http>

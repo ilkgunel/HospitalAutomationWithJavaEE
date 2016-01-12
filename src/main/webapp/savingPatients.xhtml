@@ -113,7 +113,8 @@
                 </p:panelGrid>
                 
             </center>
-            
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <h:outputText value=""/>
             <p:dialog widgetVar="dialog" header="İşlem Sonucu" showEffect="fade">
                 <p:inputTextarea id="display" value="#{savePatients.operationResult}"/>
             </p:dialog>

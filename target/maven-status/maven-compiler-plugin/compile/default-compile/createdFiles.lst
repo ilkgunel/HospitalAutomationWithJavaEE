@@ -4,6 +4,7 @@ com/ilkgunel/hastaneotomasyonu/controller/GetClinicPlaces.class
 com/ilkgunel/hastaneotomasyonu/entity/Uygunrandevular_.class
 com/ilkgunel/hastaneotomasyonu/entity/Ilceler_.class
 com/ilkgunel/hastaneotomasyonu/controller/SaveAppointments.class
+com/ilkgunel/hastaneotomasyonu/ejb/SavePatientSessionBean.class
 com/ilkgunel/hastaneotomasyonu/controller/Test.class
 com/ilkgunel/hastaneotomasyonu/entity/Takenappointments.class
 com/ilkgunel/hastaneotomasyonu/entity/Doktorlar.class
@@ -32,5 +33,6 @@ com/ilkgunel/hastaneotomasyonu/entity/LocalDateConverter.class
 com/ilkgunel/hastaneotomasyonu/entity/Uygunrandevular.class
 com/ilkgunel/hastaneotomasyonu/controller/GetClinics.class
 com/ilkgunel/hastaneotomasyonu/entity/Hastaneler.class
+com/ilkgunel/hastaneotomasyonu/ejb/SavePatientSessionBeanLocal.class
 com/ilkgunel/hastaneotomasyonu/controller/LoginControlClass.class
 com/ilkgunel/hastaneotomasyonu/entity/Klinikler.class

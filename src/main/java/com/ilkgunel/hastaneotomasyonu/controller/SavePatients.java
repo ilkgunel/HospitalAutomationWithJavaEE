@@ -9,14 +9,13 @@ import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import javax.faces.bean.ManagedBean;
-import javax.persistence.EntityManager;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import com.ilkgunel.hastaneotomasyonu.entity.Patients;
+import com.ilkgunel.hastaneotomasyonu.ejb.SavePatientSessionBeanLocal;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import javax.ejb.EJB;
 import javax.faces.bean.RequestScoped;
 import javax.faces.event.ActionEvent;
-import javax.persistence.PersistenceContext;
 /**
  *
  * @author ilkaygunel
@@ -25,8 +24,8 @@ import javax.persistence.PersistenceContext;
 @RequestScoped
 public class SavePatients implements Serializable{
     
-    @PersistenceContext(unitName = "HospitalAutomation")
-    private EntityManager em;
+    @EJB
+    private SavePatientSessionBeanLocal savePatientSessionBeanLocal;
     
     private Patients patientsObject=new Patients();
 
@@ -117,16 +116,7 @@ public class SavePatients implements Serializable{
         patientsObject.setRole("ROLE_GUEST");
         patientsObject.setEnabled(true);
 
-        try 
-        {
-            //em.getTransaction().begin();
-            em.persist(patientsObject);
-            //em.getTransaction().commit();
-            operationResult="Bilgileriniz Kaydedildi. Sisteme Giriş Yapıp Randevu Alabilirsiniz";
-        } catch (Exception e) {
-            System.err.println(e);
-            operationResult="Bilgilerin Kaydı Sırasında Bir Hata Meydana Geldi!";
-        }
+        operationResult=savePatientSessionBeanLocal.savePatient(patientsObject);
 
     }
 }
