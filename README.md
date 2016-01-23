@@ -24,9 +24,9 @@ After 6 January 2016, to run this project you need a server that has to have ejb
 
 In January 2016, GlassFish 4.1.1 has a bug that is about JDBC Connection Pool and JDBC Resource on domain admin console. The error is about getOutputStream method.
 
-To run this application on GlassFish Server open domain.xml file in glassfish-4.1.1 (or glassfish4)/glassfish/domains/domain1/config and add this lines to between  ```html<resources></resources>``` tags.
+To run this application on GlassFish Server open domain.xml file in glassfish-4.1.1 (or glassfish4)/glassfish/domains/domain1/config and add this lines to between  ```<resources></resources>``` tags.
 
-```html<jdbc-connection-pool datasource-classname="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" name="mysql_HospitalAutomation_ilkayPool" wrap-jdbc-objects="false" connection-validation-method="auto-commit" res-type="javax.sql.DataSource">
+```<jdbc-connection-pool datasource-classname="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" name="mysql_HospitalAutomation_ilkayPool" wrap-jdbc-objects="false" connection-validation-method="auto-commit" res-type="javax.sql.DataSource">
       <property name="URL" value="jdbc:mysql://localhost:3306/HospitalAutomation"></property>
       <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
       <property name="portNumber" value="3306"></property>
@@ -38,11 +38,11 @@ To run this application on GlassFish Server open domain.xml file in glassfish-4.
 
 After this, to between <servers></servers> tags add this.
 
-```html<resource-ref ref="HospitalAutomation"></resource-ref>```
+```<resource-ref ref="HospitalAutomation"></resource-ref>```
 
 Finally, in <applications></applications> tags add this:
 
-```html<application context-root="/HospitalAutomationWithJavaEE" object-type="user" name="HastaneOtomasyonu" directory-deployed="true" location="file:/Users/ilkaygunel/Desktop/HospitalAutomationWithJavaEE/target/HastaneOtomasyonu-1.0-SNAPSHOT/">
+```<application context-root="/HospitalAutomationWithJavaEE" object-type="user" name="HastaneOtomasyonu" directory-deployed="true" location="file:/Users/ilkaygunel/Desktop/HospitalAutomationWithJavaEE/target/HastaneOtomasyonu-1.0-SNAPSHOT/">
       <property name="archiveType" value="war"></property>
       <property name="appLocation" value="file:/Users/ilkaygunel/Desktop/HospitalAutomationWithJavaEE/target/HastaneOtomasyonu-1.0-SNAPSHOT/"></property>
       <property name="org.glassfish.ejb.container.application_unique_id" value="95216682819584000"></property>
