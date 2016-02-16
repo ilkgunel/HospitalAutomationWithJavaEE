@@ -24,8 +24,8 @@ public class Takenappointments implements Serializable {
 
 	private int clockid;
 
-	//@Temporal(TemporalType.DATE)
-	private LocalDate date;
+	@Temporal(TemporalType.DATE)
+	private Date date;
 
 	private boolean datepassed;
 
@@ -74,11 +74,11 @@ public class Takenappointments implements Serializable {
 		this.clockid = clockid;
 	}
 
-	public LocalDate getDate() {
+	public Date getDate() {
 		return this.date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

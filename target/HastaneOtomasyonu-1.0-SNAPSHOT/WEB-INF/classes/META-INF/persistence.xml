@@ -3,7 +3,8 @@
   <persistence-unit name="HospitalAutomation" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <!--<jta-data-source>java:jboss/datasources/HospitalAutomation</jta-data-source>-->
-    <jta-data-source>HospitalAutomation</jta-data-source>
+    <!--<jta-data-source>HospitalAutomation</jta-data-source>-->
+    <jta-data-source>java:/HospitalAutomation</jta-data-source>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Klinikler</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Klinikyerleri</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Doktorlar</class>
@@ -14,7 +15,7 @@
     <class>com.ilkgunel.hastaneotomasyonu.entity.Patients</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Takenappointments</class>
-    <class>com.ilkgunel.hastaneotomasyonu.entity.LocalDateConverter</class>
+    <!--<class>com.ilkgunel.hastaneotomasyonu.entity.LocalDateConverter</class>-->
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <validation-mode>NONE</validation-mode>
     <properties>

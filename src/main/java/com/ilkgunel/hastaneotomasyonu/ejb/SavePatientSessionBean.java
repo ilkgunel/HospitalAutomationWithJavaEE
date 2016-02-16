@@ -31,10 +31,12 @@ public class SavePatientSessionBean implements SavePatientSessionBeanLocal {
         try 
         {
             em.persist(patients);
-            return "Bilgileriniz Kaydedildi. Sisteme Giriş Yapıp Randevu Alabilirsiniz";
+            //return "Bilgileriniz Kaydedildi. Sisteme Giriş Yapıp Randevu Alabilirsiniz";
+            return "Everything is fine. Registering is succesful";
         } catch (Exception e) {
             System.err.println(e);
-            return "Bilgilerin Kaydı Sırasında Bir Hata Meydana Geldi!";
+            //return "Bilgilerin Kaydı Sırasında Bir Hata Meydana Geldi!";
+            return  "An Error Occured! Please Look Log!";
         }
     }
     
