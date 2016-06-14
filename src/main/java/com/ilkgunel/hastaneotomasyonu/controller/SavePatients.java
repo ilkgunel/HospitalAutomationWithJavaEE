@@ -16,16 +16,21 @@ import java.text.ParseException;
 import javax.ejb.EJB;
 import javax.faces.bean.RequestScoped;
 import javax.faces.event.ActionEvent;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 /**
  *
  * @author ilkaygunel
  */
-@ManagedBean
+@ManagedBean(name = "savePatients")
 @RequestScoped
 public class SavePatients implements Serializable{
     
-    @EJB
-    private SavePatientSessionBeanLocal savePatientSessionBeanLocal;
+    @PersistenceContext(unitName = "HospitalAutomation")
+    private EntityManager em;
+    
+    /*@EJB
+    private SavePatientSessionBeanLocal savePatientSessionBeanLocal;*/
     
     private Patients patientsObject=new Patients();
 
@@ -116,7 +121,18 @@ public class SavePatients implements Serializable{
         patientsObject.setRole("ROLE_GUEST");
         patientsObject.setEnabled(true);
 
-        operationResult=savePatientSessionBeanLocal.savePatient(patientsObject);
+        //operationResult=savePatientSessionBeanLocal.savePatient(patientsObject);
+        
+        try {
+            em.getTransaction().begin();
+            em.persist(patientsObject);
+            em.getTransaction().commit();
+            operationResult = "Üye Kaydı Başarı İle Yapıldı";
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            operationResult = "Üye Kaydı Sırasında Hata Meydana Geldi!\nHata:"+e;
+            System.err.println(e);
+        }
 
     }
 }

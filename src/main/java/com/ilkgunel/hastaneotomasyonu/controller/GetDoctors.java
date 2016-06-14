@@ -11,10 +11,15 @@ import com.ilkgunel.hastaneotomasyonu.entity.Klinikler;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.web.jsf.FacesContextUtils;
 
+@Component
 @ManagedBean
 @SessionScoped
 public class GetDoctors implements Serializable{
@@ -91,7 +96,7 @@ public class GetDoctors implements Serializable{
         TypedQuery<Doktorlar> query=em.createQuery("SELECT d FROM Doktorlar d WHERE d.bransid=:clinicid AND d.hastaneid=:hospitalid",Doktorlar.class);
         query.setParameter("clinicid", clinicId);
         query.setParameter("hospitalid",hospitalId);
-        doctorResults=new ArrayList<>();
+        //doctorResults=new ArrayList<>();
         doctors=new ArrayList<>();
         doctorResults=query.getResultList();
         
