@@ -40,12 +40,7 @@
         </security:authentication-provider>
     </security:authentication-manager>
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/HospitalAutomation"/>
-        <property name="username" value="root"/>
-        <property name="password" value=""/>
-    </bean>
+    
 
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basenames">
@@ -70,19 +65,54 @@
     <bean id="getClinicPlaces" class="com.ilkgunel.hastaneotomasyonu.controller.GetClinicPlaces"/>
     <bean id="getPatientInformation" class="com.ilkgunel.hastaneotomasyonu.controller.GetPatientInformation"></bean>
     <bean id="getAppointmentsOfPatient" class="com.ilkgunel.hastaneotomasyonu.controller.GetAppointmentsOfPatient"></bean>
-    
+    <bean id="savePatients" class="com.ilkgunel.hastaneotomasyonu.controller.SavePatients"></bean>  
+    <bean id="savePatientsWithSpring" class="com.ilkgunel.hastaneotomasyonu.controller.SavePatientsWithSpring"></bean>
     <!-- JPA Persistence Unit'i Spring'e Tanıtıyoruz. @PersistenceContext kullanılırken 
-         yeni EntityManeger tesisi için bu alan gereklidir.-->
-    <bean id="entityManagerFactory"
+         yeni EntityManeger tesisi için bu alan gereklidir.
+    <bean id="entityManagerFactoryToIntroduce"
     class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean" >
         <property name="persistenceUnitName" value="HospitalAutomation"/>
-    </bean>
+    </bean>-->
     
-    <!-- Spring&JPA Entegrasyonunda transaction mekanizması için gerekli kısım. -->
+    <!-- Spring&JPA Entegrasyonunda transaction mekanizması için gerekli kısım. 
     <bean class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>-->
+
+    <!-- Notasyon kullanımı için gerekli 
+    <tx:annotation-driven />-->
+    
+    <!-- Make sure the following is specified to enable transaction  -->
+  <tx:annotation-driven />
+    <bean class="org.springframework.orm.jpa.JpaTransactionManager" 
+        id="transactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
 
-    <!-- Notasyon kullanımı için gerekli -->
-    <tx:annotation-driven />
+    <!--  This defines the entity manager factory with some custom properties -->
+  <bean id='entityManagerFactory' 
+      class='org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean'>
+    <property name="persistenceUnitName" value="HospitalAutomation"/>
+    <property name='dataSource' ref='dataSource' />
+    <property name="jpaPropertyMap">
+        <map>
+          <entry key="eclipselink.weaving" value="false"/>
+        </map>
+    </property>
+  </bean>
+
+  <!-- This defines the hsqldb data source -->
+  <!--<bean id='dataSource' 
+      class='org.springframework.jdbc.datasource.DriverManagerDataSource'>
+    <property name='driverClassName' value='org.hsqldb.jdbc.JDBCDriver' />
+    <property name='url' value='jdbc:hsqldb:file:spring_jpa_test_db' />
+    <property name='username' value='sa' />
+    <property name='password' value='' />
+  </bean>-->
+  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/HospitalAutomation"/>
+        <property name="username" value="root"/>
+        <property name="password" value=""/>
+    </bean>
 </beans>

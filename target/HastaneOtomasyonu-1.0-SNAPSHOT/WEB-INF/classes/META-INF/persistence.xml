@@ -15,7 +15,7 @@
     <class>com.ilkgunel.hastaneotomasyonu.entity.Patients</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri</class>
     <class>com.ilkgunel.hastaneotomasyonu.entity.Takenappointments</class>
-    <!--<class>com.ilkgunel.hastaneotomasyonu.entity.LocalDateConverter</class>-->
+    <!--<class>com.ilkgunel.hastaneotomasyonu.entity.LocalDateConverter</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <validation-mode>NONE</validation-mode>
     <properties>
@@ -24,6 +24,6 @@
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
-    </properties>
+    </properties>-->
   </persistence-unit>
 </persistence>

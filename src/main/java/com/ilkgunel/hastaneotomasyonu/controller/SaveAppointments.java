@@ -11,6 +11,7 @@ import com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.jsf.FacesContextUtils;
 
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;

@@ -9,7 +9,6 @@ C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\controller\SavePatients.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\controller\GetDoctors.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\entity\Iller.java
-C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\ejb\SavePatientSessionBeanLocal.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\controller\GetCities.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\controller\GetClinicPlaces.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\entity\Ilceler.java
@@ -25,4 +24,3 @@ C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\controller\GetDistricts.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\entity\Takenappointments.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\filter\TurkishCharacterFilter.java
-C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\ejb\SavePatientSessionBean.java

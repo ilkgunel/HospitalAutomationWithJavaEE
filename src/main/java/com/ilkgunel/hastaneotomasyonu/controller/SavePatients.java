@@ -11,28 +11,22 @@ import java.security.NoSuchAlgorithmException;
 import javax.faces.bean.ManagedBean;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import com.ilkgunel.hastaneotomasyonu.entity.Patients;
-import com.ilkgunel.hastaneotomasyonu.ejb.SavePatientSessionBeanLocal;
 import java.text.ParseException;
-import javax.ejb.EJB;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import org.springframework.beans.factory.annotation.Autowired;
 /**
  *
  * @author ilkaygunel
  */
 @ManagedBean(name = "savePatients")
-@RequestScoped
+@SessionScoped
 public class SavePatients implements Serializable{
     
-    @PersistenceContext(unitName = "HospitalAutomation")
-    private EntityManager em;
-    
-    /*@EJB
-    private SavePatientSessionBeanLocal savePatientSessionBeanLocal;*/
-    
     private Patients patientsObject=new Patients();
+    
+    @Autowired
+    SavePatientsWithSpring savePatientsWithSpring;
 
     public Patients getPatientsObject() throws ParseException{
         /*String date="01/01/1980";
@@ -71,8 +65,6 @@ public class SavePatients implements Serializable{
         this.homePhoneNumber = homePhoneNumber;
     }
 
-    
-
     public String getOperationResult() {
         return operationResult;
     }
@@ -81,7 +73,7 @@ public class SavePatients implements Serializable{
         this.operationResult = operationResult;
     }
 
-    public void saveToDb(ActionEvent event)
+    public void saveToDb(ActionEvent event) throws Exception
     {
         System.err.println("Save To DB Metoduna Girildi!!!!");
         if (mobilePhoneNumber!=null&&homePhoneNumber==null)
@@ -120,19 +112,10 @@ public class SavePatients implements Serializable{
 
         patientsObject.setRole("ROLE_GUEST");
         patientsObject.setEnabled(true);
-
-        //operationResult=savePatientSessionBeanLocal.savePatient(patientsObject);
-        
         try {
-            em.getTransaction().begin();
-            em.persist(patientsObject);
-            em.getTransaction().commit();
-            operationResult = "Üye Kaydı Başarı İle Yapıldı";
+            operationResult = savePatientsWithSpring.returnOperationResult(patientsObject);
         } catch (Exception e) {
-            em.getTransaction().rollback();
-            operationResult = "Üye Kaydı Sırasında Hata Meydana Geldi!\nHata:"+e;
-            System.err.println(e);
+            operationResult = "Kayıt Sırasında Bir Hata Meydana Geldi\nHata:"+e;
         }
-
     }
 }

@@ -1,7 +1,6 @@
 com\ilkgunel\hastaneotomasyonu\entity\Klinikyerleri.class
 com\ilkgunel\hastaneotomasyonu\entity\Randevusaatleri_.class
 com\ilkgunel\hastaneotomasyonu\controller\GetDistricts.class
-com\ilkgunel\hastaneotomasyonu\ejb\SavePatientSessionBeanLocal.class
 com\ilkgunel\hastaneotomasyonu\controller\GetCities.class
 com\ilkgunel\hastaneotomasyonu\controller\GetClinics.class
 com\ilkgunel\hastaneotomasyonu\entity\Klinikyerleri_.class
@@ -33,6 +32,5 @@ com\ilkgunel\hastaneotomasyonu\entity\Iller_.class
 com\ilkgunel\hastaneotomasyonu\entity\Randevusaatleri.class
 com\ilkgunel\hastaneotomasyonu\controller\GetAppointmentsOfPatient.class
 com\ilkgunel\hastaneotomasyonu\entity\Takenappointments.class
-com\ilkgunel\hastaneotomasyonu\ejb\SavePatientSessionBean.class
 com\ilkgunel\hastaneotomasyonu\entity\Iller.class
 com\ilkgunel\hastaneotomasyonu\controller\Test.class
