@@ -1,4 +1,5 @@
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\entity\Patients.java
+C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\facade\RandevuSaatleriFacade.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\controller\GetHospitals.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\controller\GetClinics.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\entity\Randevusaatleri.java
@@ -11,16 +12,21 @@ C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\entity\Iller.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\controller\GetCities.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\controller\GetClinicPlaces.java
+C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\service\SavePatientsService.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\entity\Ilceler.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\entity\Doktorlar.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\controller\GetAvaliableAppointments.java
+C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\facade\UygunRandevularFacade.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\entity\User.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\controller\GetAppointmentsOfPatient.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\entity\Uygunrandevular.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\entity\Klinikler.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\entity\LocalDateConverter.java
+C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\facade\AbstractFacade.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\controller\LoginControlClass.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\controller\Test.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\controller\GetDistricts.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\entity\Takenappointments.java
 C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\filter\TurkishCharacterFilter.java
+C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\facade\TakenAppointmentsFacade.java
+C:\Users\010533\Desktop\HospitalAutomationWithJavaEE\src\main\java\com\ilkgunel\hastaneotomasyonu\service\SaveAppointmentsService.java

@@ -8,6 +8,10 @@ package com.ilkgunel.hastaneotomasyonu.controller;
 import com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri;
 import com.ilkgunel.hastaneotomasyonu.entity.Takenappointments;
 import com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular;
+import com.ilkgunel.hastaneotomasyonu.facade.RandevuSaatleriFacade;
+import com.ilkgunel.hastaneotomasyonu.facade.TakenAppointmentsFacade;
+import com.ilkgunel.hastaneotomasyonu.facade.UygunRandevularFacade;
+import com.ilkgunel.hastaneotomasyonu.service.SaveAppointmentsService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.jsf.FacesContextUtils;
 
@@ -16,12 +20,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 /**
  *
@@ -31,9 +38,14 @@ import org.springframework.stereotype.Component;
 @ManagedBean
 @SessionScoped
 public class SaveAppointments implements Serializable{
-
-    @PersistenceContext(unitName = "HospitalAutomation")
-    private EntityManager em;
+    @Autowired
+    RandevuSaatleriFacade randevuSaatleriFacade;
+    
+    @Autowired
+    UygunRandevularFacade uygunRandevularFacade;
+    
+    @Autowired
+    TakenAppointmentsFacade takenAppointmentsFacade;
     
     String comingIdentityNumber;
     String comingPassword;
@@ -139,8 +151,11 @@ public class SaveAppointments implements Serializable{
     
     
     
-    public void saveToDb(ActionEvent event)
+    public void saveToDb(ActionEvent event) throws Exception
     {
+        ApplicationContext context= FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+        SaveAppointmentsService saveAppointmentsService = (SaveAppointmentsService) context.getBean("saveAppointmentsService");
+        
         //EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
         //EntityManager em=emf.createEntityManager();
                 
@@ -152,10 +167,10 @@ public class SaveAppointments implements Serializable{
         takenappointmentsObject.setClinicplace(clinicPlace);
         takenappointmentsObject.setClockid(Integer.parseInt(clockId));
         
-        TypedQuery<Randevusaatleri> appointmentClockQuery=em.createQuery("SELECT c FROM Randevusaatleri c",Randevusaatleri.class);
+        //TypedQuery<Randevusaatleri> appointmentClockQuery=em.createQuery("SELECT c FROM Randevusaatleri c",Randevusaatleri.class);
         List<Randevusaatleri> appointmentClockResults =new ArrayList<>();
         
-        appointmentClockResults=appointmentClockQuery.getResultList();
+        appointmentClockResults = randevuSaatleriFacade.findListByNamedQuery("Randevusaatleri.findAll");
         for (Randevusaatleri r  : appointmentClockResults) {
             if(r.getSaatid()==Integer.parseInt(clockId))
             {	
@@ -167,41 +182,38 @@ public class SaveAppointments implements Serializable{
         }
         
         takenappointmentsObject.setHour(hour);
-        TypedQuery<Uygunrandevular> appointmentdIdQuery=em.createQuery("SELECT u FROM Uygunrandevular u WHERE u.uygunrandevuid=:appointmentid",Uygunrandevular.class);
+        //TypedQuery<Uygunrandevular> appointmentdIdQuery=em.createQuery("SELECT u FROM Uygunrandevular u WHERE u.uygunrandevuid=:appointmentid",Uygunrandevular.class);
         List<Uygunrandevular> appointmentIdResults =new ArrayList<>();
-        appointmentdIdQuery.setParameter("appointmentid", randevuid);
-        appointmentIdResults=appointmentdIdQuery.getResultList();
+        Map parameters = new HashMap();
+        parameters.put("uygunrandevuid", randevuid);
+       // appointmentdIdQuery.setParameter("appointmentid", randevuid);
+        appointmentIdResults=uygunRandevularFacade.findListByNamedQuery("Uygunrandevular.findByUygunrandevuid", parameters);
         
         for(Uygunrandevular u:appointmentIdResults)
         {
-        	takenappointmentsObject.setDate(u.getTarih());
+            takenappointmentsObject.setDate(u.getTarih());
         }
         
-        try {
+        
             /*Query updateQuery=em.createQuery("UPDATE Randevusaatleri r SET r.saatalindimi=TRUE,r.title='DOLU' WHERE r.saatid=:clockId");
             updateQuery.setParameter("clockId", Integer.parseInt(clockId));
             int updateCount = query.executeUpdate();	
             if (updateCount > 0) {
                 System.out.println("Done...");
             }*/
-            Randevusaatleri r=em.find(Randevusaatleri.class, Integer.parseInt(clockId));
+            //Randevusaatleri r=em.find(Randevusaatleri.class, Integer.parseInt(clockId));
+            Randevusaatleri r = randevuSaatleriFacade.find(Integer.parseInt(clockId));
             r.setSaatalindimi(true);
             r.setTitle("DOLU");
             //em.getTransaction().commit();
             
-            em.persist(takenappointmentsObject);
-            //em.getTransaction().commit();
-            operationResult="Randevuz Sisteme Kaydedildi,Seçtiğiniz Gün ve Saatte 15 Dakika Erken Geliniz Lütfen";
-        } catch (Exception e) {
-            System.out.println("Meydana Gelen Hata:"+e);
-            operationResult="Randevunun Kaydı Sırasında Bir Hata Meydana Geldi!";
-        }
+            operationResult = takenAppointmentsFacade.create(takenappointmentsObject);
+            
+        
 
-        ApplicationContext context= FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+        
         GetAvaliableAppointments getAvaliableAppointments=(GetAvaliableAppointments) context.getBean("getAvaliableAppointments");
         getAvaliableAppointments.changeRenderingStates();
-
-
     }
 
     public String getClockId() {

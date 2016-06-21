@@ -59,14 +59,16 @@
     <bean id="getCities" class="com.ilkgunel.hastaneotomasyonu.controller.GetCities"></bean>
     <bean id="getAvaliableAppointments" class="com.ilkgunel.hastaneotomasyonu.controller.GetAvaliableAppointments"/>
     <bean id="getHospitals" name="getHospitals" class="com.ilkgunel.hastaneotomasyonu.controller.GetHospitals"></bean>
-    <bean id="saveAppointments" class="com.ilkgunel.hastaneotomasyonu.controller.SaveAppointments"></bean>
+    <bean id="saveAppointmentsService" class="com.ilkgunel.hastaneotomasyonu.service.SaveAppointmentsService"></bean>
     <bean id="getDistricts" class="com.ilkgunel.hastaneotomasyonu.controller.GetDistricts"></bean>
     <bean id="getClinics" class="com.ilkgunel.hastaneotomasyonu.controller.GetClinics"></bean>
     <bean id="getClinicPlaces" class="com.ilkgunel.hastaneotomasyonu.controller.GetClinicPlaces"/>
     <bean id="getPatientInformation" class="com.ilkgunel.hastaneotomasyonu.controller.GetPatientInformation"></bean>
     <bean id="getAppointmentsOfPatient" class="com.ilkgunel.hastaneotomasyonu.controller.GetAppointmentsOfPatient"></bean>
-    <bean id="savePatients" class="com.ilkgunel.hastaneotomasyonu.controller.SavePatients"></bean>  
-    <bean id="savePatientsWithSpring" class="com.ilkgunel.hastaneotomasyonu.controller.SavePatientsWithSpring"></bean>
+    <bean id="savePatientsService" class="com.ilkgunel.hastaneotomasyonu.service.SavePatientsService"></bean>
+    <bean id="randevuSaatleriFacade" class="com.ilkgunel.hastaneotomasyonu.facade.RandevuSaatleriFacade"></bean>
+    <bean id="uygunRandevularFacade" class="com.ilkgunel.hastaneotomasyonu.facade.UygunRandevularFacade"></bean>
+    <bean id="takenAppointmentsFacade" class="com.ilkgunel.hastaneotomasyonu.facade.TakenAppointmentsFacade"></bean>
     <!-- JPA Persistence Unit'i Spring'e Tanıtıyoruz. @PersistenceContext kullanılırken 
          yeni EntityManeger tesisi için bu alan gereklidir.
     <bean id="entityManagerFactoryToIntroduce"

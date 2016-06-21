@@ -5,16 +5,19 @@
  */
 package com.ilkgunel.hastaneotomasyonu.controller;
 
+import com.ilkgunel.hastaneotomasyonu.service.SavePatientsService;
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import javax.faces.bean.ManagedBean;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import com.ilkgunel.hastaneotomasyonu.entity.Patients;
-import java.text.ParseException;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.jsf.FacesContextUtils;
 /**
  *
  * @author ilkaygunel
@@ -22,18 +25,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 @ManagedBean(name = "savePatients")
 @SessionScoped
 public class SavePatients implements Serializable{
+    private Patients patientsObject;
     
-    private Patients patientsObject=new Patients();
     
-    @Autowired
-    SavePatientsWithSpring savePatientsWithSpring;
-
-    public Patients getPatientsObject() throws ParseException{
-        /*String date="01/01/1980";
-        SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
-        patientsObject.setBirthdate(sdf.parse(date));*/
-        return patientsObject;
-    }
+    public SavePatients(){
+        patientsObject=new Patients();
+    }        
 
     public void setPatientsObject(Patients patientsObject) {
         this.patientsObject = patientsObject;
@@ -45,9 +42,6 @@ public class SavePatients implements Serializable{
 
     private String operationResult;
     private Md5PasswordEncoder passwordEncoder;
-
-    /*private EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
-    private EntityManager em=emf.createEntityManager();*/
 
     public String getMobilePhoneNumber() {
         return mobilePhoneNumber;
@@ -73,6 +67,10 @@ public class SavePatients implements Serializable{
         this.operationResult = operationResult;
     }
 
+    public Patients getPatientsObject() {
+        return patientsObject;
+    }
+    
     public void saveToDb(ActionEvent event) throws Exception
     {
         System.err.println("Save To DB Metoduna Girildi!!!!");
@@ -112,9 +110,15 @@ public class SavePatients implements Serializable{
 
         patientsObject.setRole("ROLE_GUEST");
         patientsObject.setEnabled(true);
+        
+        ApplicationContext context= FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+        SavePatientsService savePatientsService = (SavePatientsService) context.getBean("savePatientsService");
+        
+        
         try {
-            operationResult = savePatientsWithSpring.returnOperationResult(patientsObject);
-        } catch (Exception e) {
+            operationResult = savePatientsService.returnOperationResult(patientsObject);
+        } 
+        catch (Exception e) {
             operationResult = "Kayıt Sırasında Bir Hata Meydana Geldi\nHata:"+e;
         }
     }
