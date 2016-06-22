@@ -56,11 +56,9 @@
     <context:annotation-config/>
     
     <!-- Şehirler Sınıfının Spring İle Gönderilmesi -->
-    <bean id="getCities" class="com.ilkgunel.hastaneotomasyonu.controller.GetCities"></bean>
-    <bean id="getAvaliableAppointments" class="com.ilkgunel.hastaneotomasyonu.controller.GetAvaliableAppointments"/>
-    <bean id="getHospitals" name="getHospitals" class="com.ilkgunel.hastaneotomasyonu.controller.GetHospitals"></bean>
-    <bean id="saveAppointmentsService" class="com.ilkgunel.hastaneotomasyonu.service.SaveAppointmentsService"></bean>
-    <bean id="getDistricts" class="com.ilkgunel.hastaneotomasyonu.controller.GetDistricts"></bean>
+    
+    <bean id="getAvaliableAppointments" class="com.ilkgunel.hastaneotomasyonu.controller.GetAvaliableAppointments"/>   
+    <bean id="saveAppointmentsService" class="com.ilkgunel.hastaneotomasyonu.service.SaveAppointmentsService"></bean>   
     <bean id="getClinics" class="com.ilkgunel.hastaneotomasyonu.controller.GetClinics"></bean>
     <bean id="getClinicPlaces" class="com.ilkgunel.hastaneotomasyonu.controller.GetClinicPlaces"/>
     <bean id="getPatientInformation" class="com.ilkgunel.hastaneotomasyonu.controller.GetPatientInformation"></bean>
@@ -69,6 +67,20 @@
     <bean id="randevuSaatleriFacade" class="com.ilkgunel.hastaneotomasyonu.facade.RandevuSaatleriFacade"></bean>
     <bean id="uygunRandevularFacade" class="com.ilkgunel.hastaneotomasyonu.facade.UygunRandevularFacade"></bean>
     <bean id="takenAppointmentsFacade" class="com.ilkgunel.hastaneotomasyonu.facade.TakenAppointmentsFacade"></bean>
+    <bean id="citiesFacade" class="com.ilkgunel.hastaneotomasyonu.facade.CitiesFacade"></bean>
+    <bean id="districtFacade" class="com.ilkgunel.hastaneotomasyonu.facade.DistrictsFacade"></bean>
+    <bean id="citiesService" class="com.ilkgunel.hastaneotomasyonu.service.CitiesService"></bean>
+    <bean id="districtService" class="com.ilkgunel.hastaneotomasyonu.service.DistrictService"></bean>
+    <bean id="hospitalService" class="com.ilkgunel.hastaneotomasyonu.service.HospitalsService"></bean>
+    <bean id="hospitalFacade" class="com.ilkgunel.hastaneotomasyonu.facade.HospitalFacade"></bean>
+    
+    
+    <!-- Burası Yorum Yapılacak -->
+    <bean id="getCities" class="com.ilkgunel.hastaneotomasyonu.controller.GetCities"></bean>
+    <bean id="getDistricts" class="com.ilkgunel.hastaneotomasyonu.controller.GetDistricts"></bean>
+    <bean id="getHospitals" name="getHospitals" class="com.ilkgunel.hastaneotomasyonu.controller.GetHospitals"></bean>
+    <!-- Burası Yorum Yapılacak -->
+    
     <!-- JPA Persistence Unit'i Spring'e Tanıtıyoruz. @PersistenceContext kullanılırken 
          yeni EntityManeger tesisi için bu alan gereklidir.
     <bean id="entityManagerFactoryToIntroduce"

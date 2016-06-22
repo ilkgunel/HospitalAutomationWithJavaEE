@@ -14,11 +14,17 @@ import java.util.ArrayList;
 
 import com.ilkgunel.hastaneotomasyonu.entity.Ilceler;
 import com.ilkgunel.hastaneotomasyonu.entity.Hastaneler;
+import com.ilkgunel.hastaneotomasyonu.service.DistrictService;
+import com.ilkgunel.hastaneotomasyonu.service.HospitalsService;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import javax.annotation.Resource;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 import javax.persistence.PersistenceContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.jsf.FacesContextUtils;
 /**
  *
  * @author ilkaygunel
@@ -26,74 +32,22 @@ import javax.persistence.PersistenceContext;
 @ManagedBean(name="getHospitals")
 @SessionScoped
 public class GetHospitals implements  Serializable{
-    @PersistenceContext(unitName = "HospitalAutomation")
-    private EntityManager em;
-    
-    String mesaj="İlkay Günel";
 
-    public String getMesaj() {
-        return mesaj;
-    }
-
-    public void setMesaj(String mesaj) {
-        this.mesaj = mesaj;
-    }
-
-    @Resource
+    @ManagedProperty(value = "#{getDistricts}")
     private GetDistricts districtsObject;
     
-    @Resource
+    @ManagedProperty(value = "#{saveAppointments}")
     private SaveAppointments saveAppointments;
     
-    private List<String> hospitals;
-    private List<Hastaneler> hospitalResults;
     
     private int districtId;
+    String currentDistrict;
     
-    public void fillList()
+    public List<String> fillList() throws Exception
     {
-        //ApplicationContext context= FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
-        //SaveAppointments saveAppointments=(SaveAppointments) context.getBean("saveAppointments");
-        //GetDistricts districtsObject=(GetDistricts) context.getBean("getDistricts");
-
-        hospitals=new ArrayList<>();
-        hospitalResults=new ArrayList<>();
-        String currentDistrict=saveAppointments.district;
-        for(Ilceler i:districtsObject.districtResults)
-        {
-            if(currentDistrict.equals(i.getIlce()))
-            {
-                setDistrictId(i.getId());
-                break;
-            }
-        }
-        //EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
-        //EntityManager em=emf.createEntityManager();
-        TypedQuery<Hastaneler> query=em.createQuery("SELECT h FROM Hastaneler h WHERE h.ilceid=:value",Hastaneler.class);
-        query.setParameter("value", districtId);
-        hospitalResults=query.getResultList();
-        
-        for(Hastaneler h:hospitalResults)
-        {
-            hospitals.add(h.getHastaneadi());
-        }
-        
-    }
-
-    public List<String> getHospitals() {
-        return hospitals;
-    }
-
-    public void setHospitals(List<String> hospitals) {
-        this.hospitals = hospitals;
-    }
-
-    public List<Hastaneler> getHospitalResults() {
-        return hospitalResults;
-    }
-
-    public void setHospitalResults(List<Hastaneler> hospitalResults) {
-        this.hospitalResults = hospitalResults;
+        ApplicationContext context= FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+        HospitalsService hospitalsService = (HospitalsService) context.getBean("hospitalService");
+        return hospitalsService.getAllHospitalNames(currentDistrict);
     }
 
     public int getDistrictId() {
@@ -120,4 +74,11 @@ public class GetHospitals implements  Serializable{
         this.saveAppointments = saveAppointments;
     }*/
 
+    public String getCurrentDistrict() {
+        return currentDistrict;
+    }
+
+    public void setCurrentDistrict(String currentDistrict) {
+        this.currentDistrict = currentDistrict;
+    }
 }

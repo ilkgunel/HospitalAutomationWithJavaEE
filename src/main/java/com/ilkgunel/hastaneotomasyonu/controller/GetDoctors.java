@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import com.ilkgunel.hastaneotomasyonu.entity.Doktorlar;
 import com.ilkgunel.hastaneotomasyonu.entity.Hastaneler;
 import com.ilkgunel.hastaneotomasyonu.entity.Klinikler;
+import com.ilkgunel.hastaneotomasyonu.service.HospitalsService;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedProperty;
@@ -86,7 +87,11 @@ public class GetDoctors implements Serializable{
         }
 
         int hospitalId=0;
-        for(Hastaneler h:getGetHospitalsObject().getHospitalResults())
+        
+        ApplicationContext context= FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+        HospitalsService hospitalsService = (HospitalsService) context.getBean("hospitalService");
+        
+        for(Hastaneler h:hospitalsService.getHospitalResults())
         {
             if(h.getHastaneadi().equals(saveAppointmentsObject.getHospital()))
             {

@@ -2,6 +2,7 @@ package com.ilkgunel.hastaneotomasyonu.controller;
 
 import com.ilkgunel.hastaneotomasyonu.entity.Hastaneler;
 import com.ilkgunel.hastaneotomasyonu.entity.Klinikyerleri;
+import com.ilkgunel.hastaneotomasyonu.service.HospitalsService;
 
 import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
@@ -10,7 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.jsf.FacesContextUtils;
 
 @ManagedBean
 @SessionScoped
@@ -80,8 +84,11 @@ public class GetClinicPlaces implements Serializable {
         String currentHospital=appointmentObject.getHospital();
 
         System.out.println("Seçilen Klinik:"+appointmentObject.getClinic());
-
-        for(Hastaneler h:getHospitals.getHospitalResults())
+        
+        ApplicationContext context= FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+        HospitalsService hospitalsService = (HospitalsService) context.getBean("hospitalService");
+        
+        for(Hastaneler h:hospitalsService.getHospitalResults())
         {
             if(h.getHastaneadi().equals(currentHospital))
             {

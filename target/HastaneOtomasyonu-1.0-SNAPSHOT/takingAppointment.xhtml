@@ -43,15 +43,15 @@
                         <p:selectOneMenu id="citySelectOneMenu" value="#{getDistricts.currentCity}" style="width: 160px;" required="true" requiredMessage="İl Seçimi Zorunludur">
                             <p:ajax event="change" update="districtSelectOneMenu" listener="#{getDistricts.fillList}"/>
                             <f:selectItem  itemLabel="İl Seçin" itemValue="#{null}" />
-                            <f:selectItems value="#{getCities.cities}"/>
+                            <f:selectItems value="#{getCities.fillList()}"/>
                         </p:selectOneMenu>
                         <p:message id="citySelectOneMenuMessage" for="citySelectOneMenu" />
                                                  
                         <h:outputText value="İlçe"/>
-                        <p:selectOneMenu id="districtSelectOneMenu" value="#{saveAppointments.district}" style="width: 160px;" required="true" requiredMessage="İlçe Seçimi Zorunludur">
+                        <p:selectOneMenu id="districtSelectOneMenu" value="#{getHospitals.currentDistrict}" style="width: 160px;" required="true" requiredMessage="İlçe Seçimi Zorunludur">
                             <p:ajax update="hospitalSelectOneMenu" listener="#{getHospitals.fillList()}"/>
                             <f:selectItem itemLabel="-farketmez-" itemValue="#{null}"/>
-                            <f:selectItems value="#{getDistricts.districts}"/>
+                            <f:selectItems value="#{getDistricts.fillList()}"/>
                         </p:selectOneMenu>
                         <p:message for="districtSelectOneMenu"/>
 
@@ -59,7 +59,7 @@
                         <p:selectOneMenu id="hospitalSelectOneMenu" value="#{saveAppointments.hospital}" style="width: 160px;" required="true" requiredMessage="Hastane Seçimi Zorunludur">
                             <p:ajax update="clinic" listener="#{getClinics.fillList}"/>
                             <f:selectItem itemLabel="-farketmez-" itemValue="#{null}"/>
-                            <f:selectItems value="#{getHospitals.hospitals}"/>
+                            <f:selectItems value="#{getHospitals.fillList()}"/>
                         </p:selectOneMenu>
                         <p:message for="hospitalSelectOneMenu"/>
 

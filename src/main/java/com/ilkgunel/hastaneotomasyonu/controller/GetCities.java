@@ -13,6 +13,11 @@ import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import com.ilkgunel.hastaneotomasyonu.entity.Iller;
+import com.ilkgunel.hastaneotomasyonu.facade.CitiesFacade;
+import com.ilkgunel.hastaneotomasyonu.service.CitiesService;
+import javax.faces.context.FacesContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.jsf.FacesContextUtils;
 
 /**
  *
@@ -22,59 +27,10 @@ import com.ilkgunel.hastaneotomasyonu.entity.Iller;
 @SessionScoped
 public class GetCities implements Serializable {
     
-    @PersistenceContext(unitName = "HospitalAutomation")
-    private EntityManager em;
-    
-    List<String> cities;
-    List<Iller> cityResults;
-    int cityId;
-    
-    public List<Iller> getAllResults()
+    public List<String> fillList()
     {
-        return cityResults;
-    }
-
-    public void setAllResults(List<Iller> cityResults)
-    {
-        this.cityResults = cityResults;
-    }
-
-    public int getCityId()
-    {
-        return cityId;
-    }
-
-    public void setCityId(int cityId)
-    {
-        this.cityId = cityId;
-    }
-    
-    public List<String> getCities()
-    {
-        
-        return cities;
-    }
-
-    public void setCities(List<String> cities)
-    {
-        this.cities = cities;
-    }
-    
-    @PostConstruct
-    public void fillList()
-    {
-        cities=new ArrayList<>();
-        cityResults=new ArrayList<>();
-        /*EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
-        EntityManager em=emf.createEntityManager();*/
-        TypedQuery<Iller> query=em.createQuery("SELECT i FROM Iller i",Iller.class);
-        cityResults=query.getResultList();
-        
-        for (Iller i:cityResults)
-        {
-            cities.add(i.getSehir());
-        }
-         
-    }
-    
+        ApplicationContext context = FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+        CitiesService citiesService = (CitiesService) context.getBean("citiesService");
+        return citiesService.getAllCityNames();
+    }   
 }
