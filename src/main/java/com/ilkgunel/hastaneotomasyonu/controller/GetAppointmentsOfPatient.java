@@ -22,6 +22,7 @@ import javax.persistence.TypedQuery;
 
 import com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri;
 import com.ilkgunel.hastaneotomasyonu.entity.Takenappointments;
+import javax.faces.bean.ManagedProperty;
 import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 /**
@@ -40,7 +41,7 @@ public class GetAppointmentsOfPatient implements Serializable {
     Boolean passedText;
     String cancelMessage;
     
-    @Autowired
+    @ManagedProperty(value = "#{saveAppointments}")
     private SaveAppointments saveAppointments;
     
     public void fillList()

@@ -31,18 +31,10 @@ import org.springframework.stereotype.Component;
  *
  * @author ilkaygunel
  */
-@Component
-@ManagedBean
+@ManagedBean(name = "saveAppointments")
 @SessionScoped
 public class SaveAppointments implements Serializable{
-    @Autowired
-    RandevuSaatleriFacade randevuSaatleriFacade;
-    
-    @Autowired
-    UygunRandevularFacade uygunRandevularFacade;
-    
-    @Autowired
-    TakenAppointmentsFacade takenAppointmentsFacade;
+    private String currentCity = "";
     
     String comingIdentityNumber;
     String comingPassword;
@@ -57,9 +49,6 @@ public class SaveAppointments implements Serializable{
     Uygunrandevular selectedAppointment;
     
     String operationResult;
-    
-    int randevuid=0;
-    String hour="";
 
     public Uygunrandevular getSelectedAppointment()
     {
@@ -145,17 +134,19 @@ public class SaveAppointments implements Serializable{
     public void setComingPassword(String comingPassword) {
         this.comingPassword = comingPassword;
     }
-    
-    
+
+    public String getCurrentCity() {
+        return currentCity;
+    }
+
+    public void setCurrentCity(String currentCity) {
+        this.currentCity = currentCity;
+    }
     
     public void saveToDb(ActionEvent event) throws Exception
     {
         ApplicationContext context= FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
         SaveAppointmentsService saveAppointmentsService = (SaveAppointmentsService) context.getBean("saveAppointmentsService");
-        
-        //EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
-        //EntityManager em=emf.createEntityManager();
-                
         Takenappointments takenappointmentsObject=new Takenappointments();
         takenappointmentsObject.setDoctorid(selectedAppointment.getDoktorid());
         takenappointmentsObject.setPatientid(comingIdentityNumber);
@@ -163,54 +154,7 @@ public class SaveAppointments implements Serializable{
         takenappointmentsObject.setClinicname(clinic);
         takenappointmentsObject.setClinicplace(clinicPlace);
         takenappointmentsObject.setClockid(Integer.parseInt(clockId));
-        
-        //TypedQuery<Randevusaatleri> appointmentClockQuery=em.createQuery("SELECT c FROM Randevusaatleri c",Randevusaatleri.class);
-        List<Randevusaatleri> appointmentClockResults =new ArrayList<>();
-        
-        appointmentClockResults = randevuSaatleriFacade.findListByNamedQuery("Randevusaatleri.findAll");
-        for (Randevusaatleri r  : appointmentClockResults) {
-            if(r.getSaatid()==Integer.parseInt(clockId))
-            {	
-                System.out.println("Saatin ID'si:"+clockId);
-                hour=r.getSaat();
-                randevuid=r.getRandevuid();
-                break;
-            }
-        }
-        
-        takenappointmentsObject.setHour(hour);
-        //TypedQuery<Uygunrandevular> appointmentdIdQuery=em.createQuery("SELECT u FROM Uygunrandevular u WHERE u.uygunrandevuid=:appointmentid",Uygunrandevular.class);
-        List<Uygunrandevular> appointmentIdResults =new ArrayList<>();
-        Map parameters = new HashMap();
-        parameters.put("uygunrandevuid", randevuid);
-       // appointmentdIdQuery.setParameter("appointmentid", randevuid);
-        appointmentIdResults=uygunRandevularFacade.findListByNamedQuery("Uygunrandevular.findByUygunrandevuid", parameters);
-        
-        for(Uygunrandevular u:appointmentIdResults)
-        {
-            takenappointmentsObject.setDate(u.getTarih());
-        }
-        
-        
-            /*Query updateQuery=em.createQuery("UPDATE Randevusaatleri r SET r.saatalindimi=TRUE,r.title='DOLU' WHERE r.saatid=:clockId");
-            updateQuery.setParameter("clockId", Integer.parseInt(clockId));
-            int updateCount = query.executeUpdate();	
-            if (updateCount > 0) {
-                System.out.println("Done...");
-            }*/
-            //Randevusaatleri r=em.find(Randevusaatleri.class, Integer.parseInt(clockId));
-            Randevusaatleri r = randevuSaatleriFacade.find(Integer.parseInt(clockId));
-            r.setSaatalindimi(true);
-            r.setTitle("DOLU");
-            //em.getTransaction().commit();
-            
-            operationResult = takenAppointmentsFacade.create(takenappointmentsObject);
-            
-        
-
-        
-        GetAvaliableAppointments getAvaliableAppointments=(GetAvaliableAppointments) context.getBean("getAvaliableAppointments");
-        getAvaliableAppointments.changeRenderingStates();
+        saveAppointmentsService.saveAppointmentToDb(takenappointmentsObject);
     }
 
     public String getClockId() {

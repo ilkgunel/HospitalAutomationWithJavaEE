@@ -1,6 +1,7 @@
 package com.ilkgunel.hastaneotomasyonu.controller;
 
 import com.ilkgunel.hastaneotomasyonu.entity.Klinikler;
+import com.ilkgunel.hastaneotomasyonu.service.ClinicService;
 
 
 import javax.faces.bean.ManagedBean;
@@ -12,44 +13,18 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
+import javax.faces.context.FacesContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.jsf.FacesContextUtils;
 
 @ManagedBean
 @SessionScoped
 public class GetClinics implements Serializable{
 
-    @PersistenceContext(unitName = "HospitalAutomation")
-    private EntityManager em;
-    
-     List<Klinikler> clinicResults;
-     List<String> clinics;
-
-    public List<Klinikler> getClinicResults() {
-        return clinicResults;
-    }
-
-    public void setClinicResults(List<Klinikler> clinicResults) {
-        this.clinicResults = clinicResults;
-    }
-
-    public List<String> getClinics() {
-        return clinics;
-    }
-
-    public void setClinics(List<String> clinics) {
-        this.clinics = clinics;
-    }
-
-    public void fillList() throws Exception
+    public List<String> fillList() throws Exception
     {
-        //EntityManagerFactory emf= Persistence.createEntityManagerFactory("HospitalAutomation");
-        //EntityManager em=emf.createEntityManager();
-        TypedQuery<Klinikler> query=em.createQuery("select k from Klinikler k",Klinikler.class);
-        clinicResults=new ArrayList<>();
-        clinics=new ArrayList<>();
-        clinicResults=query.getResultList();
-        for (Klinikler k:clinicResults)
-        {
-            clinics.add(k.getKlinikadi());
-        }
+        ApplicationContext context= FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+        ClinicService clinicService = (ClinicService) context.getBean("clinicService");
+        return clinicService.getAllClinicNames();
     }
 }

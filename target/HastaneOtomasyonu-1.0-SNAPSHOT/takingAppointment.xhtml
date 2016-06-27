@@ -40,7 +40,7 @@
                   <p:panelGrid id="infoOrClocksAndOptions" columns="2">
                     <p:panelGrid columns="3" style="float: left;">
                         <p:outputLabel value="İl"/>
-                        <p:selectOneMenu id="citySelectOneMenu" value="#{getDistricts.currentCity}" style="width: 160px;" required="true" requiredMessage="İl Seçimi Zorunludur">
+                        <p:selectOneMenu id="citySelectOneMenu" value="#{saveAppointments.currentCity}" style="width: 160px;" required="true" requiredMessage="İl Seçimi Zorunludur">
                             <p:ajax event="change" update="districtSelectOneMenu" listener="#{getDistricts.fillList}"/>
                             <f:selectItem  itemLabel="İl Seçin" itemValue="#{null}" />
                             <f:selectItems value="#{getCities.fillList()}"/>
@@ -67,7 +67,7 @@
                         <p:selectOneMenu id="clinic" value="#{saveAppointments.clinic}" style="width: 160px;" required="true" requiredMessage="Klinik Seçimi Zorunludur">
                             <p:ajax event="change" update="clinicplace" listener="#{getClinicPlaces.fillList}"></p:ajax>
                             <f:selectItem itemLabel="-farketmez-" itemValue="#{null}"/>
-                            <f:selectItems value="#{getClinics.clinics}"/>
+                            <f:selectItems value="#{getClinics.fillList()}"/>
                         </p:selectOneMenu>
                         <p:message for="clinic"/>
 
@@ -82,7 +82,7 @@
                         <h:outputText value="Hekim"/>
                         <p:selectOneMenu id="doctorSelectOneMenu" style="width: 160px;" value="#{saveAppointments.doctor}" required="true" requiredMessage="Hekim Seçimi Zorunludur">
                             <f:selectItem itemLabel="-Hekim Seçiniz-" itemValue="Hekim"/>
-                            <f:selectItems value="#{getDoctors.doctors}"/>
+                            <f:selectItems value="#{getDoctors.fillList()}"/>
                         </p:selectOneMenu>
                         <p:message for="doctorSelectOneMenu"/>
 

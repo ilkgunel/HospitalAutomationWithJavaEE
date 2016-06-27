@@ -58,10 +58,10 @@
     <!-- Şehirler Sınıfının Spring İle Gönderilmesi -->
     
     <bean id="getAvaliableAppointments" class="com.ilkgunel.hastaneotomasyonu.controller.GetAvaliableAppointments"/>   
-    <bean id="saveAppointmentsService" class="com.ilkgunel.hastaneotomasyonu.service.SaveAppointmentsService"></bean>   
+    <bean id="saveAppointmentsService" class="com.ilkgunel.hastaneotomasyonu.service.SaveAppointmentsService"></bean>
     <bean id="getClinics" class="com.ilkgunel.hastaneotomasyonu.controller.GetClinics"></bean>
     <bean id="getClinicPlaces" class="com.ilkgunel.hastaneotomasyonu.controller.GetClinicPlaces"/>
-    <bean id="getPatientInformation" class="com.ilkgunel.hastaneotomasyonu.controller.GetPatientInformation"></bean>
+    <!--<bean id="getPatientInformation" class="com.ilkgunel.hastaneotomasyonu.controller.GetPatientInformation"></bean>-->
     <bean id="getAppointmentsOfPatient" class="com.ilkgunel.hastaneotomasyonu.controller.GetAppointmentsOfPatient"></bean>
     <bean id="savePatientsService" class="com.ilkgunel.hastaneotomasyonu.service.SavePatientsService"></bean>
     <bean id="randevuSaatleriFacade" class="com.ilkgunel.hastaneotomasyonu.facade.RandevuSaatleriFacade"></bean>
@@ -73,7 +73,10 @@
     <bean id="districtService" class="com.ilkgunel.hastaneotomasyonu.service.DistrictService"></bean>
     <bean id="hospitalService" class="com.ilkgunel.hastaneotomasyonu.service.HospitalsService"></bean>
     <bean id="hospitalFacade" class="com.ilkgunel.hastaneotomasyonu.facade.HospitalFacade"></bean>
-    
+    <bean id="doctorFacade" class="com.ilkgunel.hastaneotomasyonu.facade.DoctorFacade"></bean>
+    <bean id="doctorService" class="com.ilkgunel.hastaneotomasyonu.service.DoctorService"></bean>
+    <bean id="clinicService" class="com.ilkgunel.hastaneotomasyonu.service.ClinicService"></bean>
+    <bean id="clinicFacade" class="com.ilkgunel.hastaneotomasyonu.facade.ClinicFacade"></bean>
     
     <!-- Burası Yorum Yapılacak -->
     <bean id="getCities" class="com.ilkgunel.hastaneotomasyonu.controller.GetCities"></bean>

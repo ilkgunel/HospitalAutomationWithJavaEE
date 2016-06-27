@@ -4,6 +4,7 @@ import com.ilkgunel.hastaneotomasyonu.entity.Hastaneler;
 import com.ilkgunel.hastaneotomasyonu.entity.Klinikler;
 import com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri;
 import com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular;
+import com.ilkgunel.hastaneotomasyonu.service.ClinicService;
 import com.ilkgunel.hastaneotomasyonu.service.HospitalsService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.jsf.FacesContextUtils;
@@ -117,7 +118,8 @@ public class GetAvaliableAppointments implements Serializable{
         GetHospitals getHospitalsObject=(GetHospitals) context.getBean("getHospitals");
         SaveAppointments saveAppointmentsObjectInAvaliableAppointments=(SaveAppointments) context.getBean("saveAppointments");
         GetClinics getClinicsObject=(GetClinics) context.getBean("getClinics");
-
+        ClinicService clinicService = (ClinicService) context.getBean("clinicService");
+        
         HospitalsService hospitalsService = (HospitalsService) context.getBean("hospitalService");
         
         for (Hastaneler h:hospitalsService.getHospitalResults())
@@ -130,7 +132,7 @@ public class GetAvaliableAppointments implements Serializable{
         }
         
         int clinicId=0;
-        for(Klinikler k:getClinicsObject.clinicResults)
+        for(Klinikler k:clinicService.getClinicResults())
         {
             if(k.getKlinikadi().equals(saveAppointmentsObjectInAvaliableAppointments.clinic))
             {

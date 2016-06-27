@@ -1,9 +1,12 @@
 com\ilkgunel\hastaneotomasyonu\entity\Randevusaatleri_.class
+com\ilkgunel\hastaneotomasyonu\facade\DoctorFacade.class
 com\ilkgunel\hastaneotomasyonu\service\HospitalsService.class
 com\ilkgunel\hastaneotomasyonu\entity\Klinikyerleri_.class
 com\ilkgunel\hastaneotomasyonu\controller\SavePatients.class
 com\ilkgunel\hastaneotomasyonu\controller\GetClinicPlaces.class
 com\ilkgunel\hastaneotomasyonu\entity\Ilceler_.class
+com\ilkgunel\hastaneotomasyonu\facade\ClinicFacade.class
+com\ilkgunel\hastaneotomasyonu\service\DoctorService.class
 com\ilkgunel\hastaneotomasyonu\controller\LoginControlClass.class
 com\ilkgunel\hastaneotomasyonu\controller\SaveAppointments.class
 com\ilkgunel\hastaneotomasyonu\entity\Uygunrandevular_.class
@@ -20,6 +23,7 @@ com\ilkgunel\hastaneotomasyonu\entity\Doktorlar_.class
 com\ilkgunel\hastaneotomasyonu\controller\GetHospitals.class
 com\ilkgunel\hastaneotomasyonu\facade\RandevuSaatleriFacade.class
 com\ilkgunel\hastaneotomasyonu\entity\Iller_.class
+com\ilkgunel\hastaneotomasyonu\service\ClinicService.class
 com\ilkgunel\hastaneotomasyonu\controller\GetAppointmentsOfPatient.class
 com\ilkgunel\hastaneotomasyonu\facade\TakenAppointmentsFacade.class
 com\ilkgunel\hastaneotomasyonu\controller\Test.class
@@ -32,6 +36,7 @@ com\ilkgunel\hastaneotomasyonu\entity\Hastaneler_.class
 com\ilkgunel\hastaneotomasyonu\service\SavePatientsService.class
 com\ilkgunel\hastaneotomasyonu\entity\Klinikler.class
 com\ilkgunel\hastaneotomasyonu\entity\User.class
+com\ilkgunel\hastaneotomasyonu\facade\SaveAppointmentFacada.class
 com\ilkgunel\hastaneotomasyonu\entity\Hastaneler.class
 com\ilkgunel\hastaneotomasyonu\facade\UygunRandevularFacade.class
 com\ilkgunel\hastaneotomasyonu\filter\TurkishCharacterFilter.class

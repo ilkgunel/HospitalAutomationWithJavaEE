@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class GetClinicPlaces implements Serializable {
     @Autowired
     private GetHospitals getHospitals;
 
-    @Resource
+    @ManagedProperty(value = "#{saveAppointments}")
     private SaveAppointments appointmentObject;
 
     int hospitalId;

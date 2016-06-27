@@ -10,14 +10,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import com.ilkgunel.hastaneotomasyonu.entity.Patients;
 import com.ilkgunel.hastaneotomasyonu.entity.Takenappointments;
+import com.ilkgunel.hastaneotomasyonu.facade.PatientFacade;
+import com.ilkgunel.hastaneotomasyonu.service.PatientsService;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.jsf.FacesContextUtils;
 @ManagedBean
 @SessionScoped
 public class GetPatientInformation implements Serializable{
-   
-    @PersistenceContext(unitName = "HospitalAutomation")
-    private EntityManager em;
     
     private String identityNumber;
     private String name;
@@ -34,7 +37,7 @@ public class GetPatientInformation implements Serializable{
     
     private String messageForUpdate;
     
-    @Autowired
+    @ManagedProperty(value = "#{saveAppointments}")
     private SaveAppointments saveAppointments;
     
     @Autowired
@@ -57,28 +60,24 @@ public class GetPatientInformation implements Serializable{
 
     public void fillList(ActionEvent event)
     {
-        TypedQuery<Patients> query=em.createQuery("SELECT p FROM Patients p WHERE p.identitynumber=:patientid",Patients.class);
-        query.setParameter("patientid", saveAppointments.comingIdentityNumber);
-        //patientInfo=new ArrayList<Patient>();
-        //patientInfo=query.getResultList();
-
-        for (Patients p : query.getResultList()) 
-        {
-            setIdentityNumber(p.getIdentitynumber());
-            setName(p.getName());
-            setSurname(p.getSurname());
-            setGender(p.getGender());
-            setBirthplace(p.getBirthplace());
-            setBirthDate(p.getBirthdate());
-            setFatherName(p.getFathername());
-            setMotherName(p.getMothername());
-            setMobilePhoneNumber(p.getPhonenumber());
-            setHomePhoneNumber(p.getPhonenumber());
-            setEmailAddress(p.getEmailaddress());
-            setPassword(p.getPassword());
-        }
+        ApplicationContext context = FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+        PatientsService patientsService = (PatientsService) context.getBean("patientService");
+        
         g.fillList();
         System.out.println("Bu metod çalışıyor ki!");
+        Patients p = patientsService.getPatientInfo(Integer.parseInt(saveAppointments.comingIdentityNumber));
+        setIdentityNumber(p.getIdentitynumber());
+        setName(p.getName());
+        setSurname(p.getSurname());
+        setGender(p.getGender());
+        setBirthplace(p.getBirthplace());
+        setBirthDate(p.getBirthdate());
+        setFatherName(p.getFathername());
+        setMotherName(p.getMothername());
+        setMobilePhoneNumber(p.getPhonenumber());
+        setHomePhoneNumber(p.getPhonenumber());
+        setEmailAddress(p.getEmailaddress());
+        setPassword(p.getPassword());
     }
 
     /*public List<Patient> getPatientInfo() {
@@ -89,6 +88,14 @@ public class GetPatientInformation implements Serializable{
     {
         this.patientInfo = patientInfo;
     }*/
+
+    public SaveAppointments getSaveAppointments() {
+        return saveAppointments;
+    }
+
+    public void setSaveAppointments(SaveAppointments saveAppointments) {
+        this.saveAppointments = saveAppointments;
+    }
 
     public String getIdentityNumber() {
         return identityNumber;
@@ -189,8 +196,10 @@ public class GetPatientInformation implements Serializable{
 
     public void updatePatientInfo()
     {
+        ApplicationContext context = FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+        PatientFacade patientsService = (PatientFacade) context.getBean("patientFacade");
         try {
-            Patients p = em.find(Patients.class, identityNumber);
+            Patients p = patientsService.find(identityNumber);
 
             p.setName(name);
             System.out.println(p.getName());
@@ -206,7 +215,6 @@ public class GetPatientInformation implements Serializable{
             p.setMothername(motherName);
             p.setPhonenumber(mobilePhoneNumber);
             p.setEmailaddress(emailAddress);
-            em.getTransaction().commit();
 
             messageForUpdate="Bilgileriniz Başarı İle Güncellendi!";
 
