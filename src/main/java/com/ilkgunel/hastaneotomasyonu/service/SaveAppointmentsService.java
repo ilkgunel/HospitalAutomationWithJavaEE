@@ -13,7 +13,7 @@ import com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular;
 import com.ilkgunel.hastaneotomasyonu.facade.AbstractFacade;
 import com.ilkgunel.hastaneotomasyonu.facade.RandevuSaatleriFacade;
 import com.ilkgunel.hastaneotomasyonu.facade.TakenAppointmentsFacade;
-import com.ilkgunel.hastaneotomasyonu.facade.UygunRandevularFacade;
+import com.ilkgunel.hastaneotomasyonu.facade.AvailableAppointmentsFacade;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,7 +38,7 @@ public class SaveAppointmentsService{
     RandevuSaatleriFacade randevuSaatleriFacade;
     
     @Autowired
-    UygunRandevularFacade uygunRandevularFacade;
+    AvailableAppointmentsFacade availableAppointmentsFacade;
     
     @Autowired
     TakenAppointmentsFacade takenAppointmentsFacade;
@@ -66,7 +66,7 @@ public class SaveAppointmentsService{
         Map parameters = new HashMap();
         parameters.put("uygunrandevuid", randevuid);
        // appointmentdIdQuery.setParameter("appointmentid", randevuid);
-        appointmentIdResults=uygunRandevularFacade.findListByNamedQuery("Uygunrandevular.findByUygunrandevuid", parameters);
+        appointmentIdResults=availableAppointmentsFacade.findListByNamedQuery("Uygunrandevular.findByUygunrandevuid", parameters);
         
         for(Uygunrandevular u:appointmentIdResults)
         {

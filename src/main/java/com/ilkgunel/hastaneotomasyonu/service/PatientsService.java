@@ -19,7 +19,7 @@ public class PatientsService {
     @Autowired
     private PatientFacade patientFacade;
     
-    public Patients getPatientInfo(int patientId) {
+    public Patients getPatientInfo(String patientId) {
         Map map = new HashMap();
         map.put("identitynumber",patientId);
         Patients patient = patientFacade.find(patientId);

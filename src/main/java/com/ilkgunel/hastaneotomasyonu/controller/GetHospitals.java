@@ -47,6 +47,7 @@ public class GetHospitals implements  Serializable{
     {
         ApplicationContext context= FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
         HospitalsService hospitalsService = (HospitalsService) context.getBean("hospitalService");
+        System.out.println("------ currentDistrict:----"+currentDistrict);
         return hospitalsService.getAllHospitalNames(currentDistrict);
     }
 

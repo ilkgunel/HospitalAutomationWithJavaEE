@@ -75,7 +75,7 @@
                         <p:selectOneMenu id="clinicplace" style="width: 160px;" value="#{saveAppointments.clinicPlace}" required="true" requiredMessage="Klinik Yeri Seçimi Zorunludur">
                             <p:ajax update="doctorSelectOneMenu" listener="#{getDoctors.fillList()}"/>
                             <f:selectItem itemLabel="-farketmez-" itemValue="#{null}"/>
-                            <f:selectItems value="#{getClinicPlaces.clinicPlaces}"/>
+                            <f:selectItems value="#{getClinicPlaces.fillList()}"/>
                         </p:selectOneMenu>
                         <p:message for="clinicplace"/>
 
@@ -139,7 +139,7 @@
                 </p:panelGrid>
 
                   <p:panelGrid id="panelGrid" columns="1" style="width: 733px;">
-                    <p:dataTable id="availableTableId" rendered="#{getAvaliableAppointments.renderingDataTable}" value="#{getAvaliableAppointments.availableAppointments}" var="gap"
+                      <p:dataTable id="availableTableId" rendered="#{getAvaliableAppointments.renderingDataTable}" value="#{getAvaliableAppointments.fillList()}" var="gap"
                                  selectionMode="single" selection="#{saveAppointments.selectedAppointment}" rowKey="#{gap.doktorid}">
                         <p:ajax event="rowSelect" update=":#{p:component('infoOrClocksAndOptions')}" listener="#{getAvaliableAppointments.changeRenderingStates()}"/>
                         <p:column sortBy="#{gap.doktorid}" rendered="true">

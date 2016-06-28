@@ -5,7 +5,7 @@
  */
 package com.ilkgunel.hastaneotomasyonu.facade;
 
-import com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular;
+import com.ilkgunel.hastaneotomasyonu.entity.Klinikyerleri;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -13,15 +13,16 @@ import javax.persistence.PersistenceContext;
  *
  * @author 010533
  */
-public class UygunRandevularFacade extends AbstractFacade<Uygunrandevular>{
+public class ClinicPlacesFacade extends AbstractFacade<Klinikyerleri>{
     @PersistenceContext
-    EntityManager em;
-    
-    public UygunRandevularFacade(){
-        super(Uygunrandevular.class);
-    }
+    private EntityManager em;
     
     protected EntityManager getEntityManager(){
         return em;
     }
+    
+    public ClinicPlacesFacade(){
+        super(Klinikyerleri.class);
+    }
+    
 }

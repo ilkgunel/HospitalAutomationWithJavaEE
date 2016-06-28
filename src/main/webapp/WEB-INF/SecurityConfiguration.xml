@@ -56,16 +56,12 @@
     <context:annotation-config/>
     
     <!-- Şehirler Sınıfının Spring İle Gönderilmesi -->
-    
-    <bean id="getAvaliableAppointments" class="com.ilkgunel.hastaneotomasyonu.controller.GetAvaliableAppointments"/>   
     <bean id="saveAppointmentsService" class="com.ilkgunel.hastaneotomasyonu.service.SaveAppointmentsService"></bean>
     <bean id="getClinics" class="com.ilkgunel.hastaneotomasyonu.controller.GetClinics"></bean>
-    <bean id="getClinicPlaces" class="com.ilkgunel.hastaneotomasyonu.controller.GetClinicPlaces"/>
-    <!--<bean id="getPatientInformation" class="com.ilkgunel.hastaneotomasyonu.controller.GetPatientInformation"></bean>-->
+    
     <bean id="getAppointmentsOfPatient" class="com.ilkgunel.hastaneotomasyonu.controller.GetAppointmentsOfPatient"></bean>
     <bean id="savePatientsService" class="com.ilkgunel.hastaneotomasyonu.service.SavePatientsService"></bean>
     <bean id="randevuSaatleriFacade" class="com.ilkgunel.hastaneotomasyonu.facade.RandevuSaatleriFacade"></bean>
-    <bean id="uygunRandevularFacade" class="com.ilkgunel.hastaneotomasyonu.facade.UygunRandevularFacade"></bean>
     <bean id="takenAppointmentsFacade" class="com.ilkgunel.hastaneotomasyonu.facade.TakenAppointmentsFacade"></bean>
     <bean id="citiesFacade" class="com.ilkgunel.hastaneotomasyonu.facade.CitiesFacade"></bean>
     <bean id="districtFacade" class="com.ilkgunel.hastaneotomasyonu.facade.DistrictsFacade"></bean>
@@ -77,10 +73,18 @@
     <bean id="doctorService" class="com.ilkgunel.hastaneotomasyonu.service.DoctorService"></bean>
     <bean id="clinicService" class="com.ilkgunel.hastaneotomasyonu.service.ClinicService"></bean>
     <bean id="clinicFacade" class="com.ilkgunel.hastaneotomasyonu.facade.ClinicFacade"></bean>
+    <bean id="patientService" class="com.ilkgunel.hastaneotomasyonu.service.PatientsService"></bean>
+    <bean id="patientFacade" class="com.ilkgunel.hastaneotomasyonu.facade.PatientFacade"></bean>
+    <bean id="clinicPlacesService" class="com.ilkgunel.hastaneotomasyonu.service.ClinicPlacesService"></bean>
+    <bean id="clinicPlacesFacade" class="com.ilkgunel.hastaneotomasyonu.facade.ClinicPlacesFacade"></bean>
+    <bean id="availableAppointmentsService" class="com.ilkgunel.hastaneotomasyonu.service.AvailableAppointmentsService"></bean>
+    <bean id="availableAppointmentsFacade" class="com.ilkgunel.hastaneotomasyonu.facade.AvailableAppointmentsFacade"></bean>
     
     <!-- Burası Yorum Yapılacak -->
     <bean id="getCities" class="com.ilkgunel.hastaneotomasyonu.controller.GetCities"></bean>
-    <bean id="getDistricts" class="com.ilkgunel.hastaneotomasyonu.controller.GetDistricts"></bean>
+    <!--<bean id="getDistricts" class="com.ilkgunel.hastaneotomasyonu.controller.GetDistricts"></bean>-->
+    <!--<bean id="getClinicPlaces" class="com.ilkgunel.hastaneotomasyonu.controller.GetClinicPlaces"/>-->
+    <!--<bean id="getPatientInformation" class="com.ilkgunel.hastaneotomasyonu.controller.GetPatientInformation"></bean>-->
     <bean id="getHospitals" name="getHospitals" class="com.ilkgunel.hastaneotomasyonu.controller.GetHospitals"></bean>
     <!-- Burası Yorum Yapılacak -->
     

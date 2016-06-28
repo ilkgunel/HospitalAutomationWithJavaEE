@@ -5,28 +5,17 @@
  */
 package com.ilkgunel.hastaneotomasyonu.controller;
 
-import com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri;
 import com.ilkgunel.hastaneotomasyonu.entity.Takenappointments;
 import com.ilkgunel.hastaneotomasyonu.entity.Uygunrandevular;
-import com.ilkgunel.hastaneotomasyonu.facade.RandevuSaatleriFacade;
-import com.ilkgunel.hastaneotomasyonu.facade.TakenAppointmentsFacade;
-import com.ilkgunel.hastaneotomasyonu.facade.UygunRandevularFacade;
 import com.ilkgunel.hastaneotomasyonu.service.SaveAppointmentsService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.jsf.FacesContextUtils;
-
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
 /**
  *
  * @author ilkaygunel

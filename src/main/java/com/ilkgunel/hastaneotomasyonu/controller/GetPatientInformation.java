@@ -6,15 +6,12 @@ import java.util.List;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.event.ActionEvent;
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import com.ilkgunel.hastaneotomasyonu.entity.Patients;
 import com.ilkgunel.hastaneotomasyonu.entity.Takenappointments;
 import com.ilkgunel.hastaneotomasyonu.facade.PatientFacade;
 import com.ilkgunel.hastaneotomasyonu.service.PatientsService;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
-import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.jsf.FacesContextUtils;
@@ -40,13 +37,6 @@ public class GetPatientInformation implements Serializable{
     @ManagedProperty(value = "#{saveAppointments}")
     private SaveAppointments saveAppointments;
     
-    @Autowired
-    private GetAppointmentsOfPatient g;
-    
-    //EntityManagerFactory emf=Persistence.createEntityManagerFactory("HospitalAutomation");
-    //EntityManager em=emf.createEntityManager();
-    
-    //List<Patient> patientInfo;
     List<Takenappointments> takenAppointmentsOfPatient;
 
     public List<Takenappointments> getTakenAppointmentsOfPatient() {
@@ -62,10 +52,11 @@ public class GetPatientInformation implements Serializable{
     {
         ApplicationContext context = FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
         PatientsService patientsService = (PatientsService) context.getBean("patientService");
+        GetAppointmentsOfPatient getAppointmentsOfPatient = (GetAppointmentsOfPatient) context.getBean("getAppointmentsOfPatient");
         
-        g.fillList();
+        getAppointmentsOfPatient.fillList();
         System.out.println("Bu metod çalışıyor ki!");
-        Patients p = patientsService.getPatientInfo(Integer.parseInt(saveAppointments.comingIdentityNumber));
+        Patients p = patientsService.getPatientInfo(saveAppointments.comingIdentityNumber);
         setIdentityNumber(p.getIdentitynumber());
         setName(p.getName());
         setSurname(p.getSurname());
@@ -232,13 +223,5 @@ public class GetPatientInformation implements Serializable{
 
     public void setMessageForUpdate(String messageForUpdate) {
         this.messageForUpdate = messageForUpdate;
-    }
-
-    public GetAppointmentsOfPatient getG() {
-        return g;
-    }
-
-    public void setG(GetAppointmentsOfPatient g) {
-        this.g = g;
-    }   
+    } 
 }

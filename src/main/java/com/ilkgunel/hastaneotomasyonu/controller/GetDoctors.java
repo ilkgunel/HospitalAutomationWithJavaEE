@@ -21,7 +21,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.jsf.FacesContextUtils;
 
-@Component
 @ManagedBean
 @SessionScoped
 public class GetDoctors implements Serializable{

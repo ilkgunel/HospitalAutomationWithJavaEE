@@ -25,8 +25,8 @@ public class HospitalsService {
     @Autowired
     private HospitalFacade hospitalFacade;
     
-    private List<String> hospitalNames;
-    private List<Hastaneler> hospitalResults;
+    List<String> hospitalNames;
+    List<Hastaneler> hospitalResults;
     
     public List<String> getAllHospitalNames(String currentDistrict) throws Exception{
         System.out.println("Güncel İlçe Adı:"+currentDistrict);
