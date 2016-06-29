@@ -59,4 +59,9 @@ public abstract class AbstractFacade<T> {
         }
         return q.getResultList();
     }
+    
+    @Transactional
+    public void updateMemberInfo(T entity){
+        getEntityManager().merge(entity);
+    }
 }

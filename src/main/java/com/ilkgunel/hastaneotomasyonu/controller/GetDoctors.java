@@ -13,6 +13,7 @@ import com.ilkgunel.hastaneotomasyonu.service.HospitalsService;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -22,7 +23,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.jsf.FacesContextUtils;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class GetDoctors implements Serializable{
    @ManagedProperty(value = "#{saveAppointments}")
    private SaveAppointments saveAppointments;

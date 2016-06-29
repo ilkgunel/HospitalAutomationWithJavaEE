@@ -13,9 +13,10 @@ import javax.faces.context.FacesContext;
 import java.util.List;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 //Çalışan Sınıf Budur
 @ManagedBean(name = "getAvaliableAppointments")
-@SessionScoped
+@ViewScoped
 public class GetAvaliableAppointments implements Serializable{
     
     List<Object[]> doctorAndTimeList;

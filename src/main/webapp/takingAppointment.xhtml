@@ -8,6 +8,7 @@
     <h:head>
         <title>Randevu Alma Sayfası</title>
         <f:event type="preRenderView" listener="#{getAppointmentsOfPatient.fillList()}"/>
+        <f:event type="preRenderView" listener="#{getPatientInformation.fillList()}"/>
     </h:head>
   
     <h:body>
@@ -35,7 +36,7 @@
 
                     <p:clock pattern="HH:mm:ss" />
                     <p:spacer/>
-                    <p:outputLabel id="whichPerson" value="Randevu Alınan Kişi:#{getPatientInformation.name} #{getPatientInformation.surname}"/>
+                    <p:outputLabel id="whichPerson" value="Randevu Alınan Kişi:#{getPatientInformation.p.name} #{getPatientInformation.p.surname}"/>
                 </p:panelGrid>
 
                   <p:panelGrid id="infoOrClocksAndOptions" columns="2">
@@ -199,37 +200,37 @@
             <p:dialog id="memberInfoDialog" header="Üye Bilgileri" modal="true" resizable="false" widgetVar="memberInfoDialog" showEffect="fade">
                 <p:panelGrid columns="2">
                     <h:outputText value="Kimlik Numarası:"/>
-                    <p:inputText id="identitiyNumber" value="#{getPatientInformation.identityNumber}" disabled="true"/>
+                    <p:inputText id="identitiyNumber" value="#{getPatientInformation.p.identitynumber}" disabled="true"/>
 
                     <h:outputText value="İsim:"/>
-                    <p:inputText id="name" value="#{getPatientInformation.name}"/>
+                    <p:inputText id="name" value="#{getPatientInformation.p.name}"/>
 
                     <h:outputText value="Soyisim:"/>
-                    <p:inputText id="surname" value="#{getPatientInformation.surname}"/>
+                    <p:inputText id="surname" value="#{getPatientInformation.p.surname}"/>
 
                     <h:outputText value="Cinsiyeti:"/>
-                    <p:selectOneMenu id="gender" value="#{getPatientInformation.gender}">
+                    <p:selectOneMenu id="gender" value="#{getPatientInformation.p.gender}">
                         <f:selectItem itemLabel="Erkek" itemValue="Erkek"/>
                         <f:selectItem itemLabel="Bayan" itemValue="Bayan"/>
                     </p:selectOneMenu>
 
                     <h:outputText value="Doğum Yeri:"/>
-                    <p:inputText id="birthPlace" value="#{getPatientInformation.birthplace}"/>
+                    <p:inputText id="birthPlace" value="#{getPatientInformation.p.birthplace}"/>
 
                     <h:outputText value="Doğum Tarihi:"/>
-                    <p:calendar id="birthDate" value="#{getPatientInformation.birthDate}"/>
+                    <p:calendar id="birthDate" value="#{getPatientInformation.p.birthdate}"/>
 
                     <h:outputText value="Baba Adı"/>
-                    <p:inputText id="fatherName" value="#{getPatientInformation.fatherName}"/>
+                    <p:inputText id="fatherName" value="#{getPatientInformation.p.fathername}"/>
 
                     <h:outputText value="Anne Adı"/>
-                    <p:inputText id="motherName" value="#{getPatientInformation.motherName}"/>
+                    <p:inputText id="motherName" value="#{getPatientInformation.p.mothername}"/>
 
                     <h:outputText value="Telefon"/>
-                    <p:inputText id="mobilePhoneNumber" value="#{getPatientInformation.mobilePhoneNumber}"/>
+                    <p:inputText id="mobilePhoneNumber" value="#{getPatientInformation.p.phonenumber}"/>
 
                     <h:outputText value="E-posta Adresi:"/>
-                    <p:inputText  id="email" value="#{getPatientInformation.emailAddress}"/>
+                    <p:inputText  id="email" value="#{getPatientInformation.p.emailaddress}"/>
 
                     <h:outputText value="Şifre"/>
                     <p:commandLink value="Şifremi Sıfırla"/>

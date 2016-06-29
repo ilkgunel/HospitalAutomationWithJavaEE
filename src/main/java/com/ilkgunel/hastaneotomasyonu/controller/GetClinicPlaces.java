@@ -9,12 +9,13 @@ import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.jsf.FacesContextUtils;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class GetClinicPlaces implements Serializable {
 
     @ManagedProperty(value = "#{saveAppointments}")

@@ -25,4 +25,15 @@ public class PatientsService {
         Patients patient = patientFacade.find(patientId);
         return patient;
     }
+    
+    public String updatePatientInfo(Patients patients){
+        String message = "";
+        try {
+            patientFacade.updateMemberInfo(patients);
+            message = "Kayıt Güncellemesi Başarılı!";
+        } catch (Exception e) {
+            message = "Kayıt Güncellemesi Sırasında Hata Meydana Geldi!\nHata:"+e;
+        }
+        return message;
+    }
 }

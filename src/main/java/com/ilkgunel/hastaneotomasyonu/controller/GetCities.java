@@ -15,6 +15,7 @@ import java.io.Serializable;
 import com.ilkgunel.hastaneotomasyonu.entity.Iller;
 import com.ilkgunel.hastaneotomasyonu.facade.CitiesFacade;
 import com.ilkgunel.hastaneotomasyonu.service.CitiesService;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.jsf.FacesContextUtils;
@@ -24,7 +25,7 @@ import org.springframework.web.jsf.FacesContextUtils;
  * @author ilkaygunel
  */
 @ManagedBean(name="getCities")
-@SessionScoped
+@ViewScoped
 public class GetCities implements Serializable {
     
     public List<String> fillList()

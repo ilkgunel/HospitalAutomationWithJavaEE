@@ -13,6 +13,7 @@ import javax.faces.bean.ManagedBean;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import com.ilkgunel.hastaneotomasyonu.entity.Patients;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ import org.springframework.web.jsf.FacesContextUtils;
  * @author ilkaygunel
  */
 @ManagedBean(name = "savePatients")
-@SessionScoped
+@ViewScoped
 public class SavePatients implements Serializable{
     private Patients patientsObject;
     

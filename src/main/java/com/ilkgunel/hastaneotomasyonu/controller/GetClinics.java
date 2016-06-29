@@ -13,12 +13,13 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.jsf.FacesContextUtils;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class GetClinics implements Serializable{
 
     public List<String> fillList() throws Exception

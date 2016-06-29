@@ -21,6 +21,7 @@ import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.PersistenceContext;
 import org.springframework.context.ApplicationContext;
@@ -30,7 +31,7 @@ import org.springframework.web.jsf.FacesContextUtils;
  * @author ilkaygunel
  */
 @ManagedBean(name="getHospitals")
-@SessionScoped
+@ViewScoped
 public class GetHospitals implements  Serializable{
 
     @ManagedProperty(value = "#{getDistricts}")

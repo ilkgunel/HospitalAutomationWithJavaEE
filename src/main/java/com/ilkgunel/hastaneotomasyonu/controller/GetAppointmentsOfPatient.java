@@ -12,13 +12,12 @@ import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.persistence.EntityManager;
+import javax.faces.bean.ManagedProperty;
 
-import com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri;
 import com.ilkgunel.hastaneotomasyonu.entity.Takenappointments;
 import com.ilkgunel.hastaneotomasyonu.service.TakenAppointmentsService;
-import javax.faces.bean.ManagedProperty;
-import javax.persistence.PersistenceContext;
+import javax.faces.bean.ViewScoped;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.jsf.FacesContextUtils;
 /**
@@ -26,11 +25,8 @@ import org.springframework.web.jsf.FacesContextUtils;
  * @author ilkaygunel
  */
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class GetAppointmentsOfPatient implements Serializable {
-    
-    @PersistenceContext(unitName = "HospitalAutomation")
-    private EntityManager em;
     
     List<Takenappointments> takenAppointmentsOfPatient;
     Boolean cancelButtonRendered;
@@ -46,42 +42,18 @@ public class GetAppointmentsOfPatient implements Serializable {
         TakenAppointmentsService takenAppointmentsService = (TakenAppointmentsService) context.getBean("takenAppointmnetsService");
         
         takenAppointmentsOfPatient=takenAppointmentsService.getAppointmentsOfPatient(saveAppointments.comingIdentityNumber);
-        if(takenAppointmentsOfPatient!=null){
-            System.out.println("takenAppointmentsOfPatient listesi boş değil!");
-        }
-        else{
-            System.out.println("!!!takenAppointmentsOfPatient listesi boş!!!");
-        }
     }
     
 
     public void cancelAppointment()
     {
-        System.out.println("Randevu İptal Metoduna Giriş Yapıldı");
+        ApplicationContext context = FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+        TakenAppointmentsService takenAppointmentsService = (TakenAppointmentsService) context.getBean("takenAppointmnetsService");
         
-    	FacesContext fc=FacesContext.getCurrentInstance();
+        FacesContext fc=FacesContext.getCurrentInstance();
     	Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
-        int clokId;
-		try {
-			Takenappointments t=em.find(Takenappointments.class, Integer.parseInt(params.get("takenAppointmentId")));
-			t.setWasappointmentcancelled(true);
-                        clokId=t.getClockid();
-			em.getTransaction().commit();
-
-                        System.out.println("İptal edilecek saat id si:"+clokId);
-			Randevusaatleri r=em.find(Randevusaatleri.class,clokId);
-			r.setSaatalindimi(false);
-			r.setTitle("");
-			em.getTransaction().commit();
-			
-			cancelMessage="Randevunuz Başarı İle İptal Edildi!";
-			
-		} catch (Exception e) {
-			System.err.println("Meydana Gelen Hata:"+e);
-			cancelMessage="Randevunun İptali Sırasında Bir Hata Meydana Geldi!";
-		}
-                System.out.println("Randevu İptal Metoduna Çıkış Yapıldı");
-    	
+        cancelMessage = takenAppointmentsService.cancelAppointment(Integer.parseInt(params.get("takenAppointmentId")));
+ 
     }
     
     

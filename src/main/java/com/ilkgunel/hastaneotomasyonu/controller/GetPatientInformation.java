@@ -11,12 +11,13 @@ import com.ilkgunel.hastaneotomasyonu.entity.Takenappointments;
 import com.ilkgunel.hastaneotomasyonu.facade.PatientFacade;
 import com.ilkgunel.hastaneotomasyonu.service.PatientsService;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.jsf.FacesContextUtils;
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class GetPatientInformation implements Serializable{
     
     private String identityNumber;
@@ -34,6 +35,8 @@ public class GetPatientInformation implements Serializable{
     
     private String messageForUpdate;
     
+    private Patients p;
+    
     @ManagedProperty(value = "#{saveAppointments}")
     private SaveAppointments saveAppointments;
     
@@ -48,25 +51,26 @@ public class GetPatientInformation implements Serializable{
     }
     
 
-    public void fillList(ActionEvent event) throws Exception
+    public void fillList() throws Exception
     {
         ApplicationContext context = FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
         PatientsService patientsService = (PatientsService) context.getBean("patientService");
-        
-        System.out.println("Bu metod çalışıyor ki!");
-        Patients p = patientsService.getPatientInfo(saveAppointments.comingIdentityNumber);
-        setIdentityNumber(p.getIdentitynumber());
-        setName(p.getName());
-        setSurname(p.getSurname());
-        setGender(p.getGender());
-        setBirthplace(p.getBirthplace());
-        setBirthDate(p.getBirthdate());
-        setFatherName(p.getFathername());
-        setMotherName(p.getMothername());
-        setMobilePhoneNumber(p.getPhonenumber());
-        setHomePhoneNumber(p.getPhonenumber());
-        setEmailAddress(p.getEmailaddress());
-        setPassword(p.getPassword());
+        System.out.println(";;;;;Hastanın ID Bilgisi:"+saveAppointments.comingIdentityNumber+";;;");
+        p = patientsService.getPatientInfo(saveAppointments.comingIdentityNumber);
+        System.out.println(";;;;;Hastanın Adı:"+p.getName()+";;;");
+        System.out.println(";;;;;Hastanın Soyadı:"+p.getSurname()+";;;");
+//        setIdentityNumber(p.getIdentitynumber());
+//        setName(p.getName());
+//        setSurname(p.getSurname());
+//        setGender(p.getGender());
+//        setBirthplace(p.getBirthplace());
+//        setBirthDate(p.getBirthdate());
+//        setFatherName(p.getFathername());
+//        setMotherName(p.getMothername());
+//        setMobilePhoneNumber(p.getPhonenumber());
+//        setHomePhoneNumber(p.getPhonenumber());
+//        setEmailAddress(p.getEmailaddress());
+//        setPassword(p.getPassword());
     }
 
     /*public List<Patient> getPatientInfo() {
@@ -77,6 +81,16 @@ public class GetPatientInformation implements Serializable{
     {
         this.patientInfo = patientInfo;
     }*/
+
+    public Patients getP() {
+        return p;
+    }
+
+    public void setP(Patients p) {
+        this.p = p;
+    }
+    
+    
 
     public SaveAppointments getSaveAppointments() {
         return saveAppointments;
@@ -186,33 +200,37 @@ public class GetPatientInformation implements Serializable{
     public void updatePatientInfo()
     {
         ApplicationContext context = FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
-        PatientFacade patientsService = (PatientFacade) context.getBean("patientFacade");
-        try {
-            Patients p = patientsService.find(identityNumber);
-
-            p.setName(name);
-            System.out.println(p.getName());
-            p.setSurname(surname);
-            System.out.println(p.getSurname());
-            p.setGender(gender);
-            p.setBirthplace(birthplace);
-
-            java.sql.Date sqlBirDate =new java.sql.Date(birthDate.getTime());
-            p.setBirthdate(sqlBirDate);
-
-            p.setFathername(fatherName);
-            p.setMothername(motherName);
-            p.setPhonenumber(mobilePhoneNumber);
-            p.setEmailaddress(emailAddress);
-
-            messageForUpdate="Bilgileriniz Başarı İle Güncellendi!";
-
-        }
-        catch (Exception ex)
-        {
-            System.out.println("\nBir hata meydana geldi:\n"+ex);
-            messageForUpdate="Güncelleme Sırasında Bir Hata Meydana Geldi";
-        }
+        PatientsService patientsService = (PatientsService) context.getBean("patientService");
+        
+        messageForUpdate = patientsService.updatePatientInfo(p);
+        
+        
+//        try {
+//            Patients p = patientsService.find(identityNumber);
+//
+//            p.setName(name);
+//            System.out.println(p.getName());
+//            p.setSurname(surname);
+//            System.out.println(p.getSurname());
+//            p.setGender(gender);
+//            p.setBirthplace(birthplace);
+//
+//            java.sql.Date sqlBirDate =new java.sql.Date(birthDate.getTime());
+//            p.setBirthdate(sqlBirDate);
+//
+//            p.setFathername(fatherName);
+//            p.setMothername(motherName);
+//            p.setPhonenumber(mobilePhoneNumber);
+//            p.setEmailaddress(emailAddress);
+//
+//            messageForUpdate="Bilgileriniz Başarı İle Güncellendi!";
+//
+//        }
+//        catch (Exception ex)
+//        {
+//            System.out.println("\nBir hata meydana geldi:\n"+ex);
+//            messageForUpdate="Güncelleme Sırasında Bir Hata Meydana Geldi";
+//        }
     }
 
     public String getMessageForUpdate() {
