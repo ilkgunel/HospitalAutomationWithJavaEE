@@ -48,13 +48,11 @@ public class GetPatientInformation implements Serializable{
     }
     
 
-    public void fillList(ActionEvent event)
+    public void fillList(ActionEvent event) throws Exception
     {
         ApplicationContext context = FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
         PatientsService patientsService = (PatientsService) context.getBean("patientService");
-        GetAppointmentsOfPatient getAppointmentsOfPatient = (GetAppointmentsOfPatient) context.getBean("getAppointmentsOfPatient");
         
-        getAppointmentsOfPatient.fillList();
         System.out.println("Bu metod çalışıyor ki!");
         Patients p = patientsService.getPatientInfo(saveAppointments.comingIdentityNumber);
         setIdentityNumber(p.getIdentitynumber());

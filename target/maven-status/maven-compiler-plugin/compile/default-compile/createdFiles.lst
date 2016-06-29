@@ -31,6 +31,7 @@ com\ilkgunel\hastaneotomasyonu\service\PatientsService.class
 com\ilkgunel\hastaneotomasyonu\controller\GetAppointmentsOfPatient.class
 com\ilkgunel\hastaneotomasyonu\facade\TakenAppointmentsFacade.class
 com\ilkgunel\hastaneotomasyonu\controller\Test.class
+com\ilkgunel\hastaneotomasyonu\service\TakenAppointmentsService.class
 com\ilkgunel\hastaneotomasyonu\entity\Klinikyerleri.class
 com\ilkgunel\hastaneotomasyonu\facade\ClinicPlacesFacade.class
 com\ilkgunel\hastaneotomasyonu\controller\GetDistricts.class

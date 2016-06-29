@@ -6,11 +6,6 @@
 package com.ilkgunel.hastaneotomasyonu.controller;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -18,13 +13,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 
 import com.ilkgunel.hastaneotomasyonu.entity.Randevusaatleri;
 import com.ilkgunel.hastaneotomasyonu.entity.Takenappointments;
+import com.ilkgunel.hastaneotomasyonu.service.TakenAppointmentsService;
 import javax.faces.bean.ManagedProperty;
 import javax.persistence.PersistenceContext;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.jsf.FacesContextUtils;
 /**
  *
  * @author ilkaygunel
@@ -44,21 +40,17 @@ public class GetAppointmentsOfPatient implements Serializable {
     @ManagedProperty(value = "#{saveAppointments}")
     private SaveAppointments saveAppointments;
     
-    public void fillList()
+    public void fillList() throws Exception
     {
-        DateFormat appointmentDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-        DateFormat nowDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-
-        takenAppointmentsOfPatient=new ArrayList<>();
-        try {
-            TypedQuery<Takenappointments> query=em.createQuery("SELECT t FROM Takenappointments t WHERE t.patientid=:patientid AND t.wasappointmentcancelled=:cancelParameter",Takenappointments.class);
-            query.setParameter("patientid", saveAppointments.comingIdentityNumber);
-            query.setParameter("cancelParameter", false);
-            takenAppointmentsOfPatient=query.getResultList();
-        } 
-        catch (Exception e)
-        {
-            System.out.println("Bir Hata Meydana Geldi!\nHata:"+e);
+        ApplicationContext context = FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+        TakenAppointmentsService takenAppointmentsService = (TakenAppointmentsService) context.getBean("takenAppointmnetsService");
+        
+        takenAppointmentsOfPatient=takenAppointmentsService.getAppointmentsOfPatient(saveAppointments.comingIdentityNumber);
+        if(takenAppointmentsOfPatient!=null){
+            System.out.println("takenAppointmentsOfPatient listesi boş değil!");
+        }
+        else{
+            System.out.println("!!!takenAppointmentsOfPatient listesi boş!!!");
         }
     }
     
@@ -109,5 +101,12 @@ public class GetAppointmentsOfPatient implements Serializable {
     public void setCancelMessage(String cancelMessage) {
             this.cancelMessage = cancelMessage;
     }
-    
+
+    public SaveAppointments getSaveAppointments() {
+        return saveAppointments;
+    }
+
+    public void setSaveAppointments(SaveAppointments saveAppointments) {
+        this.saveAppointments = saveAppointments;
+    }
 }

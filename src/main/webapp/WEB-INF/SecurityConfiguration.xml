@@ -59,7 +59,6 @@
     <bean id="saveAppointmentsService" class="com.ilkgunel.hastaneotomasyonu.service.SaveAppointmentsService"></bean>
     <bean id="getClinics" class="com.ilkgunel.hastaneotomasyonu.controller.GetClinics"></bean>
     
-    <bean id="getAppointmentsOfPatient" class="com.ilkgunel.hastaneotomasyonu.controller.GetAppointmentsOfPatient"></bean>
     <bean id="savePatientsService" class="com.ilkgunel.hastaneotomasyonu.service.SavePatientsService"></bean>
     <bean id="randevuSaatleriFacade" class="com.ilkgunel.hastaneotomasyonu.facade.RandevuSaatleriFacade"></bean>
     <bean id="takenAppointmentsFacade" class="com.ilkgunel.hastaneotomasyonu.facade.TakenAppointmentsFacade"></bean>
@@ -79,6 +78,7 @@
     <bean id="clinicPlacesFacade" class="com.ilkgunel.hastaneotomasyonu.facade.ClinicPlacesFacade"></bean>
     <bean id="availableAppointmentsService" class="com.ilkgunel.hastaneotomasyonu.service.AvailableAppointmentsService"></bean>
     <bean id="availableAppointmentsFacade" class="com.ilkgunel.hastaneotomasyonu.facade.AvailableAppointmentsFacade"></bean>
+    <bean id="takenAppointmnetsService" class="com.ilkgunel.hastaneotomasyonu.service.TakenAppointmentsService"></bean>
     
     <!-- Burası Yorum Yapılacak -->
     <bean id="getCities" class="com.ilkgunel.hastaneotomasyonu.controller.GetCities"></bean>

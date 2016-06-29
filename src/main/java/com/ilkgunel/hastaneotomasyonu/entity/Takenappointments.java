@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import javax.persistence.*;
 import java.util.Date;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
+
 
 
 /**
@@ -11,7 +15,11 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name="Takenappointments.findAll", query="SELECT t FROM Takenappointments t")
+@NamedQueries({
+@NamedQuery(name="Takenappointments.findAll", query="SELECT t FROM Takenappointments t"),
+@NamedQuery(name = "TakenAppointments.findByPatineIdAndIsAppointmentCancelled", query="SELECT t FROM Takenappointments t WHERE t.patientid=:patientid AND t.wasappointmentcancelled=:cancelParameter")
+})
+
 public class Takenappointments implements Serializable {
 	private static final long serialVersionUID = 1L;
 
