@@ -81,6 +81,7 @@ public class SaveAppointmentsService{
             Randevusaatleri r = randevuSaatleriFacade.find(takenappointments.getClockid());
             r.setSaatalindimi(true);
             r.setTitle("DOLU");
+            randevuSaatleriFacade.updateMemberInfo(r);
             //em.getTransaction().commit();
             
             String operationResult = takenAppointmentsFacade.create(takenappointments);
