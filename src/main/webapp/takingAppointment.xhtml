@@ -50,7 +50,7 @@
                         <p:message id="citySelectOneMenuMessage" for="citySelectOneMenu" />
                                                  
                         <h:outputText value="İlçe"/>
-                        <p:selectOneMenu id="districtSelectOneMenu" value="#{getHospitals.currentDistrict}" style="width: 160px;" required="true" requiredMessage="İlçe Seçimi Zorunludur">
+                        <p:selectOneMenu id="districtSelectOneMenu" value="#{saveAppointments.currentDistrict}" style="width: 160px;" required="true" requiredMessage="İlçe Seçimi Zorunludur">
                             <p:ajax update="hospitalSelectOneMenu" listener="#{getHospitals.fillList()}"/>
                             <f:selectItem itemLabel="-farketmez-" itemValue="#{null}"/>
                             <f:selectItems value="#{getDistricts.fillList()}"/>

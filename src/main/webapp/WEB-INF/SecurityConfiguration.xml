@@ -57,7 +57,6 @@
     
     <!-- Şehirler Sınıfının Spring İle Gönderilmesi -->
     <bean id="saveAppointmentsService" class="com.ilkgunel.hastaneotomasyonu.service.SaveAppointmentsService"></bean>
-    <bean id="getClinics" class="com.ilkgunel.hastaneotomasyonu.controller.GetClinics"></bean>
     
     <bean id="savePatientsService" class="com.ilkgunel.hastaneotomasyonu.service.SavePatientsService"></bean>
     <bean id="randevuSaatleriFacade" class="com.ilkgunel.hastaneotomasyonu.facade.RandevuSaatleriFacade"></bean>
@@ -81,11 +80,6 @@
     <bean id="takenAppointmnetsService" class="com.ilkgunel.hastaneotomasyonu.service.TakenAppointmentsService"></bean>
     
     <!-- Burası Yorum Yapılacak -->
-    <bean id="getCities" class="com.ilkgunel.hastaneotomasyonu.controller.GetCities"></bean>
-    <!--<bean id="getDistricts" class="com.ilkgunel.hastaneotomasyonu.controller.GetDistricts"></bean>-->
-    <!--<bean id="getClinicPlaces" class="com.ilkgunel.hastaneotomasyonu.controller.GetClinicPlaces"/>-->
-    <!--<bean id="getPatientInformation" class="com.ilkgunel.hastaneotomasyonu.controller.GetPatientInformation"></bean>-->
-    <bean id="getHospitals" name="getHospitals" class="com.ilkgunel.hastaneotomasyonu.controller.GetHospitals"></bean>
     <!-- Burası Yorum Yapılacak -->
     
     <!-- JPA Persistence Unit'i Spring'e Tanıtıyoruz. @PersistenceContext kullanılırken 

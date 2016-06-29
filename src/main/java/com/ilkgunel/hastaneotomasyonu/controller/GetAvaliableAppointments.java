@@ -63,14 +63,6 @@ public class GetAvaliableAppointments implements Serializable{
         this.doctorAndTimeList = doctorAndTimeList;
     }
 
-   /* public GetClinics getGetClinicsObject() {
-        return getClinicsObject;
-    }
-
-    public void setGetClinicsObject(GetClinics getClinicsObject) {
-        this.getClinicsObject = getClinicsObject;
-    }*/
-
     public List<Randevusaatleri> getAppointmentClockResults() {
         return appointmentClockResults;
     }

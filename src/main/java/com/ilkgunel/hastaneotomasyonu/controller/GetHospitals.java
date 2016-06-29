@@ -34,8 +34,8 @@ import org.springframework.web.jsf.FacesContextUtils;
 @ViewScoped
 public class GetHospitals implements  Serializable{
 
-    @ManagedProperty(value = "#{getDistricts}")
-    private GetDistricts districtsObject;
+//    @ManagedProperty(value = "#{getDistricts}")
+//    private GetDistricts districtsObject;
     
     @ManagedProperty(value = "#{saveAppointments}")
     private SaveAppointments saveAppointments;
@@ -48,8 +48,7 @@ public class GetHospitals implements  Serializable{
     {
         ApplicationContext context= FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
         HospitalsService hospitalsService = (HospitalsService) context.getBean("hospitalService");
-        System.out.println("------ currentDistrict:----"+currentDistrict);
-        return hospitalsService.getAllHospitalNames(currentDistrict);
+        return hospitalsService.getAllHospitalNames(saveAppointments.currentDistrict);
     }
 
     public int getDistrictId() {
@@ -60,27 +59,19 @@ public class GetHospitals implements  Serializable{
         this.districtId = districtId;
     }
 
-    /*public GetDistricts getDistrictsObject() {
-        return districtsObject;
-    }
-
-    public void setDistrictsObject(GetDistricts districtsObject) {
-        this.districtsObject = districtsObject;
-    }
-
-    public SaveAppointments getSaveAppointments() {
-        return saveAppointments;
-    }
-
-    /*public void setSaveAppointments(SaveAppointments saveAppointments) {
-        this.saveAppointments = saveAppointments;
-    }*/
-
     public String getCurrentDistrict() {
         return currentDistrict;
     }
 
     public void setCurrentDistrict(String currentDistrict) {
         this.currentDistrict = currentDistrict;
+    }
+
+    public SaveAppointments getSaveAppointments() {
+        return saveAppointments;
+    }
+
+    public void setSaveAppointments(SaveAppointments saveAppointments) {
+        this.saveAppointments = saveAppointments;
     }
 }

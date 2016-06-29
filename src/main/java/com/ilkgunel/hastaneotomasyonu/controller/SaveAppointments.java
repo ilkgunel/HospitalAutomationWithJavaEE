@@ -29,6 +29,7 @@ public class SaveAppointments implements Serializable{
     String comingIdentityNumber;
     String comingPassword;
     
+    String currentDistrict;
     String clinic;
     private String city;
     String district;
@@ -39,6 +40,14 @@ public class SaveAppointments implements Serializable{
     Uygunrandevular selectedAppointment;
     
     String operationResult;
+
+    public String getCurrentDistrict() {
+        return currentDistrict;
+    }
+
+    public void setCurrentDistrict(String currentDistrict) {
+        this.currentDistrict = currentDistrict;
+    }
 
     public Uygunrandevular getSelectedAppointment()
     {
@@ -144,7 +153,7 @@ public class SaveAppointments implements Serializable{
         takenappointmentsObject.setClinicname(clinic);
         takenappointmentsObject.setClinicplace(clinicPlace);
         takenappointmentsObject.setClockid(Integer.parseInt(clockId));
-        saveAppointmentsService.saveAppointmentToDb(takenappointmentsObject);
+        operationResult = saveAppointmentsService.saveAppointmentToDb(takenappointmentsObject);
     }
 
     public String getClockId() {

@@ -78,14 +78,22 @@ public class AvailableAppointmentsService {
     
     public Boolean[] changeRenderingStates(SaveAppointments saveAppointments)
     {
+        int doctorid=0;
+        int uygunrandevuid=0;
+        
+        if(saveAppointments!=null){
+            doctorid = saveAppointments.getSelectedAppointment().getDoktorid();
+            uygunrandevuid = saveAppointments.getSelectedAppointment().getUygunrandevuid();
+        }
+        
         TypedQuery<Object[]> doctorAndTimeQuery = em.createQuery("SELECT u.doktoradi,FUNCTION('DATE',u.tarih),u.uygunrandevuid FROM Uygunrandevular AS u WHERE u.doktorid=:doctorid ORDER BY u.tarih ASC",Object[].class);
-        doctorAndTimeQuery.setParameter("doctorid", saveAppointments.getSelectedAppointment().getDoktorid());
+        doctorAndTimeQuery.setParameter("doctorid", doctorid);
         doctorAndTimeList=new ArrayList<>();
         doctorAndTimeList=doctorAndTimeQuery.getResultList();
         
         TypedQuery<Randevusaatleri> query=em.createQuery("SELECT c FROM Randevusaatleri c WHERE c.doktorid=:doctorid",Randevusaatleri.class);
-        System.out.println("Seçilen Randevunun ID'si"+saveAppointments.getSelectedAppointment().getUygunrandevuid());
-        query.setParameter("doctorid", saveAppointments.getSelectedAppointment().getUygunrandevuid());
+        System.out.println("Seçilen Randevunun ID'si"+uygunrandevuid);
+        query.setParameter("doctorid", uygunrandevuid);
         appointmentClockResults=new ArrayList<>();
         appointmentClockResults=query.getResultList();
         

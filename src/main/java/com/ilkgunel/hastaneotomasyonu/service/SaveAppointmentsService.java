@@ -19,11 +19,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.faces.context.FacesContext;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.jsf.FacesContextUtils;
 
 /**
@@ -43,7 +40,7 @@ public class SaveAppointmentsService{
     @Autowired
     TakenAppointmentsFacade takenAppointmentsFacade;
     
-    public void saveAppointmentToDb(Takenappointments takenappointments) throws Exception{
+    public String saveAppointmentToDb(Takenappointments takenappointments) throws Exception{
         ApplicationContext context= FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
         List<Randevusaatleri> appointmentClockResults =new ArrayList<>();
         String hour="";
@@ -89,9 +86,12 @@ public class SaveAppointmentsService{
             String operationResult = takenAppointmentsFacade.create(takenappointments);
             
         
-
+            GetAvaliableAppointments getAvaliableAppointments = new GetAvaliableAppointments();
+            getAvaliableAppointments.changeRenderingStates();
         
-        GetAvaliableAppointments getAvaliableAppointments=(GetAvaliableAppointments) context.getBean("getAvaliableAppointments");
-        getAvaliableAppointments.changeRenderingStates();
+//        GetAvaliableAppointments getAvaliableAppointments=(GetAvaliableAppointments) context.getBean("getAvaliableAppointments");
+//        getAvaliableAppointments.changeRenderingStates();
+        
+        return operationResult;
     }
 }

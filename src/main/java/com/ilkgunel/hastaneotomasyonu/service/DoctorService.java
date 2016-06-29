@@ -27,14 +27,6 @@ import org.springframework.web.jsf.FacesContextUtils;
  */
 public class DoctorService {
     
-    //@ManagedProperty(value = "#{getClinics}")
-    @Autowired
-    private GetClinics getClinicsObject;
-
-    //@ManagedProperty(value = "#{getHospitals}")
-    @Autowired
-    private GetHospitals getHospitalsObject;
-    
     @Autowired
     private DoctorFacade doctorFacade;
     
