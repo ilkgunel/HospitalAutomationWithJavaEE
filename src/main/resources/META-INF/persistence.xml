@@ -25,5 +25,8 @@
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>-->
+    <properties>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
   </persistence-unit>
 </persistence>

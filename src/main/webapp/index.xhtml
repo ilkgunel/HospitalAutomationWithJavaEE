@@ -1,61 +1,77 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Hastane Otomasyonu</title>
-        <f:metadata>
-            <f:event type="preRenderView" listener="#{loginControlClass.authorizedUserControl}"/>
-        </f:metadata>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8"></meta>
-    </h:head>
-    <h:body>
-        <h:outputStylesheet library="css" name="cssfile.css"/>
-        <center style="margin-top: 100px;">
-            <h:form id="form" prependId="false">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Hastane Otomasyonu</title>
+	<f:metadata>
+		<f:event type="preRenderView"
+			listener="#{loginControlClass.authorizedUserControl}" />
+	</f:metadata>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"></meta>
+</h:head>
+<h:body>
+	<h:outputStylesheet library="css" name="cssfile.css" />
+	<center style="margin-top: 100px;">
+		<h:form id="form" prependId="false">
 
-                <center>HASTANE OTOMASYONU PROJESİ</center>
-                <center><h3>RANDEVU ALMA SİSTEMİ</h3></center>
-                <div id="divClass1">
-                    <h:panelGrid columns="2" style="margin-top:60px;">
+			<center>HASTANE OTOMASYONU PROJESİ</center>
+			<center>
+				<h3>RANDEVU ALMA SİSTEMİ</h3>
+			</center>
+			<div id="divClass1">
+				<h:panelGrid columns="2" style="margin-top:60px;">
 
-                        <center><h:outputText value="Üye Giriş Ekranı" /></center>
-                        <h:outputText value=""/>
+					<center>
+						<h:outputText value="Üye Giriş Ekranı" />
+					</center>
+					<h:outputText value="" />
 
-                        <h:outputText value="Kimlik Numaranız" style="margin-left: 15px;"/>
-                        <p:inputMask id="j_username" mask="99999999999" style="width: 130px;" required="true" maxlength="100" size="30"
-                                     value="#{saveAppointments.comingIdentityNumber}"  requiredMessage="Kullanıcı adı alanı boş bırakılamaz..."/>
+					<h:outputText value="Kimlik Numaranız" style="margin-left: 15px;" />
+					<p:inputMask id="j_username" mask="99999999999"
+						style="width: 130px;" required="true" maxlength="100" size="30"
+						value="#{saveAppointments.comingIdentityNumber}"
+						requiredMessage="Kullanıcı adı alanı boş bırakılamaz..." />
 
 
-                        <h:outputText value="Parola" style="margin-left: 15px;"/>
-                        <p:password id="j_password" required="true" style="width: 130px;" maxlength="50" size="30" value="#{saveAppointments.comingPassword}"
-                                     requiredMessage="Parola alanı boş bırakılamaz..." />
+					<h:outputText value="Parola" style="margin-left: 15px;" />
+					<p:password id="j_password" required="true" style="width: 130px;"
+						maxlength="50" size="30"
+						value="#{saveAppointments.comingPassword}"
+						requiredMessage="Parola alanı boş bırakılamaz..." />
 
-                        <h:outputText value="Doğrulama Kodu"/>
-                        <p:captcha language="tr" label="Captcha" requiredMessage="Doğrulama Kodu Boş Bırakılamaz..." />
-                        
-                        
-                        <h:panelGrid columns="2">
-                            <h:button value="Yeni Üye" outcome="savingPatients.xhtml"/>
-                            <h:button value="Şifremi Unuttum" outcome="remindingPassword.xhtml"/>
-                        </h:panelGrid>
-                        <h:commandButton value="Giriş" action="#{loginControlClass.login()}"  style="margin-left: 265px;"/>
-                        
-                        <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					<h:outputText value="Doğrulama Kodu" />
+					<p:captcha label="Captcha"
+						requiredMessage="Doğrulama Kodu Boş Bırakılamaz..." />
+
+
+					<h:panelGrid columns="2">
+						<h:button value="Yeni Üye" outcome="savingPatients.xhtml" />
+						<h:button value="Şifremi Unuttum"
+							outcome="remindingPassword.xhtml" />
+					</h:panelGrid>
+					<h:commandButton value="Giriş"
+						action="#{loginControlClass.login()}" style="margin-left: 265px;" />
+
+					<!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         <h:outputText value=""/>-->
-                    </h:panelGrid>
-                    <h:panelGrid columns="1">
-                        <h:outputText value="Soru ve düşünceleriniz için ilkgunel93@gmail.com adresine mail atabilirsiniz." style="margin-left: 5px;"/>
-                        <h:outputLabel value="#{sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}" rendered="#{!empty sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}"
-                                       style="margin-left: 5px;color: red"/>
-                        <p:messages showDetail="true"/>
-                    </h:panelGrid>
-                </div>
-            </h:form>
-        </center>
-        <br />
-    </h:body>
+				</h:panelGrid>
+				<h:panelGrid columns="1">
+					<h:outputText
+						value="Soru ve düşünceleriniz için ilkgunel93@gmail.com adresine mail atabilirsiniz."
+						style="margin-left: 5px;" />
+					<h:outputLabel
+						value="#{sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+						rendered="#{!empty sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+						style="margin-left: 5px;color: red" />
+					<p:messages showDetail="true" />
+				</h:panelGrid>
+			</div>
+		</h:form>
+	</center>
+	<br />
+</h:body>
 </html>
 
